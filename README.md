@@ -24,7 +24,7 @@ Executar:
 
 ## Execução do arquivo de Tunning
 
-> python tune_size.py
+> (envyatuner) python tune_size.py
  
 Ao executar o tunning da aplicação um diretório `yatuner-db/` será formado, este diretório contém os parâmetros selecionados pelo framework para melhor performance do algorítmo, além de algumas outras peças para análise.
 
