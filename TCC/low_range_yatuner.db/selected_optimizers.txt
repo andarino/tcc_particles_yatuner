@@ -1,0 +1,11 @@
+-fassociative-math
+-fdelayed-branch
+-fvpt
+-funroll-all-loops
+-fallocation-dce
+-ffast-math
+-ftoplevel-reorder
+-fisolate-erroneous-paths-attribute
+-fselective-scheduling2
+-fgcse-sm
+-fcx-limited-range

@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: yatuner
+Version: 0.0.1
+Summary: Yet another auto tuner for compilers.
+Home-page: UNKNOWN
+Author: Synodic Month, Juni May
+Author-email: synodic_month@163.com, juni_may@outlook.com
+License: Mulan PSL v2
+Description: README.md
+Platform: UNKNOWN
+Requires: GPyOpt
+Requires: GPy
+Requires: numpy
+Requires: matplotlib
+Requires: scipy
+Requires: rich
+Requires: seaborn

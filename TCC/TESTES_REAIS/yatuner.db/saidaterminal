@@ -1,0 +1,863 @@
+ 
+# Tuning process!
+tuner.initialize()
+tuner.test_run(num_samples=400, warmup=20)#200, 10
+tuner.hypotest_optimizers(num_samples=10, num_epochs=60)#1, 30 ()
+tuner.hypotest_parameters(num_samples=10)
+tuner.optimize(num_samples=20, num_epochs=100) #Using bayesian optimization 
+tuner.optimize_linUCB(alpha=0.25,
+                      num_bins=30,
+                      num_epochs=400, #400
+                      nth_choice=4,
+                      metric=metric) #using linUCB
+tuner.run(num_samples=100) #50 -Ofast, -Os, -O0, (10 - 30)
+tuner.plot_data() 
+
+
+
+
+
+  (yatunerenv) thiago@ubuntu:~/TCC$ python tune_stat_particles.py 
+warning in stationary: failed to import cython module: falling back to numpy
+warning in coregionalize: failed to import cython module: falling back to numpy
+warning in choleskies: failed to import cython module: falling back to numpy
+[01/08/24 01:42:17] INFO     [ yatuner ] workspace is not detected, creating one. 
+[01/08/24 01:42:20] DEBUG    [ yatuner ] warmup 0/20 result: 2595615.571 
+[01/08/24 01:42:23] DEBUG    [ yatuner ] warmup 1/20 result: 2605756.764 
+[01/08/24 01:42:25] DEBUG    [ yatuner ] warmup 2/20 result: 2592627.249 
+[01/08/24 01:42:28] DEBUG    [ yatuner ] warmup 3/20 result: 2649877.26 
+[01/08/24 01:42:31] DEBUG    [ yatuner ] warmup 4/20 result: 3044880.835 
+[01/08/24 01:42:34] DEBUG    [ yatuner ] warmup 5/20 result: 2643464.655 
+[01/08/24 01:42:36] DEBUG    [ yatuner ] warmup 6/20 result: 2647690.608 
+[01/08/24 01:42:39] DEBUG    [ yatuner ] warmup 7/20 result: 2592323.908 
+[01/08/24 01:42:41] DEBUG    [ yatuner ] warmup 8/20 result: 2568355.409 
+[01/08/24 01:42:44] DEBUG    [ yatuner ] warmup 9/20 result: 2568542.214 
+[01/08/24 01:42:47] DEBUG    [ yatuner ] warmup 10/20 result: 2564269.627 
+[01/08/24 01:42:49] DEBUG    [ yatuner ] warmup 11/20 result: 2566092.369 
+[01/08/24 01:42:52] DEBUG    [ yatuner ] warmup 12/20 result: 2577562.157 
+[01/08/24 01:42:54] DEBUG    [ yatuner ] warmup 13/20 result: 2579108.024 
+[01/08/24 01:42:57] DEBUG    [ yatuner ] warmup 14/20 result: 2577383.706 
+[01/08/24 01:43:00] DEBUG    [ yatuner ] warmup 15/20 result: 2573732.787 
+[01/08/24 01:43:02] DEBUG    [ yatuner ] warmup 16/20 result: 2571048.052 
+[01/08/24 01:43:05] DEBUG    [ yatuner ] warmup 17/20 result: 2562797.397 
+[01/08/24 01:43:07] DEBUG    [ yatuner ] warmup 18/20 result: 2557411.751 
+[01/08/24 01:43:10] DEBUG    [ yatuner ] warmup 19/20 result: 2588605.54 
+  warmup ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:52
+test run ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:17:11
+[01/08/24 02:00:24] INFO     [ yatuner ] test run finished with u: 2562056.41, std: 7693.54 
+                    INFO     [ yatuner ] test run ... OK 
+def hypotest_optimizers | o otimizador escolhido é quando: p < z_threshold=0.05 or t < t_threshold=0.05
+p: Função de sobrevivência de uma distribuição normal (gaussiana).
+t: indica se a média de uma única amostra é significativamente diferente de uma média populacional conhecida ou hipotética. 
+[01/08/24 02:00:50] DEBUG    [ yatuner ] 0/78 -fsave-optimization-record u: 2562056.41 -> 2549784.64, p: 0.00, t: 0.03 
+                    INFO     [ yatuner ] -fsave-optimization-record is selected 
+[01/08/24 02:01:16] DEBUG    [ yatuner ] 1/78 -fsignaling-nans u: 2562056.41 -> 2547572.69, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fsignaling-nans is selected 
+[01/08/24 02:01:42] DEBUG    [ yatuner ] 2/78 -ffinite-math-only u: 2562056.41 -> 2547029.17, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -ffinite-math-only is selected 
+[01/08/24 02:02:08] DEBUG    [ yatuner ] 3/78 -fstrict-enums u: 2562056.41 -> 2547563.71, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fstrict-enums is selected 
+[01/08/24 02:02:34] DEBUG    [ yatuner ] 4/78 -ftree-lrs u: 2562056.41 -> 2545855.74, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -ftree-lrs is selected 
+[01/08/24 02:03:01] DEBUG    [ yatuner ] 5/78 -fsingle-precision-constant u: 2562056.41 -> 2548468.12, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fsingle-precision-constant is selected 
+[01/08/24 02:03:27] DEBUG    [ yatuner ] 6/78 -fgraphite u: 2562056.41 -> 2548189.81, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fgraphite is selected 
+[01/08/24 02:03:53] DEBUG    [ yatuner ] 7/78 -fexceptions u: 2562056.41 -> 2554681.71, p: 0.00, t: 0.20 
+                    INFO     [ yatuner ] -fexceptions is selected 
+[01/08/24 02:04:19] DEBUG    [ yatuner ] 8/78 -fstack-protector-all u: 2562056.41 -> 2568820.08, p: 0.01, t: 0.00 
+[01/08/24 02:04:45] DEBUG    [ yatuner ] 9/78 -fsel-sched-pipelining-outer-loops u: 2562056.41 -> 2546979.63, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fsel-sched-pipelining-outer-loops is selected 
+[01/08/24 02:05:11] DEBUG    [ yatuner ] 10/78 -funroll-completely-grow-size u: 2562056.41 -> 2546526.96, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -funroll-completely-grow-size is selected 
+[01/08/24 02:05:37] DEBUG    [ yatuner ] 11/78 -fmodulo-sched-allow-regmoves u: 2562056.41 -> 2545438.19, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fmodulo-sched-allow-regmoves is selected 
+[01/08/24 02:06:04] DEBUG    [ yatuner ] 12/78 -fallow-store-data-races u: 2562056.41 -> 2546971.10, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fallow-store-data-races is selected 
+[01/08/24 02:06:34] DEBUG    [ yatuner ] 13/78 -ftrapv u: 2562056.41 -> 2987908.33, p: 0.00, t: 0.00 
+[01/08/24 02:07:00] DEBUG    [ yatuner ] 14/78 -fpack-struct u: 2562056.41 -> 2547979.31, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fpack-struct is selected 
+[01/08/24 02:07:26] DEBUG    [ yatuner ] 15/78 -fsched-spec-load u: 2562056.41 -> 2549290.21, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fsched-spec-load is selected 
+[01/08/24 02:07:53] DEBUG    [ yatuner ] 16/78 -fnon-call-exceptions u: 2562056.41 -> 2552699.63, p: 0.00, t: 0.02 
+                    INFO     [ yatuner ] -fnon-call-exceptions is selected 
+[01/08/24 02:08:19] DEBUG    [ yatuner ] 17/78 -fisolate-erroneous-paths-attribute u: 2562056.41 -> 2547477.75, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fisolate-erroneous-paths-attribute is selected 
+[01/08/24 02:08:45] DEBUG    [ yatuner ] 18/78 -free u: 2562056.41 -> 2552454.84, p: 0.00, t: 0.02 
+                    INFO     [ yatuner ] -free is selected 
+[01/08/24 02:09:11] DEBUG    [ yatuner ] 19/78 -fdelayed-branch u: 2562056.41 -> 2547566.32, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fdelayed-branch is selected 
+[01/08/24 02:09:45] DEBUG    [ yatuner ] 20/78 -ffloat-store u: 2562056.41 -> 3332271.35, p: 0.00, t: 0.00 
+[01/08/24 02:10:11] DEBUG    [ yatuner ] 21/78 -fnothrow-opt u: 2562056.41 -> 2550625.74, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fnothrow-opt is selected 
+[01/08/24 02:10:36] DEBUG    [ yatuner ] 22/78 -ffast-math u: 2562056.41 -> 2446961.17, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -ffast-math is selected 
+[01/08/24 02:11:02] DEBUG    [ yatuner ] 23/78 -fsplit-wide-types-early u: 2562056.41 -> 2547274.98, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fsplit-wide-types-early is selected 
+[01/08/24 02:11:28] DEBUG    [ yatuner ] 24/78 -funsafe-math-optimizations u: 2562056.41 -> 2488063.20, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -funsafe-math-optimizations is selected 
+[01/08/24 02:11:54] DEBUG    [ yatuner ] 25/78 -fvpt u: 2562056.41 -> 2547625.41, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fvpt is selected 
+[01/08/24 02:12:20] DEBUG    [ yatuner ] 26/78 -ftree-vectorize u: 2562056.41 -> 2547772.60, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -ftree-vectorize is selected 
+[01/08/24 02:12:46] DEBUG    [ yatuner ] 27/78 -fmodulo-sched u: 2562056.41 -> 2547635.47, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fmodulo-sched is selected 
+[01/08/24 02:13:12] DEBUG    [ yatuner ] 28/78 -fsel-sched-pipelining u: 2562056.41 -> 2551330.65, p: 0.00, t: 0.14 
+                    INFO     [ yatuner ] -fsel-sched-pipelining is selected 
+[01/08/24 02:13:38] DEBUG    [ yatuner ] 29/78 -fira-loop-pressure u: 2562056.41 -> 2547106.74, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fira-loop-pressure is selected 
+[01/08/24 02:14:04] DEBUG    [ yatuner ] 30/78 -fdelete-dead-exceptions u: 2562056.41 -> 2547975.06, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fdelete-dead-exceptions is selected 
+[01/08/24 02:14:31] DEBUG    [ yatuner ] 31/78 -fvar-tracking-assignments-toggle u: 2562056.41 -> 2546984.43, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fvar-tracking-assignments-toggle is selected 
+[01/08/24 02:14:57] DEBUG    [ yatuner ] 32/78 -fbranch-probabilities u: 2562056.41 -> 2551282.63, p: 0.00, t: 0.01 
+                    INFO     [ yatuner ] -fbranch-probabilities is selected 
+[01/08/24 02:15:23] DEBUG    [ yatuner ] 33/78 -fconserve-stack u: 2562056.41 -> 2549918.18, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fconserve-stack is selected 
+[01/08/24 02:15:49] DEBUG    [ yatuner ] 34/78 -ftracer u: 2562056.41 -> 2550095.40, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -ftracer is selected 
+[01/08/24 02:16:15] DEBUG    [ yatuner ] 35/78 -fsel-sched-reschedule-pipelined u: 2562056.41 -> 2547934.49, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fsel-sched-reschedule-pipelined is selected 
+[01/08/24 02:16:41] DEBUG    [ yatuner ] 36/78 -fvariable-expansion-in-unroller u: 2562056.41 -> 2546126.83, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fvariable-expansion-in-unroller is selected 
+[01/08/24 02:17:07] DEBUG    [ yatuner ] 37/78 -floop-nest-optimize u: 2562056.41 -> 2551147.65, p: 0.00, t: 0.01 
+                    INFO     [ yatuner ] -floop-nest-optimize is selected 
+[01/08/24 02:17:33] DEBUG    [ yatuner ] 38/78 -fopt-info u: 2562056.41 -> 2547566.50, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fopt-info is selected 
+[01/08/24 02:18:00] DEBUG    [ yatuner ] 39/78 -fhandle-exceptions u: 2562056.41 -> 2547946.92, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fhandle-exceptions is selected 
+[01/08/24 02:18:26] DEBUG    [ yatuner ] 40/78 -fsched-pressure u: 2562056.41 -> 2544867.92, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fsched-pressure is selected 
+[01/08/24 02:18:52] DEBUG    [ yatuner ] 41/78 -fselective-scheduling u: 2562056.41 -> 2555658.55, p: 0.01, t: 0.28 
+                    INFO     [ yatuner ] -fselective-scheduling is selected 
+[01/08/24 02:19:18] DEBUG    [ yatuner ] 42/78 -fallocation-dce u: 2562056.41 -> 2547413.16, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fallocation-dce is selected 
+[01/08/24 02:19:44] DEBUG    [ yatuner ] 43/78 -fvar-tracking-uninit u: 2562056.41 -> 2547004.15, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fvar-tracking-uninit is selected 
+[01/08/24 02:20:10] DEBUG    [ yatuner ] 44/78 -floop-parallelize-all u: 2562056.41 -> 2545827.41, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -floop-parallelize-all is selected 
+[01/08/24 02:20:36] DEBUG    [ yatuner ] 45/78 -fprofile-reorder-functions u: 2562056.41 -> 2549425.77, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fprofile-reorder-functions is selected 
+[01/08/24 02:21:02] DEBUG    [ yatuner ] 46/78 -fschedule-insns u: 2562056.41 -> 2547055.15, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fschedule-insns is selected 
+[01/08/24 02:21:28] DEBUG    [ yatuner ] 47/78 -funroll-loops u: 2562056.41 -> 2546278.51, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -funroll-loops is selected 
+[01/08/24 02:21:55] DEBUG    [ yatuner ] 48/78 -fassociative-math u: 2562056.41 -> 2546914.19, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fassociative-math is selected 
+[01/08/24 02:22:21] DEBUG    [ yatuner ] 49/78 -fkeep-gc-roots-live u: 2562056.41 -> 2556496.04, p: 0.02, t: 0.35 
+                    INFO     [ yatuner ] -fkeep-gc-roots-live is selected 
+[01/08/24 02:22:47] DEBUG    [ yatuner ] 50/78 -flive-range-shrinkage u: 2562056.41 -> 2547125.11, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -flive-range-shrinkage is selected 
+[01/08/24 02:23:13] DEBUG    [ yatuner ] 51/78 -fgcse-sm u: 2562056.41 -> 2546784.95, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fgcse-sm is selected 
+[01/08/24 02:23:39] DEBUG    [ yatuner ] 52/78 -fcx-fortran-rules u: 2562056.41 -> 2550176.64, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fcx-fortran-rules is selected 
+[01/08/24 02:24:05] DEBUG    [ yatuner ] 53/78 -fwrapv-pointer u: 2562056.41 -> 2550771.43, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fwrapv-pointer is selected 
+[01/08/24 02:24:31] DEBUG    [ yatuner ] 54/78 -fstack-protector-explicit u: 2562056.41 -> 2551813.90, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fstack-protector-explicit is selected 
+[01/08/24 02:24:58] DEBUG    [ yatuner ] 55/78 -fprofile-partial-training u: 2562056.41 -> 2550450.26, p: 0.00, t: 0.01 
+                    INFO     [ yatuner ] -fprofile-partial-training is selected 
+[01/08/24 02:25:24] DEBUG    [ yatuner ] 56/78 -frounding-math u: 2562056.41 -> 2548403.36, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -frounding-math is selected 
+[01/08/24 02:25:50] DEBUG    [ yatuner ] 57/78 -freciprocal-math u: 2562056.41 -> 2546888.12, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -freciprocal-math is selected 
+[01/08/24 02:26:16] DEBUG    [ yatuner ] 58/78 -funconstrained-commons u: 2562056.41 -> 2545306.11, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -funconstrained-commons is selected 
+[01/08/24 02:26:42] DEBUG    [ yatuner ] 59/78 -ftoplevel-reorder u: 2562056.41 -> 2551656.48, p: 0.00, t: 0.11 
+                    INFO     [ yatuner ] -ftoplevel-reorder is selected 
+[01/08/24 02:27:08] DEBUG    [ yatuner ] 60/78 -fsection-anchors u: 2562056.41 -> 2546686.06, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fsection-anchors is selected 
+[01/08/24 02:27:34] DEBUG    [ yatuner ] 61/78 -fstack-protector-strong u: 2562056.41 -> 2550346.84, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fstack-protector-strong is selected 
+[01/08/24 02:28:00] DEBUG    [ yatuner ] 62/78 -fselective-scheduling2 u: 2562056.41 -> 2521323.83, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fselective-scheduling2 is selected 
+[01/08/24 02:28:26] DEBUG    [ yatuner ] 63/78 -fsched-spec-load-dangerous u: 2562056.41 -> 2547218.56, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fsched-spec-load-dangerous is selected 
+[01/08/24 02:28:52] DEBUG    [ yatuner ] 64/78 -fwrapv u: 2562056.41 -> 2555636.91, p: 0.01, t: 0.00 
+                    INFO     [ yatuner ] -fwrapv is selected 
+[01/08/24 02:29:19] DEBUG    [ yatuner ] 65/78 -fgraphite-identity u: 2562056.41 -> 2549411.77, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fgraphite-identity is selected 
+[01/08/24 02:29:45] DEBUG    [ yatuner ] 66/78 -fstack-protector u: 2562056.41 -> 2547547.25, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fstack-protector is selected 
+[01/08/24 02:30:11] DEBUG    [ yatuner ] 67/78 -fshort-wchar u: 2562056.41 -> 2545096.49, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fshort-wchar is selected 
+[01/08/24 02:30:37] DEBUG    [ yatuner ] 68/78 -ffinite-loops u: 2562056.41 -> 2552038.53, p: 0.00, t: 0.01 
+                    INFO     [ yatuner ] -ffinite-loops is selected 
+[01/08/24 02:31:03] DEBUG    [ yatuner ] 69/78 -fstack-clash-protection u: 2562056.41 -> 2575433.13, p: 0.00, t: 0.67 
+[01/08/24 02:31:29] DEBUG    [ yatuner ] 70/78 -flive-patching u: 2562056.41 -> 2545820.55, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -flive-patching is selected 
+[01/08/24 02:31:55] DEBUG    [ yatuner ] 71/78 -fsched2-use-superblocks u: 2562056.41 -> 2545586.00, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fsched2-use-superblocks is selected 
+[01/08/24 02:32:22] DEBUG    [ yatuner ] 72/78 -fcx-limited-range u: 2562056.41 -> 2547677.93, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fcx-limited-range is selected 
+[01/08/24 02:32:48] DEBUG    [ yatuner ] 73/78 -flimit-function-alignment u: 2562056.41 -> 2545199.53, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -flimit-function-alignment is selected 
+[01/08/24 02:33:14] DEBUG    [ yatuner ] 74/78 -funroll-all-loops u: 2562056.41 -> 2540979.40, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -funroll-all-loops is selected 
+[01/08/24 02:33:40] DEBUG    [ yatuner ] 75/78 -fsched-stalled-insns u: 2562056.41 -> 2553847.84, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fsched-stalled-insns is selected 
+[01/08/24 02:34:06] DEBUG    [ yatuner ] 76/78 -fgcse-las u: 2562056.41 -> 2546712.80, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fgcse-las is selected 
+[01/08/24 02:34:32] DEBUG    [ yatuner ] 77/78 -freschedule-modulo-scheduled-loops u: 2562056.41 -> 2547558.25, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -freschedule-modulo-scheduled-loops is selected 
+                    INFO     [ yatuner ] 74 optimizers selected 
+                    INFO     [ yatuner ] optimizing optimizers 
+epoch 0     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:34:58] DEBUG    [ yatuner ] 0/60 result: 2481723.22 
+epoch 1     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:25
+[01/08/24 02:35:24] DEBUG    [ yatuner ] 1/60 result: 2498995.91 
+epoch 2     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:25
+[01/08/24 02:35:50] DEBUG    [ yatuner ] 2/60 result: 2547879.86 
+epoch 3     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:26
+[01/08/24 02:36:18] DEBUG    [ yatuner ] 3/60 result: 2639479.79 
+epoch 4     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:36:43] DEBUG    [ yatuner ] 4/60 result: 2399361.75 
+epoch 5     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:25
+[01/08/24 02:37:08] DEBUG    [ yatuner ] 5/60 result: 2490653.02 
+epoch 6     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:25
+[01/08/24 02:37:34] DEBUG    [ yatuner ] 6/60 result: 2508516.56 
+epoch 7     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:25
+[01/08/24 02:38:00] DEBUG    [ yatuner ] 7/60 result: 2501533.95 
+epoch 8     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:25
+[01/08/24 02:38:27] DEBUG    [ yatuner ] 8/60 result: 2547205.11 
+epoch 9     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:25
+[01/08/24 02:38:53] DEBUG    [ yatuner ] 9/60 result: 2484065.00 
+epoch 10    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:39:18] DEBUG    [ yatuner ] 10/60 result: 2400534.13 
+epoch 11    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:39:44] DEBUG    [ yatuner ] 11/60 result: 2400921.06 
+epoch 12    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:40:11] DEBUG    [ yatuner ] 12/60 result: 2399850.87 
+epoch 13    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:40:38] DEBUG    [ yatuner ] 13/60 result: 2396476.91 
+epoch 14    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:41:04] DEBUG    [ yatuner ] 14/60 result: 2418661.18 
+epoch 15    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:41:31] DEBUG    [ yatuner ] 15/60 result: 2394171.59 
+epoch 16    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:41:58] DEBUG    [ yatuner ] 16/60 result: 2461150.44 
+epoch 17    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:42:25] DEBUG    [ yatuner ] 17/60 result: 2406883.56 
+epoch 18    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:42:51] DEBUG    [ yatuner ] 18/60 result: 2397391.49 
+epoch 19    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:43:18] DEBUG    [ yatuner ] 19/60 result: 2419197.46 
+epoch 20    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:43:45] DEBUG    [ yatuner ] 20/60 result: 2396164.18 
+epoch 21    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:44:13] DEBUG    [ yatuner ] 21/60 result: 2401886.39 
+epoch 22    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:44:40] DEBUG    [ yatuner ] 22/60 result: 2399766.23 
+epoch 23    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:45:07] DEBUG    [ yatuner ] 23/60 result: 2417040.54 
+epoch 24    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:45:35] DEBUG    [ yatuner ] 24/60 result: 2398085.59 
+epoch 25    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:46:02] DEBUG    [ yatuner ] 25/60 result: 2396194.42 
+epoch 26    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:46:29] DEBUG    [ yatuner ] 26/60 result: 2403176.37 
+epoch 27    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:46:57] DEBUG    [ yatuner ] 27/60 result: 2399908.86 
+epoch 28    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:47:24] DEBUG    [ yatuner ] 28/60 result: 2403594.14 
+epoch 29    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:47:51] DEBUG    [ yatuner ] 29/60 result: 2398976.62 
+epoch 30    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:48:18] DEBUG    [ yatuner ] 30/60 result: 2399134.39 
+epoch 31    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:48:46] DEBUG    [ yatuner ] 31/60 result: 2399740.65 
+epoch 32    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:49:13] DEBUG    [ yatuner ] 32/60 result: 2406556.05 
+epoch 33    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:49:41] DEBUG    [ yatuner ] 33/60 result: 2397007.66 
+epoch 34    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:50:08] DEBUG    [ yatuner ] 34/60 result: 2396249.16 
+epoch 35    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:50:36] DEBUG    [ yatuner ] 35/60 result: 2402315.96 
+epoch 36    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:51:03] DEBUG    [ yatuner ] 36/60 result: 2397846.72 
+epoch 37    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:51:31] DEBUG    [ yatuner ] 37/60 result: 2414324.61 
+epoch 38    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:51:58] DEBUG    [ yatuner ] 38/60 result: 2394856.28 
+epoch 39    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:52:26] DEBUG    [ yatuner ] 39/60 result: 2401284.83 
+epoch 40    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:52:53] DEBUG    [ yatuner ] 40/60 result: 2399183.13 
+epoch 41    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:53:20] DEBUG    [ yatuner ] 41/60 result: 2401153.20 
+epoch 42    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:53:48] DEBUG    [ yatuner ] 42/60 result: 2395899.87 
+epoch 43    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:54:15] DEBUG    [ yatuner ] 43/60 result: 2399596.03 
+epoch 44    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:54:43] DEBUG    [ yatuner ] 44/60 result: 2403248.49 
+epoch 45    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:55:10] DEBUG    [ yatuner ] 45/60 result: 2399214.74 
+epoch 46    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:55:38] DEBUG    [ yatuner ] 46/60 result: 2401574.43 
+epoch 47    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:56:06] DEBUG    [ yatuner ] 47/60 result: 2398685.89 
+epoch 48    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:56:34] DEBUG    [ yatuner ] 48/60 result: 2409001.02 
+epoch 49    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:57:02] DEBUG    [ yatuner ] 49/60 result: 2404022.79 
+epoch 50    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:57:30] DEBUG    [ yatuner ] 50/60 result: 2401334.53 
+epoch 51    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:57:58] DEBUG    [ yatuner ] 51/60 result: 2404720.37 
+epoch 52    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:58:26] DEBUG    [ yatuner ] 52/60 result: 2401523.93 
+epoch 53    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:58:54] DEBUG    [ yatuner ] 53/60 result: 2418785.30 
+epoch 54    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:59:22] DEBUG    [ yatuner ] 54/60 result: 2396441.03 
+epoch 55    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 02:59:50] DEBUG    [ yatuner ] 55/60 result: 2404584.75 
+epoch 56    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 03:00:18] DEBUG    [ yatuner ] 56/60 result: 2396320.30 
+epoch 57    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 03:00:45] DEBUG    [ yatuner ] 57/60 result: 2388971.11 
+epoch 58    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 03:01:13] DEBUG    [ yatuner ] 58/60 result: 2391366.25 
+epoch 59    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 03:01:41] DEBUG    [ yatuner ] 59/60 result: 2396405.27 
+epoch 60    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 03:02:08] DEBUG    [ yatuner ] 60/60 result: 2386899.81 
+epoch 61    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 03:02:36] DEBUG    [ yatuner ] 61/60 result: 2388588.71 
+epoch 62    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 03:03:04] DEBUG    [ yatuner ] 62/60 result: 2388856.20 
+epoch 63    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 03:03:32] DEBUG    [ yatuner ] 63/60 result: 2393861.62 
+epoch 64    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 03:03:59] DEBUG    [ yatuner ] 64/60 result: 2384716.54 
+epoch 65    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 03:04:27] DEBUG    [ yatuner ] 65/60 result: 2391393.39 
+epoch 66    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 03:04:55] DEBUG    [ yatuner ] 66/60 result: 2389284.94 
+epoch 67    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 03:05:23] DEBUG    [ yatuner ] 67/60 result: 2388053.70 
+epoch 68    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 03:05:50] DEBUG    [ yatuner ] 68/60 result: 2389877.54 
+epoch 69    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/08/24 03:06:17] DEBUG    [ yatuner ] 69/60 result: 2389491.56 
+[01/08/24 03:06:18] INFO     [ yatuner ] best result: 2384716.5404000003 
+                    INFO     [ yatuner ] best option: [0. 1. 1. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 1. 1. 1. 0. 0. 
+                              0. 0. 1. 1. 0. 0. 1. 1. 1. 1. 1. 0. 0. 1. 1. 1. 0. 0. 1. 0. 0. 1. 0. 1. 
+                              1. 0. 0. 1. 1. 1. 0. 0. 1. 1. 1. 1. 1. 0. 0. 0. 1. 1. 0. 1. 0. 1. 1. 0. 
+                              0. 0.] 
+def hypotest_parameters: ('p') Este teste é usado para verificar se há uma diferença significativa entre as médias das duas amostras.
+O otimizador é escolhido quando: p < t_threshold=0.05 
+                    INFO     [ yatuner ] loaded 35 optimizers 
+[01/08/24 03:07:07] DEBUG    [ yatuner ] 0/225 align-loop-iterations min: 2375742.30, max: 2378769.31 l: 0.33, p: 0.47 
+[01/08/24 03:07:57] DEBUG    [ yatuner ] 1/225 align-threshold min: 2378958.92, max: 2382006.22 l: 0.81, p: 0.65 
+[01/08/24 03:08:46] DEBUG    [ yatuner ] 2/225 analyzer-bb-explosion-factor min: 2373931.58, max: 2372264.07 l: 0.84, p: 0.27 
+[01/08/24 03:09:35] DEBUG    [ yatuner ] 3/225 analyzer-max-enodes-per-program-point min: 2380012.03, max: 2372817.87 l: 0.37, p: 0.02 
+                    INFO     [ yatuner ] analyzer-max-enodes-per-program-point is selected 
+[01/08/24 03:10:24] DEBUG    [ yatuner ] 4/225 analyzer-max-recursion-depth min: 2373126.45, max: 2374204.60 l: 0.16, p: 0.44 
+[01/08/24 03:11:14] DEBUG    [ yatuner ] 5/225 analyzer-min-snodes-for-call-summary min: 2376766.47, max: 2374529.02 l: 0.60, p: 0.42 
+[01/08/24 03:12:03] DEBUG    [ yatuner ] 6/225 asan-globals min: 2378950.10, max: 2375311.46 l: 0.42, p: 0.47 
+[01/08/24 03:12:52] DEBUG    [ yatuner ] 7/225 asan-instrument-allocas min: 2374495.42, max: 2377861.90 l: 0.20, p: 0.27 
+[01/08/24 03:13:42] DEBUG    [ yatuner ] 8/225 asan-instrument-reads min: 2384434.91, max: 2375820.51 l: 0.29, p: 0.35 
+[01/08/24 03:14:31] DEBUG    [ yatuner ] 9/225 asan-instrument-writes min: 2375834.78, max: 2375253.79 l: 0.28, p: 0.77 
+[01/08/24 03:15:20] DEBUG    [ yatuner ] 10/225 asan-instrumentation-with-call-threshold min: 2374871.10, max: 2374991.48 l: 0.34, p: 0.96 
+[01/08/24 03:16:09] DEBUG    [ yatuner ] 11/225 asan-memintrin min: 2378491.99, max: 2377431.01 l: 0.96, p: 0.84 
+[01/08/24 03:16:59] DEBUG    [ yatuner ] 12/225 asan-stack min: 2375762.51, max: 2374214.52 l: 0.31, p: 0.45 
+[01/08/24 03:17:48] DEBUG    [ yatuner ] 13/225 asan-use-after-return min: 2374612.54, max: 2374319.21 l: 0.31, p: 0.89 
+[01/08/24 03:18:37] DEBUG    [ yatuner ] 14/225 avg-loop-niter min: 2379853.11, max: 2375573.46 l: 0.40, p: 0.32 
+[01/08/24 03:19:27] DEBUG    [ yatuner ] 15/225 avoid-fma-max-bits min: 2377961.73, max: 2376548.97 l: 0.55, p: 0.66 
+[01/08/24 03:20:16] DEBUG    [ yatuner ] 16/225 builtin-expect-probability min: 2374676.61, max: 2383348.26 l: 0.40, p: 0.32 
+[01/08/24 03:21:05] DEBUG    [ yatuner ] 17/225 builtin-string-cmp-inline-length min: 2376263.11, max: 2373160.49 l: 0.63, p: 0.09 
+[01/08/24 03:21:54] DEBUG    [ yatuner ] 18/225 case-values-threshold min: 2378576.96, max: 2375221.61 l: 0.45, p: 0.53 
+[01/08/24 03:22:44] DEBUG    [ yatuner ] 19/225 comdat-sharing-probability min: 2377171.79, max: 2376472.35 l: 0.52, p: 0.83 
+[01/08/24 03:23:33] DEBUG    [ yatuner ] 20/225 cxx-max-namespaces-for-diagnostic-help min: 2379393.83, max: 2378145.10 l: 0.86, p: 0.78 
+[01/08/24 03:24:22] DEBUG    [ yatuner ] 21/225 dse-max-alias-queries-per-store min: 2376835.15, max: 2375464.04 l: 0.52, p: 0.45 
+[01/08/24 03:25:12] DEBUG    [ yatuner ] 22/225 dse-max-object-size min: 2377513.10, max: 2377676.24 l: 0.69, p: 0.97 
+[01/08/24 03:26:01] DEBUG    [ yatuner ] 23/225 early-inlining-insns min: 2379437.71, max: 2377575.99 l: 0.64, p: 0.70 
+[01/08/24 03:26:50] DEBUG    [ yatuner ] 24/225 fsm-maximum-phi-arguments min: 2373961.44, max: 2376999.53 l: 0.31, p: 0.39 
+[01/08/24 03:27:40] DEBUG    [ yatuner ] 25/225 fsm-scale-path-blocks min: 2376605.05, max: 2376635.79 l: 0.65, p: 0.99 
+[01/08/24 03:28:29] DEBUG    [ yatuner ] 26/225 fsm-scale-path-stmts min: 2373657.26, max: 2379340.84 l: 0.15, p: 0.26 
+[01/08/24 03:29:18] DEBUG    [ yatuner ] 27/225 gcse-after-reload-critical-fraction min: 2381682.26, max: 2376073.08 l: 0.37, p: 0.32 
+[01/08/24 03:30:08] DEBUG    [ yatuner ] 28/225 gcse-after-reload-partial-fraction min: 2390262.84, max: 2375013.48 l: 0.37, p: 0.36 
+[01/08/24 03:30:57] DEBUG    [ yatuner ] 29/225 gcse-cost-distance-ratio min: 2376119.13, max: 2375065.72 l: 0.60, p: 0.50 
+[01/08/24 03:31:46] DEBUG    [ yatuner ] 30/225 gcse-unrestricted-cost min: 2376484.81, max: 2372459.28 l: 0.47, p: 0.03 
+                    INFO     [ yatuner ] gcse-unrestricted-cost is selected 
+[01/08/24 03:32:35] DEBUG    [ yatuner ] 31/225 ggc-min-expand min: 2375452.57, max: 2374470.83 l: 0.69, p: 0.72 
+[01/08/24 03:33:25] DEBUG    [ yatuner ] 32/225 ggc-min-heapsize min: 2376448.18, max: 2372139.24 l: 0.11, p: 0.17 
+[01/08/24 03:34:14] DEBUG    [ yatuner ] 33/225 gimple-fe-computed-hot-bb-threshold min: 2376364.17, max: 2380019.57 l: 0.19, p: 0.43 
+[01/08/24 03:35:03] DEBUG    [ yatuner ] 34/225 graphite-allow-codegen-errors min: 2375939.49, max: 2377081.42 l: 0.57, p: 0.77 
+[01/08/24 03:35:53] DEBUG    [ yatuner ] 35/225 graphite-max-arrays-per-scop min: 2382237.80, max: 2376648.75 l: 0.66, p: 0.34 
+[01/08/24 03:36:42] DEBUG    [ yatuner ] 36/225 graphite-max-nb-scop-params min: 2375411.82, max: 2374415.18 l: 0.46, p: 0.48 
+[01/08/24 03:37:31] DEBUG    [ yatuner ] 37/225 hash-table-verification-limit min: 2379861.34, max: 2373534.17 l: 0.34, p: 0.08 
+[01/08/24 03:38:20] DEBUG    [ yatuner ] 38/225 hot-bb-count-fraction min: 2377128.31, max: 2382847.28 l: 0.60, p: 0.14 
+[01/08/24 03:39:10] DEBUG    [ yatuner ] 39/225 hot-bb-count-ws-permille min: 2378587.98, max: 2382042.23 l: 0.16, p: 0.49 
+[01/08/24 03:40:01] DEBUG    [ yatuner ] 40/225 hot-bb-frequency-fraction min: 2549029.84, max: 2374199.49 l: 0.96, p: 0.00 
+                    INFO     [ yatuner ] hot-bb-frequency-fraction is selected 
+[01/08/24 03:40:50] DEBUG    [ yatuner ] 41/225 hsa-gen-debug-stores min: 2376200.61, max: 2373649.03 l: 0.49, p: 0.30 
+[01/08/24 03:41:39] DEBUG    [ yatuner ] 42/225 inline-heuristics-hint-percent min: 2376108.30, max: 2376937.45 l: 0.89, p: 0.88 
+[01/08/24 03:42:19] DEBUG    [ yatuner ] 43/225 inline-min-speedup min: 1355019.15, max: 2373102.93 l: 0.63, p: 0.00 
+                    INFO     [ yatuner ] inline-min-speedup is selected 
+[01/08/24 03:43:08] DEBUG    [ yatuner ] 44/225 inline-unit-growth min: 2374731.19, max: 2382704.85 l: 0.37, p: 0.37 
+[01/08/24 03:43:57] DEBUG    [ yatuner ] 45/225 integer-share-limit min: 2375391.42, max: 2373831.27 l: 0.26, p: 0.37 
+[01/08/24 03:44:47] DEBUG    [ yatuner ] 46/225 ipa-cp-eval-threshold min: 2374503.03, max: 2375208.05 l: 0.29, p: 0.78 
+[01/08/24 03:45:36] DEBUG    [ yatuner ] 47/225 ipa-cp-loop-hint-bonus min: 2376528.20, max: 2372476.84 l: 0.24, p: 0.22 
+[01/08/24 03:46:25] DEBUG    [ yatuner ] 48/225 ipa-cp-max-recursive-depth min: 2374982.67, max: 2374334.18 l: 0.33, p: 0.80 
+[01/08/24 03:47:15] DEBUG    [ yatuner ] 49/225 ipa-cp-min-recursive-probability min: 2376742.65, max: 2375091.45 l: 0.60, p: 0.49 
+[01/08/24 03:48:04] DEBUG    [ yatuner ] 50/225 ipa-cp-recursion-penalty min: 2379962.00, max: 2373635.54 l: 0.07, p: 0.02 
+                    INFO     [ yatuner ] ipa-cp-recursion-penalty is selected 
+[01/08/24 03:48:53] DEBUG    [ yatuner ] 51/225 ipa-cp-single-call-penalty min: 2376765.05, max: 2373873.40 l: 0.53, p: 0.12 
+[01/08/24 03:49:42] DEBUG    [ yatuner ] 52/225 ipa-cp-unit-growth min: 2376049.03, max: 2371343.39 l: 0.32, p: 0.01 
+                    INFO     [ yatuner ] ipa-cp-unit-growth is selected 
+[01/08/24 03:50:32] DEBUG    [ yatuner ] 53/225 ipa-cp-value-list-size min: 2375590.51, max: 2374482.14 l: 0.98, p: 0.55 
+[01/08/24 03:51:21] DEBUG    [ yatuner ] 54/225 ipa-max-aa-steps min: 2376080.03, max: 2373557.79 l: 0.46, p: 0.19 
+[01/08/24 03:52:10] DEBUG    [ yatuner ] 55/225 ipa-max-agg-items min: 2375702.00, max: 2373618.98 l: 0.18, p: 0.43 
+[01/08/24 03:52:59] DEBUG    [ yatuner ] 56/225 ipa-max-param-expr-ops min: 2375992.47, max: 2374961.91 l: 0.78, p: 0.66 
+[01/08/24 03:53:49] DEBUG    [ yatuner ] 57/225 ipa-max-switch-predicate-bounds min: 2375925.33, max: 2376078.43 l: 0.32, p: 0.96 
+[01/08/24 03:54:38] DEBUG    [ yatuner ] 58/225 ipa-sra-max-replacements min: 2379069.22, max: 2373617.87 l: 0.61, p: 0.26 
+[01/08/24 03:55:27] DEBUG    [ yatuner ] 59/225 ipa-sra-ptr-growth-factor min: 2374291.84, max: 2377702.10 l: 0.26, p: 0.30 
+[01/08/24 03:56:16] DEBUG    [ yatuner ] 60/225 ira-loop-reserved-regs min: 2373899.76, max: 2370728.38 l: 0.36, p: 0.10 
+[01/08/24 03:57:06] DEBUG    [ yatuner ] 61/225 ira-max-conflict-table-size min: 2376278.57, max: 2373079.77 l: 0.29, p: 0.85 
+[01/08/24 03:57:55] DEBUG    [ yatuner ] 62/225 ira-max-loops-num min: 2372828.48, max: 2377144.95 l: 0.75, p: 0.37 
+[01/08/24 03:58:44] DEBUG    [ yatuner ] 63/225 iv-always-prune-cand-set-bound min: 2375233.79, max: 2377579.24 l: 0.51, p: 0.57 
+[01/08/24 03:59:33] DEBUG    [ yatuner ] 64/225 iv-consider-all-candidates-bound min: 2379151.93, max: 2372777.25 l: 0.32, p: 0.28 
+[01/08/24 04:00:23] DEBUG    [ yatuner ] 65/225 iv-max-considered-uses min: 2370936.25, max: 2378414.75 l: 0.39, p: 0.20 
+[01/08/24 04:01:12] DEBUG    [ yatuner ] 66/225 jump-table-max-growth-ratio-for-size min: 2373423.63, max: 2378696.54 l: 0.12, p: 0.30 
+[01/08/24 04:02:01] DEBUG    [ yatuner ] 67/225 jump-table-max-growth-ratio-for-speed min: 2376217.40, max: 2381311.38 l: 0.18, p: 0.36 
+[01/08/24 04:02:51] DEBUG    [ yatuner ] 68/225 large-function-growth min: 2375354.00, max: 2373589.37 l: 0.17, p: 0.50 
+[01/08/24 04:03:40] DEBUG    [ yatuner ] 69/225 large-function-insns min: 2382207.25, max: 2371480.71 l: 0.11, p: 0.02 
+                    INFO     [ yatuner ] large-function-insns is selected 
+[01/08/24 04:04:29] DEBUG    [ yatuner ] 70/225 large-stack-frame-growth min: 2375288.84, max: 2372042.82 l: 0.39, p: 0.07 
+[01/08/24 04:05:18] DEBUG    [ yatuner ] 71/225 large-stack-frame min: 2375378.60, max: 2385812.38 l: 0.19, p: 0.30 
+[01/08/24 04:06:08] DEBUG    [ yatuner ] 72/225 large-unit-insns min: 2374744.35, max: 2372281.52 l: 0.07, p: 0.12 
+[01/08/24 04:06:57] DEBUG    [ yatuner ] 73/225 lim-expensive min: 2375253.56, max: 2380546.53 l: 0.24, p: 0.37 
+[01/08/24 04:07:46] DEBUG    [ yatuner ] 74/225 loop-block-tile-size min: 2379497.32, max: 2374450.54 l: 0.28, p: 0.22 
+[01/08/24 04:08:35] DEBUG    [ yatuner ] 75/225 loop-interchange-max-num-stmts min: 2374258.76, max: 2373952.89 l: 0.48, p: 0.86 
+[01/08/24 04:09:25] DEBUG    [ yatuner ] 76/225 loop-interchange-stride-ratio min: 2376439.34, max: 2376811.09 l: 0.55, p: 0.88 
+[01/08/24 04:10:14] DEBUG    [ yatuner ] 77/225 loop-invariant-max-bbs-in-loop min: 2373256.73, max: 2376637.82 l: 0.30, p: 0.48 
+[01/08/24 04:11:03] DEBUG    [ yatuner ] 78/225 loop-max-datarefs-for-datadeps min: 2401722.83, max: 2373211.89 l: 0.94, p: 0.00 
+                    INFO     [ yatuner ] loop-max-datarefs-for-datadeps is selected 
+[01/08/24 04:11:53] DEBUG    [ yatuner ] 79/225 loop-versioning-max-inner-insns min: 2376875.51, max: 2373169.65 l: 0.23, p: 0.27 
+[01/08/24 04:12:42] DEBUG    [ yatuner ] 80/225 loop-versioning-max-outer-insns min: 2380364.02, max: 2380341.26 l: 0.80, p: 1.00 
+[01/08/24 04:13:31] DEBUG    [ yatuner ] 81/225 lra-inheritance-ebb-probability-cutoff min: 2377258.85, max: 2372776.15 l: 0.47, p: 0.03 
+                    INFO     [ yatuner ] lra-inheritance-ebb-probability-cutoff is selected 
+[01/08/24 04:14:21] DEBUG    [ yatuner ] 82/225 lra-max-considered-reload-pseudos min: 2375256.12, max: 2374486.39 l: 0.52, p: 0.75 
+[01/08/24 04:15:10] DEBUG    [ yatuner ] 83/225 lto-max-partition min: 2374151.36, max: 2376362.91 l: 0.18, p: 0.46 
+[01/08/24 04:15:59] DEBUG    [ yatuner ] 84/225 lto-max-streaming-parallelism min: 2376394.08, max: 2373330.10 l: 0.83, p: 0.12 
+[01/08/24 04:16:48] DEBUG    [ yatuner ] 85/225 lto-min-partition min: 2383313.54, max: 2378706.11 l: 0.76, p: 0.65 
+[01/08/24 04:17:38] DEBUG    [ yatuner ] 86/225 lto-partitions min: 2375991.76, max: 2382891.04 l: 0.36, p: 0.36 
+[01/08/24 04:18:27] DEBUG    [ yatuner ] 87/225 max-average-unrolled-insns min: 2382653.36, max: 2361780.33 l: 0.86, p: 0.00 
+                    INFO     [ yatuner ] max-average-unrolled-insns is selected 
+[01/08/24 04:19:16] DEBUG    [ yatuner ] 88/225 max-combine-insns min: 2374756.47, max: 2375533.43 l: 0.80, p: 0.76 
+[01/08/24 04:20:06] DEBUG    [ yatuner ] 89/225 max-completely-peel-loop-nest-depth min: 2386314.41, max: 2371976.03 l: 0.12, p: 0.13 
+[01/08/24 04:20:55] DEBUG    [ yatuner ] 90/225 max-completely-peel-times min: 2403967.18, max: 2391085.09 l: 0.41, p: 0.42 
+[01/08/24 04:21:45] DEBUG    [ yatuner ] 91/225 max-completely-peeled-insns min: 2400340.33, max: 2388316.98 l: 0.14, p: 0.25 
+[01/08/24 04:22:34] DEBUG    [ yatuner ] 92/225 max-crossjump-edges min: 2384015.83, max: 2377282.46 l: 0.52, p: 0.48 
+[01/08/24 04:23:24] DEBUG    [ yatuner ] 93/225 max-cse-insns min: 2376694.98, max: 2371886.01 l: 0.71, p: 0.01 
+                    INFO     [ yatuner ] max-cse-insns is selected 
+[01/08/24 04:24:13] DEBUG    [ yatuner ] 94/225 max-cse-path-length min: 2374953.73, max: 2372747.88 l: 0.73, p: 0.21 
+[01/08/24 04:25:02] DEBUG    [ yatuner ] 95/225 max-cselib-memory-locations min: 2374359.80, max: 2372873.39 l: 0.70, p: 0.48 
+[01/08/24 04:25:51] DEBUG    [ yatuner ] 96/225 max-debug-marker-count min: 2375900.52, max: 2377147.77 l: 0.62, p: 0.76 
+[01/08/24 04:26:41] DEBUG    [ yatuner ] 97/225 max-delay-slot-insn-search min: 2373388.18, max: 2377361.93 l: 0.25, p: 0.30 
+[01/08/24 04:27:30] DEBUG    [ yatuner ] 98/225 max-delay-slot-live-search min: 2376890.36, max: 2376876.89 l: 0.80, p: 1.00 
+[01/08/24 04:28:19] DEBUG    [ yatuner ] 99/225 max-dse-active-local-stores min: 2380081.48, max: 2372771.97 l: 0.41, p: 0.05 
+                    INFO     [ yatuner ] max-dse-active-local-stores is selected 
+[01/08/24 04:29:08] DEBUG    [ yatuner ] 100/225 max-early-inliner-iterations min: 2373951.68, max: 2375096.94 l: 0.99, p: 0.51 
+[01/08/24 04:29:58] DEBUG    [ yatuner ] 101/225 max-fields-for-field-sensitive min: 2376032.91, max: 2374139.10 l: 0.22, p: 0.29 
+[01/08/24 04:30:47] DEBUG    [ yatuner ] 102/225 max-find-base-term-values min: 2385857.26, max: 2374396.18 l: 0.12, p: 0.02 
+                    INFO     [ yatuner ] max-find-base-term-values is selected 
+[01/08/24 04:31:36] DEBUG    [ yatuner ] 103/225 max-fsm-thread-length min: 2375745.86, max: 2380650.77 l: 0.49, p: 0.59 
+[01/08/24 04:32:26] DEBUG    [ yatuner ] 104/225 max-fsm-thread-path-insns min: 2374807.54, max: 2372881.08 l: 0.99, p: 0.24 
+[01/08/24 04:33:15] DEBUG    [ yatuner ] 105/225 max-fsm-thread-paths min: 2374143.43, max: 2373363.77 l: 0.94, p: 0.77 
+[01/08/24 04:34:04] DEBUG    [ yatuner ] 106/225 max-gcse-insertion-ratio min: 2375543.57, max: 2373741.28 l: 0.86, p: 0.55 
+[01/08/24 04:34:53] DEBUG    [ yatuner ] 107/225 max-gcse-memory min: 2377802.37, max: 2374357.24 l: 0.40, p: 0.46 
+[01/08/24 04:35:43] DEBUG    [ yatuner ] 108/225 max-goto-duplication-insns min: 2377472.43, max: 2374109.45 l: 0.31, p: 0.16 
+[01/08/24 04:36:32] DEBUG    [ yatuner ] 109/225 max-grow-copy-bb-insns min: 2380585.08, max: 2378947.34 l: 0.97, p: 0.69 
+[01/08/24 04:37:21] DEBUG    [ yatuner ] 110/225 max-hoist-depth min: 2378798.21, max: 2377362.21 l: 0.38, p: 0.71 
+[01/08/24 04:38:01] DEBUG    [ yatuner ] 111/225 max-inline-insns-auto min: 2375415.59, max: 1354120.81 l: 0.13, p: 0.00 
+                    INFO     [ yatuner ] max-inline-insns-auto is selected 
+[01/08/24 04:38:50] DEBUG    [ yatuner ] 112/225 max-inline-insns-recursive-auto min: 2374664.78, max: 2373813.37 l: 0.37, p: 0.71 
+[01/08/24 04:39:39] DEBUG    [ yatuner ] 113/225 max-inline-insns-recursive min: 2380172.80, max: 2373478.65 l: 0.33, p: 0.23 
+[01/08/24 04:40:29] DEBUG    [ yatuner ] 114/225 max-inline-insns-single min: 2376131.22, max: 2385820.28 l: 0.30, p: 0.33 
+[01/08/24 04:41:18] DEBUG    [ yatuner ] 115/225 max-inline-insns-size min: 2375748.49, max: 2372430.84 l: 0.19, p: 0.20 
+[01/08/24 04:42:07] DEBUG    [ yatuner ] 116/225 max-inline-insns-small min: 2375457.97, max: 2372261.14 l: 0.71, p: 0.08 
+[01/08/24 04:42:57] DEBUG    [ yatuner ] 117/225 max-inline-recursive-depth-auto min: 2373917.86, max: 2378224.78 l: 0.27, p: 0.19 
+[01/08/24 04:43:46] DEBUG    [ yatuner ] 118/225 max-inline-recursive-depth min: 2381954.87, max: 2377765.23 l: 0.45, p: 0.53 
+[01/08/24 04:44:35] DEBUG    [ yatuner ] 119/225 max-isl-operations min: 2376621.96, max: 2375645.40 l: 0.28, p: 0.63 
+[01/08/24 04:45:24] DEBUG    [ yatuner ] 120/225 max-iterations-computation-cost min: 2375139.25, max: 2373021.99 l: 0.68, p: 0.38 
+[01/08/24 04:46:14] DEBUG    [ yatuner ] 121/225 max-iterations-to-track min: 2374503.11, max: 2374017.68 l: 0.22, p: 0.77 
+[01/08/24 04:47:03] DEBUG    [ yatuner ] 122/225 max-jump-thread-duplication-stmts min: 2380961.66, max: 2373288.73 l: 0.59, p: 0.01 
+                    INFO     [ yatuner ] max-jump-thread-duplication-stmts is selected 
+[01/08/24 04:47:52] DEBUG    [ yatuner ] 123/225 max-last-value-rtl min: 2375921.19, max: 2372391.63 l: 0.90, p: 0.18 
+[01/08/24 04:48:42] DEBUG    [ yatuner ] 124/225 max-loop-header-insns min: 2396374.22, max: 2372908.90 l: 0.60, p: 0.00 
+                    INFO     [ yatuner ] max-loop-header-insns is selected 
+[01/08/24 04:49:31] DEBUG    [ yatuner ] 125/225 max-modulo-backtrack-attempts min: 2376406.65, max: 2372626.25 l: 0.30, p: 0.13 
+[01/08/24 04:50:20] DEBUG    [ yatuner ] 126/225 max-partial-antic-length min: 2378165.43, max: 2373635.75 l: 0.12, p: 0.22 
+[01/08/24 04:51:09] DEBUG    [ yatuner ] 127/225 max-peel-branches min: 2374043.38, max: 2379469.40 l: 0.22, p: 0.23 
+[01/08/24 04:51:59] DEBUG    [ yatuner ] 128/225 max-peel-times min: 2377313.32, max: 2372582.73 l: 0.32, p: 0.01 
+                    INFO     [ yatuner ] max-peel-times is selected 
+[01/08/24 04:52:48] DEBUG    [ yatuner ] 129/225 max-peeled-insns min: 2383707.21, max: 2375274.72 l: 0.07, p: 0.00 
+                    INFO     [ yatuner ] max-peeled-insns is selected 
+[01/08/24 04:53:38] DEBUG    [ yatuner ] 130/225 max-pending-list-length min: 2471430.66, max: 2372229.05 l: 0.17, p: 0.00 
+                    INFO     [ yatuner ] max-pending-list-length is selected 
+[01/08/24 04:54:27] DEBUG    [ yatuner ] 131/225 max-pipeline-region-blocks min: 2391413.32, max: 2372793.99 l: 0.08, p: 0.05 
+                    INFO     [ yatuner ] max-pipeline-region-blocks is selected 
+[01/08/24 04:55:17] DEBUG    [ yatuner ] 132/225 max-pipeline-region-insns min: 2379647.73, max: 2372454.82 l: 0.18, p: 0.12 
+[01/08/24 04:56:06] DEBUG    [ yatuner ] 133/225 max-pow-sqrt-depth min: 2375344.55, max: 2373111.74 l: 0.50, p: 0.50 
+[01/08/24 04:56:55] DEBUG    [ yatuner ] 134/225 max-predicted-iterations min: 2393195.16, max: 2377022.07 l: 0.35, p: 0.00 
+                    INFO     [ yatuner ] max-predicted-iterations is selected 
+[01/08/24 04:57:45] DEBUG    [ yatuner ] 135/225 max-reload-search-insns min: 2379790.40, max: 2372912.81 l: 0.34, p: 0.07 
+[01/08/24 04:58:34] DEBUG    [ yatuner ] 136/225 max-rtl-if-conversion-insns min: 2380252.46, max: 2375603.60 l: 0.20, p: 0.39 
+[01/08/24 04:59:23] DEBUG    [ yatuner ] 137/225 max-rtl-if-conversion-predictable-cost min: 2377346.05, max: 2377201.95 l: 0.81, p: 0.97 
+[01/08/24 05:00:12] DEBUG    [ yatuner ] 138/225 max-rtl-if-conversion-unpredictable-cost min: 2375930.77, max: 2372152.83 l: 0.33, p: 0.03 
+                    INFO     [ yatuner ] max-rtl-if-conversion-unpredictable-cost is selected 
+[01/08/24 05:01:02] DEBUG    [ yatuner ] 139/225 max-sched-extend-regions-iters min: 2373537.66, max: 2391936.20 l: 0.28, p: 0.31 
+[01/08/24 05:01:51] DEBUG    [ yatuner ] 140/225 max-sched-insn-conflict-delay min: 2374229.60, max: 2372490.63 l: 0.01, p: 0.40 
+[01/08/24 05:02:40] DEBUG    [ yatuner ] 141/225 max-sched-ready-insns min: 2386948.25, max: 2378164.52 l: 0.18, p: 0.05 
+                    INFO     [ yatuner ] max-sched-ready-insns is selected 
+[01/08/24 05:03:30] DEBUG    [ yatuner ] 142/225 max-sched-region-blocks min: 2377397.48, max: 2376538.51 l: 0.84, p: 0.85 
+[01/08/24 05:04:19] DEBUG    [ yatuner ] 143/225 max-sched-region-insns min: 2379684.60, max: 2375534.78 l: 0.44, p: 0.35 
+[01/08/24 05:05:08] DEBUG    [ yatuner ] 144/225 max-slsr-cand-scan min: 2378154.76, max: 2375635.73 l: 0.55, p: 0.58 
+[01/08/24 05:05:58] DEBUG    [ yatuner ] 145/225 max-speculative-devirt-maydefs min: 2374261.93, max: 2384294.58 l: 0.18, p: 0.26 
+[01/08/24 05:06:47] DEBUG    [ yatuner ] 146/225 max-ssa-name-query-depth min: 2374504.04, max: 2372993.84 l: 0.95, p: 0.36 
+[01/08/24 05:07:36] DEBUG    [ yatuner ] 147/225 max-stores-to-merge min: 2374483.49, max: 2374128.13 l: 0.36, p: 0.85 
+[01/08/24 05:08:25] DEBUG    [ yatuner ] 148/225 max-stores-to-sink min: 2374031.38, max: 2373097.64 l: 0.84, p: 0.60 
+[01/08/24 05:09:15] DEBUG    [ yatuner ] 149/225 max-tail-merge-comparisons min: 2376230.98, max: 2374869.52 l: 0.67, p: 0.65 
+[01/08/24 05:10:04] DEBUG    [ yatuner ] 150/225 max-tail-merge-iterations min: 2377031.67, max: 2373652.97 l: 0.26, p: 0.41 
+[01/08/24 05:10:53] DEBUG    [ yatuner ] 151/225 max-tracked-strlens min: 2374703.85, max: 2377938.13 l: 0.08, p: 0.38 
+[01/08/24 05:11:42] DEBUG    [ yatuner ] 152/225 max-tree-if-conversion-phi-args min: 2376383.50, max: 2375165.26 l: 0.45, p: 0.59 
+[01/08/24 05:12:32] DEBUG    [ yatuner ] 153/225 max-unroll-times min: 2390901.75, max: 2372170.72 l: 0.20, p: 0.00 
+                    INFO     [ yatuner ] max-unroll-times is selected 
+[01/08/24 05:13:21] DEBUG    [ yatuner ] 154/225 max-unrolled-insns min: 2388928.31, max: 2383326.34 l: 0.42, p: 0.54 
+[01/08/24 05:14:10] DEBUG    [ yatuner ] 155/225 max-unswitch-insns min: 2394766.19, max: 2373560.37 l: 0.29, p: 0.30 
+[01/08/24 05:15:00] DEBUG    [ yatuner ] 156/225 max-unswitch-level min: 2374465.80, max: 2373307.60 l: 0.70, p: 0.57 
+[01/08/24 05:15:49] DEBUG    [ yatuner ] 157/225 max-variable-expansions-in-unroller min: 2373860.46, max: 2375968.81 l: 0.26, p: 0.64 
+[01/08/24 05:16:38] DEBUG    [ yatuner ] 158/225 max-vartrack-expr-depth min: 2373700.87, max: 2384649.52 l: 0.31, p: 0.25 
+[01/08/24 05:17:27] DEBUG    [ yatuner ] 159/225 max-vartrack-reverse-op-size min: 2376536.96, max: 2375307.52 l: 0.34, p: 0.28 
+[01/08/24 05:18:17] DEBUG    [ yatuner ] 160/225 max-vartrack-size min: 2373969.15, max: 2374207.69 l: 0.87, p: 0.92 
+[01/08/24 05:19:06] DEBUG    [ yatuner ] 161/225 max-vrp-switch-assertions min: 2375669.92, max: 2387264.35 l: 0.18, p: 0.24 
+[01/08/24 05:19:55] DEBUG    [ yatuner ] 162/225 min-crossjump-insns min: 2386203.98, max: 2372448.55 l: 0.25, p: 0.13 
+[01/08/24 05:20:45] DEBUG    [ yatuner ] 163/225 min-inline-recursive-probability min: 2375355.76, max: 2373669.23 l: 0.21, p: 0.31 
+[01/08/24 05:21:34] DEBUG    [ yatuner ] 164/225 min-insn-to-prefetch-ratio min: 2375051.61, max: 2373779.86 l: 0.87, p: 0.52 
+[01/08/24 05:22:23] DEBUG    [ yatuner ] 165/225 min-loop-cond-split-prob min: 2374339.49, max: 2379767.35 l: 0.48, p: 0.48 
+[01/08/24 05:23:13] DEBUG    [ yatuner ] 166/225 min-nondebug-insn-uid min: 2377427.92, max: 2382280.11 l: 0.24, p: 0.36 
+[01/08/24 05:24:02] DEBUG    [ yatuner ] 167/225 min-size-for-stack-sharing min: 2383918.80, max: 2372855.01 l: 0.38, p: 0.22 
+[01/08/24 05:24:51] DEBUG    [ yatuner ] 168/225 min-spec-prob min: 2374717.15, max: 2375313.65 l: 0.68, p: 0.79 
+[01/08/24 05:25:40] DEBUG    [ yatuner ] 169/225 min-vect-loop-bound min: 2374558.10, max: 2380365.49 l: 0.33, p: 0.52 
+[01/08/24 05:26:30] DEBUG    [ yatuner ] 170/225 parloops-chunk-size min: 2374090.36, max: 2373218.68 l: 0.88, p: 0.67 
+[01/08/24 05:27:19] DEBUG    [ yatuner ] 171/225 parloops-min-per-thread min: 2374877.63, max: 2377157.72 l: 0.59, p: 0.67 
+[01/08/24 05:28:08] DEBUG    [ yatuner ] 172/225 partial-inlining-entry-probability min: 2375701.23, max: 2372484.65 l: 0.48, p: 0.03 
+                    INFO     [ yatuner ] partial-inlining-entry-probability is selected 
+[01/08/24 05:28:57] DEBUG    [ yatuner ] 173/225 predictable-branch-outcome min: 2377889.46, max: 2375130.96 l: 0.24, p: 0.15 
+[01/08/24 05:29:47] DEBUG    [ yatuner ] 174/225 prefetch-dynamic-strides min: 2375917.09, max: 2373904.61 l: 0.07, p: 0.24 
+[01/08/24 05:30:36] DEBUG    [ yatuner ] 175/225 prefetch-latency min: 2381494.55, max: 2372822.16 l: 0.15, p: 0.09 
+[01/08/24 05:31:25] DEBUG    [ yatuner ] 176/225 prefetch-min-insn-to-mem-ratio min: 2374973.81, max: 2370918.21 l: 0.45, p: 0.05 
+                    INFO     [ yatuner ] prefetch-min-insn-to-mem-ratio is selected 
+[01/08/24 05:32:14] DEBUG    [ yatuner ] 177/225 profile-func-internal-id min: 2383126.06, max: 2372613.35 l: 0.26, p: 0.25 
+[01/08/24 05:33:04] DEBUG    [ yatuner ] 178/225 rpo-vn-max-loop-depth min: 2391085.20, max: 2374084.14 l: 0.16, p: 0.16 
+[01/08/24 05:33:53] DEBUG    [ yatuner ] 179/225 sccvn-max-alias-queries-per-access min: 2376075.96, max: 2371658.66 l: 0.45, p: 0.07 
+[01/08/24 05:34:42] DEBUG    [ yatuner ] 180/225 scev-max-expr-complexity min: 2378290.61, max: 2373646.00 l: 0.35, p: 0.30 
+[01/08/24 05:35:32] DEBUG    [ yatuner ] 181/225 scev-max-expr-size min: 2407788.55, max: 2375983.64 l: 0.14, p: 0.00 
+                    INFO     [ yatuner ] scev-max-expr-size is selected 
+[01/08/24 05:36:21] DEBUG    [ yatuner ] 182/225 sched-mem-true-dep-cost min: 2376094.85, max: 2372554.01 l: 0.02, p: 0.15 
+[01/08/24 05:37:10] DEBUG    [ yatuner ] 183/225 sched-pressure-algorithm min: 2374064.29, max: 2382587.98 l: 0.11, p: 0.12 
+[01/08/24 05:38:00] DEBUG    [ yatuner ] 184/225 sched-spec-prob-cutoff min: 2378251.91, max: 2374918.69 l: 0.79, p: 0.41 
+[01/08/24 05:38:49] DEBUG    [ yatuner ] 185/225 sched-state-edge-prob-cutoff min: 2375728.48, max: 2374572.33 l: 0.44, p: 0.45 
+[01/08/24 05:39:38] DEBUG    [ yatuner ] 186/225 selsched-insns-to-rename min: 2387860.85, max: 2372988.42 l: 0.39, p: 0.00 
+                    INFO     [ yatuner ] selsched-insns-to-rename is selected 
+[01/08/24 05:40:28] DEBUG    [ yatuner ] 187/225 selsched-max-lookahead min: 2465669.96, max: 2376805.18 l: 0.80, p: 0.00 
+                    INFO     [ yatuner ] selsched-max-lookahead is selected 
+[01/08/24 05:41:18] DEBUG    [ yatuner ] 188/225 selsched-max-sched-times min: 2383171.43, max: 2381582.08 l: 0.91, p: 0.84 
+[01/08/24 05:42:07] DEBUG    [ yatuner ] 189/225 simultaneous-prefetches min: 2373592.34, max: 2380590.95 l: 0.24, p: 0.21 
+[01/08/24 05:42:56] DEBUG    [ yatuner ] 190/225 sink-frequency-threshold min: 2376254.77, max: 2375214.92 l: 0.52, p: 0.61 
+[01/08/24 05:43:46] DEBUG    [ yatuner ] 191/225 slp-max-insns-in-bb min: 2376272.78, max: 2374179.93 l: 0.95, p: 0.18 
+[01/08/24 05:44:35] DEBUG    [ yatuner ] 192/225 sms-dfa-history min: 2374165.06, max: 2372723.89 l: 0.22, p: 0.37 
+[01/08/24 05:45:24] DEBUG    [ yatuner ] 193/225 sms-loop-average-count-threshold min: 2379114.62, max: 2375927.78 l: 0.45, p: 0.55 
+[01/08/24 05:46:13] DEBUG    [ yatuner ] 194/225 sms-max-ii-factor min: 2375119.34, max: 2375715.54 l: 0.57, p: 0.88 
+[01/08/24 05:47:03] DEBUG    [ yatuner ] 195/225 sms-min-sc min: 2377600.04, max: 2373504.49 l: 0.87, p: 0.07 
+[01/08/24 05:47:52] DEBUG    [ yatuner ] 196/225 sra-max-propagations min: 2376224.75, max: 2381595.86 l: 0.15, p: 0.28 
+[01/08/24 05:48:41] DEBUG    [ yatuner ] 197/225 ssa-name-def-chain-limit min: 2379066.94, max: 2372552.11 l: 0.54, p: 0.25 
+[01/08/24 05:49:31] DEBUG    [ yatuner ] 198/225 ssp-buffer-size min: 2377183.87, max: 2373892.13 l: 0.25, p: 0.30 
+[01/08/24 05:50:20] DEBUG    [ yatuner ] 199/225 stack-clash-protection-guard-size min: 2385327.82, max: 2376245.33 l: 0.22, p: 0.33 
+[01/08/24 05:51:09] DEBUG    [ yatuner ] 200/225 stack-clash-protection-probe-interval min: 2376056.50, max: 2374128.77 l: 0.53, p: 0.61 
+[01/08/24 05:51:58] DEBUG    [ yatuner ] 201/225 store-merging-allow-unaligned min: 2376197.58, max: 2376460.06 l: 0.89, p: 0.94 
+[01/08/24 05:52:48] DEBUG    [ yatuner ] 202/225 store-merging-max-size min: 2373717.92, max: 2373895.81 l: 0.41, p: 0.92 
+[01/08/24 05:53:37] DEBUG    [ yatuner ] 203/225 switch-conversion-max-branch-ratio min: 2377544.76, max: 2377578.19 l: 0.40, p: 0.99 
+[01/08/24 05:54:26] DEBUG    [ yatuner ] 204/225 tm-max-aggregate-size min: 2376592.11, max: 2372561.58 l: 0.16, p: 0.03 
+                    INFO     [ yatuner ] tm-max-aggregate-size is selected 
+[01/08/24 05:55:16] DEBUG    [ yatuner ] 205/225 tracer-dynamic-coverage-feedback min: 2375779.87, max: 2385106.96 l: 0.30, p: 0.28 
+[01/08/24 05:56:05] DEBUG    [ yatuner ] 206/225 tracer-dynamic-coverage min: 2418848.35, max: 2372820.89 l: 0.16, p: 0.00 
+                    INFO     [ yatuner ] tracer-dynamic-coverage is selected 
+[01/08/24 05:56:55] DEBUG    [ yatuner ] 207/225 tracer-max-code-growth min: 2418543.11, max: 2377254.28 l: 0.12, p: 0.00 
+                    INFO     [ yatuner ] tracer-max-code-growth is selected 
+[01/08/24 05:57:44] DEBUG    [ yatuner ] 208/225 tracer-min-branch-probability-feedback min: 2379137.80, max: 2373488.54 l: 0.26, p: 0.17 
+[01/08/24 05:58:34] DEBUG    [ yatuner ] 209/225 tracer-min-branch-probability min: 2374338.59, max: 2418292.83 l: 0.51, p: 0.00 
+                    INFO     [ yatuner ] tracer-min-branch-probability is selected 
+[01/08/24 05:59:24] DEBUG    [ yatuner ] 210/225 tracer-min-branch-ratio min: 2374930.32, max: 2421085.57 l: 0.49, p: 0.00 
+                    INFO     [ yatuner ] tracer-min-branch-ratio is selected 
+[01/08/24 06:00:13] DEBUG    [ yatuner ] 211/225 tree-reassoc-width min: 2375983.80, max: 2375438.16 l: 0.81, p: 0.87 
+[01/08/24 06:01:02] DEBUG    [ yatuner ] 212/225 uninit-control-dep-attempts min: 2375891.66, max: 2374719.45 l: 0.33, p: 0.55 
+[01/08/24 06:01:51] DEBUG    [ yatuner ] 213/225 uninlined-function-insns min: 2375465.11, max: 2372577.72 l: 0.14, p: 0.32 
+[01/08/24 06:02:31] DEBUG    [ yatuner ] 214/225 uninlined-function-time min: 2384111.93, max: 1354357.81 l: 0.23, p: 0.00 
+                    INFO     [ yatuner ] uninlined-function-time is selected 
+[01/08/24 06:03:20] DEBUG    [ yatuner ] 215/225 uninlined-thunk-insns min: 2376369.76, max: 2373923.67 l: 0.31, p: 0.30 
+[01/08/24 06:04:10] DEBUG    [ yatuner ] 216/225 uninlined-thunk-time min: 2374869.42, max: 2375955.98 l: 0.04, p: 0.61 
+[01/08/24 06:04:59] DEBUG    [ yatuner ] 217/225 unlikely-bb-count-fraction min: 2372565.00, max: 2375113.17 l: 0.57, p: 0.48 
+[01/08/24 06:05:48] DEBUG    [ yatuner ] 218/225 unroll-jam-max-unroll min: 2376869.34, max: 2377701.42 l: 0.89, p: 0.80 
+[01/08/24 06:06:37] DEBUG    [ yatuner ] 219/225 unroll-jam-min-percent min: 2378504.94, max: 2373982.01 l: 0.39, p: 0.33 
+[01/08/24 06:07:27] DEBUG    [ yatuner ] 220/225 use-after-scope-direct-emission-threshold min: 2374155.38, max: 2374011.08 l: 0.73, p: 0.94 
+[01/08/24 06:08:16] DEBUG    [ yatuner ] 221/225 use-canonical-types min: 2374623.61, max: 2384448.35 l: 0.25, p: 0.33 
+[01/08/24 06:09:05] DEBUG    [ yatuner ] 222/225 vect-epilogues-nomask min: 2376810.07, max: 2381768.94 l: 0.36, p: 0.26 
+[01/08/24 06:09:55] DEBUG    [ yatuner ] 223/225 vect-max-version-for-alias-checks min: 2398577.01, max: 2372552.45 l: 0.30, p: 0.01 
+                    INFO     [ yatuner ] vect-max-version-for-alias-checks is selected 
+[01/08/24 06:10:44] DEBUG    [ yatuner ] 224/225 vect-max-version-for-alignment-checks min: 2375516.50, max: 2372989.76 l: 0.86, p: 0.12 
+def optimize 
+                    INFO     [ yatuner ] loaded 35 optimizers 
+before optimization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:48
+[01/08/24 06:11:33] INFO     [ yatuner ] execution result before optimize: 2390288.3822999997 
+                    INFO     [ yatuner ] loaded 36 parameters 
+epoch 0     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:12:03] DEBUG    [ yatuner ] 0/100 result: 1372011.32 
+epoch 1     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:48
+[01/08/24 06:12:52] DEBUG    [ yatuner ] 1/100 result: 2416914.21 
+epoch 2     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:35
+[01/08/24 06:13:29] DEBUG    [ yatuner ] 2/100 result: 1742508.36 
+epoch 3     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:13:59] DEBUG    [ yatuner ] 3/100 result: 1373381.25 
+epoch 4     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:14:29] DEBUG    [ yatuner ] 4/100 result: 1371360.43 
+epoch 5     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:14:59] DEBUG    [ yatuner ] 5/100 result: 1393665.24 
+epoch 6     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:15:29] DEBUG    [ yatuner ] 6/100 result: 1373273.69 
+epoch 7     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:15:59] DEBUG    [ yatuner ] 7/100 result: 1377306.67 
+epoch 8     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:16:30] DEBUG    [ yatuner ] 8/100 result: 1393293.68 
+epoch 9     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:51
+[01/08/24 06:17:22] DEBUG    [ yatuner ] 9/100 result: 2562636.63 
+epoch 10    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:17:53] DEBUG    [ yatuner ] 10/100 result: 1394348.00 
+epoch 11    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:18:23] DEBUG    [ yatuner ] 11/100 result: 1373015.71 
+epoch 12    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:18:54] DEBUG    [ yatuner ] 12/100 result: 1375826.10 
+epoch 13    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:19:24] DEBUG    [ yatuner ] 13/100 result: 1378402.86 
+epoch 14    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:19:55] DEBUG    [ yatuner ] 14/100 result: 1372065.84 
+epoch 15    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:20:25] DEBUG    [ yatuner ] 15/100 result: 1393505.65 
+epoch 16    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:20:56] DEBUG    [ yatuner ] 16/100 result: 1373550.28 
+epoch 17    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:21:26] DEBUG    [ yatuner ] 17/100 result: 1392698.54 
+epoch 18    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:21:57] DEBUG    [ yatuner ] 18/100 result: 1372989.95 
+epoch 19    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:22:28] DEBUG    [ yatuner ] 19/100 result: 1376076.59 
+epoch 20    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:22:59] DEBUG    [ yatuner ] 20/100 result: 1374473.81 
+epoch 21    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:23:30] DEBUG    [ yatuner ] 21/100 result: 1373362.69 
+epoch 22    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:24:01] DEBUG    [ yatuner ] 22/100 result: 1393278.50 
+epoch 23    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:24:32] DEBUG    [ yatuner ] 23/100 result: 1375509.84 
+epoch 24    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:25:03] DEBUG    [ yatuner ] 24/100 result: 1372279.48 
+epoch 25    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:25:34] DEBUG    [ yatuner ] 25/100 result: 1375102.66 
+epoch 26    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:26:05] DEBUG    [ yatuner ] 26/100 result: 1376221.97 
+epoch 27    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:26:36] DEBUG    [ yatuner ] 27/100 result: 1377667.17 
+epoch 28    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:27:06] DEBUG    [ yatuner ] 28/100 result: 1373533.28 
+epoch 29    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:27:37] DEBUG    [ yatuner ] 29/100 result: 1394769.69 
+epoch 30    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:28:08] DEBUG    [ yatuner ] 30/100 result: 1377071.59 
+epoch 31    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:28:39] DEBUG    [ yatuner ] 31/100 result: 1394460.22 
+epoch 32    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:29:10] DEBUG    [ yatuner ] 32/100 result: 1395902.83 
+epoch 33    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:29:40] DEBUG    [ yatuner ] 33/100 result: 1394049.91 
+epoch 34    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:30:11] DEBUG    [ yatuner ] 34/100 result: 1374706.04 
+epoch 35    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:30:42] DEBUG    [ yatuner ] 35/100 result: 1376444.21 
+epoch 36    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:31:13] DEBUG    [ yatuner ] 36/100 result: 1394066.83 
+epoch 37    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:31:44] DEBUG    [ yatuner ] 37/100 result: 1397295.43 
+epoch 38    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:32:15] DEBUG    [ yatuner ] 38/100 result: 1372173.40 
+epoch 39    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:32:46] DEBUG    [ yatuner ] 39/100 result: 1393226.07 
+epoch 40    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:33:17] DEBUG    [ yatuner ] 40/100 result: 1396279.68 
+epoch 41    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:33:48] DEBUG    [ yatuner ] 41/100 result: 1375050.82 
+epoch 42    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:34:19] DEBUG    [ yatuner ] 42/100 result: 1394821.04 
+epoch 43    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:34:50] DEBUG    [ yatuner ] 43/100 result: 1373877.53 
+epoch 44    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:35:22] DEBUG    [ yatuner ] 44/100 result: 1394211.18 
+epoch 45    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:35:52] DEBUG    [ yatuner ] 45/100 result: 1373714.14 
+epoch 46    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:36:23] DEBUG    [ yatuner ] 46/100 result: 1394618.75 
+epoch 47    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:36:54] DEBUG    [ yatuner ] 47/100 result: 1374829.50 
+epoch 48    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:37:25] DEBUG    [ yatuner ] 48/100 result: 1389697.72 
+epoch 49    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:37:56] DEBUG    [ yatuner ] 49/100 result: 1395254.38 
+epoch 50    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:38:28] DEBUG    [ yatuner ] 50/100 result: 1419120.32 
+epoch 51    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:38:58] DEBUG    [ yatuner ] 51/100 result: 1399241.26 
+epoch 52    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:39:28] DEBUG    [ yatuner ] 52/100 result: 1366295.32 
+epoch 53    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:39:59] DEBUG    [ yatuner ] 53/100 result: 1368043.99 
+epoch 54    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:40:31] DEBUG    [ yatuner ] 54/100 result: 1397025.66 
+epoch 55    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:41:02] DEBUG    [ yatuner ] 55/100 result: 1369450.23 
+epoch 56    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:41:32] DEBUG    [ yatuner ] 56/100 result: 1365735.12 
+epoch 57    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:42:03] DEBUG    [ yatuner ] 57/100 result: 1377907.01 
+epoch 58    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:42:33] DEBUG    [ yatuner ] 58/100 result: 1377109.95 
+epoch 59    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:43:04] DEBUG    [ yatuner ] 59/100 result: 1367167.96 
+epoch 60    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:43:34] DEBUG    [ yatuner ] 60/100 result: 1376992.31 
+epoch 61    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:44:04] DEBUG    [ yatuner ] 61/100 result: 1365772.33 
+epoch 62    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:44:34] DEBUG    [ yatuner ] 62/100 result: 1363853.70 
+epoch 63    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:45:04] DEBUG    [ yatuner ] 63/100 result: 1368272.53 
+epoch 64    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:45:34] DEBUG    [ yatuner ] 64/100 result: 1365245.71 
+epoch 65    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:46:05] DEBUG    [ yatuner ] 65/100 result: 1364590.89 
+epoch 66    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:46:36] DEBUG    [ yatuner ] 66/100 result: 1395442.74 
+epoch 67    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:52
+[01/08/24 06:47:30] DEBUG    [ yatuner ] 67/100 result: 2590305.78 
+epoch 68    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:48:00] DEBUG    [ yatuner ] 68/100 result: 1365865.40 
+epoch 69    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:48:30] DEBUG    [ yatuner ] 69/100 result: 1379197.89 
+epoch 70    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:49:00] DEBUG    [ yatuner ] 70/100 result: 1362083.58 
+epoch 71    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:49:31] DEBUG    [ yatuner ] 71/100 result: 1364872.79 
+epoch 72    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:50:01] DEBUG    [ yatuner ] 72/100 result: 1365249.87 
+epoch 73    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:50:32] DEBUG    [ yatuner ] 73/100 result: 1393960.43 
+epoch 74    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:51:02] DEBUG    [ yatuner ] 74/100 result: 1367028.09 
+epoch 75    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:51:33] DEBUG    [ yatuner ] 75/100 result: 1392811.07 
+epoch 76    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:52:03] DEBUG    [ yatuner ] 76/100 result: 1367798.97 
+epoch 77    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:52:34] DEBUG    [ yatuner ] 77/100 result: 1366735.07 
+epoch 78    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:53:04] DEBUG    [ yatuner ] 78/100 result: 1364947.83 
+epoch 79    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:53:34] DEBUG    [ yatuner ] 79/100 result: 1363984.67 
+epoch 80    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:54:05] DEBUG    [ yatuner ] 80/100 result: 1366274.36 
+epoch 81    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:54:35] DEBUG    [ yatuner ] 81/100 result: 1364958.19 
+epoch 82    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:55:05] DEBUG    [ yatuner ] 82/100 result: 1365318.68 
+epoch 83    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:55:37] DEBUG    [ yatuner ] 83/100 result: 1406176.86 
+epoch 84    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:56:07] DEBUG    [ yatuner ] 84/100 result: 1367509.67 
+epoch 85    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:56:38] DEBUG    [ yatuner ] 85/100 result: 1395139.27 
+epoch 86    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:57:09] DEBUG    [ yatuner ] 86/100 result: 1363668.61 
+epoch 87    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:57:39] DEBUG    [ yatuner ] 87/100 result: 1365935.06 
+epoch 88    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:58:10] DEBUG    [ yatuner ] 88/100 result: 1378852.29 
+epoch 89    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:58:40] DEBUG    [ yatuner ] 89/100 result: 1363570.35 
+epoch 90    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 06:59:12] DEBUG    [ yatuner ] 90/100 result: 1396565.10 
+epoch 91    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 06:59:43] DEBUG    [ yatuner ] 91/100 result: 1377848.86 
+epoch 92    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 07:00:14] DEBUG    [ yatuner ] 92/100 result: 1364526.79 
+epoch 93    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 07:00:44] DEBUG    [ yatuner ] 93/100 result: 1364589.85 
+epoch 94    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 07:01:16] DEBUG    [ yatuner ] 94/100 result: 1392751.61 
+epoch 95    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 07:01:46] DEBUG    [ yatuner ] 95/100 result: 1364976.08 
+epoch 96    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 07:02:17] DEBUG    [ yatuner ] 96/100 result: 1361425.58 
+epoch 97    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 07:02:47] DEBUG    [ yatuner ] 97/100 result: 1366272.76 
+epoch 98    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 07:03:18] DEBUG    [ yatuner ] 98/100 result: 1366317.68 
+epoch 99    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 07:03:48] DEBUG    [ yatuner ] 99/100 result: 1366639.97 
+epoch 100   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 07:04:19] DEBUG    [ yatuner ] 100/100 result: 1364043.19 
+epoch 101   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 07:04:49] DEBUG    [ yatuner ] 101/100 result: 1364309.73 
+epoch 102   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 07:05:20] DEBUG    [ yatuner ] 102/100 result: 1368744.21 
+epoch 103   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:27
+[01/08/24 07:05:51] DEBUG    [ yatuner ] 103/100 result: 1374560.19 
+epoch 104   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:28
+[01/08/24 07:06:23] DEBUG    [ yatuner ] 104/100 result: 1394916.49 
+                    INFO     [ yatuner ] best result: 1361425.5842499998 
+                    INFO     [ yatuner ] best option: [1.         1.         0.23686876 1.         0.70106166 0.45362528 
+                              1.         0.47073647 0.         0.2492307  0.32873978 0.68042864 
+                              0.         1.         0.61770955 0.395738   0.78687787 0. 
+                              0.00584699 1.         0.47790951 0.51402728 1.         1. 
+                              0.86353247 1.         1.         0.         0.48552263 0.55161825 
+                              0.6513725  0.39728848 0.85155425 0.10432444 0.49955353 0.74544765] 
+
+def optimize_linUCB: 
+
+                    INFO     [ yatuner ] using existing optimized parameters. 
+-Ofast ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:04:08
+   -Os ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:04:20
+   -O0 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:06:15
+   -O1 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:04:28
+   -O2 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:04:20
+   -O3 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:04:17
+[01/08/24 07:34:17] INFO     [ yatuner ] loaded 35 optimizers 
+optimizers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:04:00
+[01/08/24 07:38:18] INFO     [ yatuner ] loaded 36 parameters 
+parameters ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:02:17
+                   Result 
+┏━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┓
+┃ Method     ┃ Result     ┃ Score  ┃ Delta  ┃
+┡━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━┩
+│ O0         │ 3739590.19 │ 36.38  │        │
+│ O1         │ 2666423.83 │ 51.02  │        │
+│ O2         │ 2585700.65 │ 52.61  │        │
+│ O3         │ 2562378.35 │ 53.09  │        │
+│ Ofast      │ 2463028.83 │ 55.24  │        │
+│ Os         │ 2588941.74 │ 52.55  │        │
+│ Optimizers │ 2389436.67 │ 56.94  │ 8.21%  │
+│ Parameters │ 1360455.24 │ 100.00 │ 90.06% │
+└────────────┴────────────┴────────┴────────┘ 

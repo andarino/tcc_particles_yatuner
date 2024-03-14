@@ -1,0 +1,1348 @@
+# Tuning process!
+tuner.initialize()
+tuner.test_run(num_samples=400, warmup=20)#200, 10
+tuner.hypotest_optimizers(num_samples=20, num_epochs=60)#1, 30 ()
+tuner.hypotest_parameters(num_samples=20)
+#tuner.optimize(num_samples=20, num_epochs=100) #Using bayesian optimization 
+tuner.optimize_linUCB(alpha=0.25,
+                      num_bins=30,
+                      num_epochs=800, #400
+                      nth_choice=4,
+                      metric=metric) #using linUCB
+tuner.run(num_samples=200) #50 -Ofast, -Os, -O0, (10 - 30)
+tuner.plot_data() 
+
+[01/14/24 00:59:08] -> [01/14/24 10:28:32]
+
+[TEMPO_TOTAL] = 9h 29m 24s
+
+
+
+
+(yatunerenv) thiago@ubuntu:~/TCC$ python tune_stat_particles.py
+warning in stationary: failed to import cython module: falling back to numpy
+warning in coregionalize: failed to import cython module: falling back to numpy
+warning in choleskies: failed to import cython module: falling back to numpy
+[Errno 17] File exists: './build/timePerf/'
+[01/14/24 00:59:08] INFO     [ yatuner ] workspace is not detected, creating one. 
+[01/14/24 00:59:11] DEBUG    [ yatuner ] warmup 0/20 result: 2575926.926 
+[01/14/24 00:59:14] DEBUG    [ yatuner ] warmup 1/20 result: 2564761.515 
+[01/14/24 00:59:16] DEBUG    [ yatuner ] warmup 2/20 result: 2570816.958 
+[01/14/24 00:59:19] DEBUG    [ yatuner ] warmup 3/20 result: 2561943.901 
+[01/14/24 00:59:22] DEBUG    [ yatuner ] warmup 4/20 result: 2564566.591 
+[01/14/24 00:59:24] DEBUG    [ yatuner ] warmup 5/20 result: 2591654.546 
+[01/14/24 00:59:27] DEBUG    [ yatuner ] warmup 6/20 result: 2576340.401 
+[01/14/24 00:59:29] DEBUG    [ yatuner ] warmup 7/20 result: 2573765.072 
+[01/14/24 00:59:32] DEBUG    [ yatuner ] warmup 8/20 result: 2597745.688 
+[01/14/24 00:59:35] DEBUG    [ yatuner ] warmup 9/20 result: 2595067.31 
+[01/14/24 00:59:37] DEBUG    [ yatuner ] warmup 10/20 result: 2560844.491 
+[01/14/24 00:59:40] DEBUG    [ yatuner ] warmup 11/20 result: 2577963.519 
+[01/14/24 00:59:42] DEBUG    [ yatuner ] warmup 12/20 result: 2566075.228 
+[01/14/24 00:59:45] DEBUG    [ yatuner ] warmup 13/20 result: 2587343.039 
+[01/14/24 00:59:48] DEBUG    [ yatuner ] warmup 14/20 result: 2562968.077 
+[01/14/24 00:59:50] DEBUG    [ yatuner ] warmup 15/20 result: 2582440.609 
+[01/14/24 00:59:53] DEBUG    [ yatuner ] warmup 16/20 result: 2559768.099 
+[01/14/24 00:59:55] DEBUG    [ yatuner ] warmup 17/20 result: 2572312.422 
+[01/14/24 00:59:58] DEBUG    [ yatuner ] warmup 18/20 result: 2577400.49 
+[01/14/24 01:00:01] DEBUG    [ yatuner ] warmup 19/20 result: 2603666.884 
+  warmup ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:51
+test run ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:17:13
+[01/14/24 01:17:14] INFO     [ yatuner ] test run finished with u: 2565910.47, std: 14484.52 
+                    INFO     [ yatuner ] test run ... OK 
+
+def hypotest_optimizers | o otimizador escolhido é quando: p < z_threshold=0.05 or t < t_threshold=0.05
+p: Função de sobrevivência de uma distribuição normal (gaussiana).
+t: indica se a média de uma única amostra é significativamente diferente de uma média populacional conhecida ou hipotética. 
+
+[01/14/24 01:18:06] DEBUG    [ yatuner ] 0/78 -fmodulo-sched u: 2565910.47 -> 2547958.89, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fmodulo-sched is selected 
+[01/14/24 01:18:58] DEBUG    [ yatuner ] 1/78 -fexceptions u: 2565910.47 -> 2557608.84, p: 0.01, t: 0.03 
+                    INFO     [ yatuner ] -fexceptions is selected 
+[01/14/24 01:19:50] DEBUG    [ yatuner ] 2/78 -fselective-scheduling2 u: 2565910.47 -> 2527926.44, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fselective-scheduling2 is selected 
+[01/14/24 01:20:42] DEBUG    [ yatuner ] 3/78 -fdelayed-branch u: 2565910.47 -> 2552399.16, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fdelayed-branch is selected 
+[01/14/24 01:21:33] DEBUG    [ yatuner ] 4/78 -fstrict-enums u: 2565910.47 -> 2544804.23, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fstrict-enums is selected 
+[01/14/24 01:22:25] DEBUG    [ yatuner ] 5/78 -fwrapv-pointer u: 2565910.47 -> 2557266.70, p: 0.01, t: 0.01 
+                    INFO     [ yatuner ] -fwrapv-pointer is selected 
+[01/14/24 01:23:17] DEBUG    [ yatuner ] 6/78 -funroll-loops u: 2565910.47 -> 2550609.11, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -funroll-loops is selected 
+[01/14/24 01:24:09] DEBUG    [ yatuner ] 7/78 -fassociative-math u: 2565910.47 -> 2553209.00, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fassociative-math is selected 
+[01/14/24 01:25:01] DEBUG    [ yatuner ] 8/78 -fsection-anchors u: 2565910.47 -> 2550040.61, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fsection-anchors is selected 
+[01/14/24 01:25:53] DEBUG    [ yatuner ] 9/78 -fstack-protector-strong u: 2565910.47 -> 2553006.32, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fstack-protector-strong is selected 
+[01/14/24 01:26:45] DEBUG    [ yatuner ] 10/78 -fsel-sched-pipelining-outer-loops u: 2565910.47 -> 2546688.10, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fsel-sched-pipelining-outer-loops is selected 
+[01/14/24 01:27:36] DEBUG    [ yatuner ] 11/78 -funroll-completely-grow-size u: 2565910.47 -> 2549013.47, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -funroll-completely-grow-size is selected 
+[01/14/24 01:28:28] DEBUG    [ yatuner ] 12/78 -flimit-function-alignment u: 2565910.47 -> 2554422.62, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -flimit-function-alignment is selected 
+[01/14/24 01:29:29] DEBUG    [ yatuner ] 13/78 -ftrapv u: 2565910.47 -> 2996035.89, p: 0.00, t: 0.00 
+[01/14/24 01:30:21] DEBUG    [ yatuner ] 14/78 -fcx-limited-range u: 2565910.47 -> 2558525.50, p: 0.02, t: 0.00 
+                    INFO     [ yatuner ] -fcx-limited-range is selected 
+[01/14/24 01:31:13] DEBUG    [ yatuner ] 15/78 -fwrapv u: 2565910.47 -> 2569537.28, p: 0.26, t: 0.28 
+[01/14/24 01:32:05] DEBUG    [ yatuner ] 16/78 -fschedule-insns u: 2565910.47 -> 2544990.16, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fschedule-insns is selected 
+[01/14/24 01:32:57] DEBUG    [ yatuner ] 17/78 -funroll-all-loops u: 2565910.47 -> 2552862.06, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -funroll-all-loops is selected 
+[01/14/24 01:33:49] DEBUG    [ yatuner ] 18/78 -fprofile-reorder-functions u: 2565910.47 -> 2562989.18, p: 0.37, t: 0.51 
+[01/14/24 01:34:41] DEBUG    [ yatuner ] 19/78 -fira-loop-pressure u: 2565910.47 -> 2551586.37, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fira-loop-pressure is selected 
+[01/14/24 01:35:33] DEBUG    [ yatuner ] 20/78 -fshort-wchar u: 2565910.47 -> 2560715.59, p: 0.11, t: 0.15 
+[01/14/24 01:36:25] DEBUG    [ yatuner ] 21/78 -fstack-clash-protection u: 2565910.47 -> 2550024.60, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fstack-clash-protection is selected 
+[01/14/24 01:37:17] DEBUG    [ yatuner ] 22/78 -ffinite-math-only u: 2565910.47 -> 2555091.94, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -ffinite-math-only is selected 
+[01/14/24 01:38:08] DEBUG    [ yatuner ] 23/78 -funsafe-math-optimizations u: 2565910.47 -> 2500806.00, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -funsafe-math-optimizations is selected 
+[01/14/24 01:39:00] DEBUG    [ yatuner ] 24/78 -frounding-math u: 2565910.47 -> 2557955.98, p: 0.01, t: 0.06 
+                    INFO     [ yatuner ] -frounding-math is selected 
+[01/14/24 01:39:52] DEBUG    [ yatuner ] 25/78 -fstack-protector-all u: 2565910.47 -> 2572042.19, p: 0.06, t: 0.01 
+[01/14/24 01:40:44] DEBUG    [ yatuner ] 26/78 -fgraphite u: 2565910.47 -> 2558624.44, p: 0.02, t: 0.02 
+                    INFO     [ yatuner ] -fgraphite is selected 
+[01/14/24 01:41:36] DEBUG    [ yatuner ] 27/78 -fstack-protector-explicit u: 2565910.47 -> 2554357.96, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fstack-protector-explicit is selected 
+[01/14/24 01:42:28] DEBUG    [ yatuner ] 28/78 -fsingle-precision-constant u: 2565910.47 -> 2554265.87, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fsingle-precision-constant is selected 
+[01/14/24 01:43:20] DEBUG    [ yatuner ] 29/78 -funconstrained-commons u: 2565910.47 -> 2554490.43, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -funconstrained-commons is selected 
+[01/14/24 01:44:12] DEBUG    [ yatuner ] 30/78 -fbranch-probabilities u: 2565910.47 -> 2561910.81, p: 0.22, t: 0.37 
+[01/14/24 01:45:02] DEBUG    [ yatuner ] 31/78 -ffast-math u: 2565910.47 -> 2455144.00, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -ffast-math is selected 
+[01/14/24 01:45:54] DEBUG    [ yatuner ] 32/78 -fsel-sched-reschedule-pipelined u: 2565910.47 -> 2555894.39, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fsel-sched-reschedule-pipelined is selected 
+[01/14/24 01:46:46] DEBUG    [ yatuner ] 33/78 -fsignaling-nans u: 2565910.47 -> 2558202.40, p: 0.02, t: 0.01 
+                    INFO     [ yatuner ] -fsignaling-nans is selected 
+[01/14/24 01:47:38] DEBUG    [ yatuner ] 34/78 -fnon-call-exceptions u: 2565910.47 -> 2553812.82, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fnon-call-exceptions is selected 
+[01/14/24 01:48:30] DEBUG    [ yatuner ] 35/78 -fsched-pressure u: 2565910.47 -> 2556901.84, p: 0.01, t: 0.00 
+                    INFO     [ yatuner ] -fsched-pressure is selected 
+[01/14/24 01:49:22] DEBUG    [ yatuner ] 36/78 -free u: 2565910.47 -> 2564964.36, p: 0.77, t: 0.94 
+[01/14/24 01:50:14] DEBUG    [ yatuner ] 37/78 -ffinite-loops u: 2565910.47 -> 2554708.51, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -ffinite-loops is selected 
+[01/14/24 01:51:06] DEBUG    [ yatuner ] 38/78 -fmodulo-sched-allow-regmoves u: 2565910.47 -> 2555196.83, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fmodulo-sched-allow-regmoves is selected 
+[01/14/24 01:51:58] DEBUG    [ yatuner ] 39/78 -freschedule-modulo-scheduled-loops u: 2565910.47 -> 2551991.03, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -freschedule-modulo-scheduled-loops is selected 
+[01/14/24 01:52:50] DEBUG    [ yatuner ] 40/78 -fisolate-erroneous-paths-attribute u: 2565910.47 -> 2555555.42, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fisolate-erroneous-paths-attribute is selected 
+[01/14/24 01:53:42] DEBUG    [ yatuner ] 41/78 -fsel-sched-pipelining u: 2565910.47 -> 2557211.04, p: 0.01, t: 0.01 
+                    INFO     [ yatuner ] -fsel-sched-pipelining is selected 
+[01/14/24 01:54:34] DEBUG    [ yatuner ] 42/78 -ftoplevel-reorder u: 2565910.47 -> 2566232.12, p: 0.92, t: 0.98 
+[01/14/24 01:55:26] DEBUG    [ yatuner ] 43/78 -fallow-store-data-races u: 2565910.47 -> 2554479.11, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fallow-store-data-races is selected 
+[01/14/24 01:56:17] DEBUG    [ yatuner ] 44/78 -ftree-lrs u: 2565910.47 -> 2551473.56, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -ftree-lrs is selected 
+[01/14/24 01:57:09] DEBUG    [ yatuner ] 45/78 -flive-range-shrinkage u: 2565910.47 -> 2556163.36, p: 0.00, t: 0.01 
+                    INFO     [ yatuner ] -flive-range-shrinkage is selected 
+[01/14/24 01:58:02] DEBUG    [ yatuner ] 46/78 -fsave-optimization-record u: 2565910.47 -> 2556209.39, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fsave-optimization-record is selected 
+[01/14/24 01:58:54] DEBUG    [ yatuner ] 47/78 -fsched-spec-load u: 2565910.47 -> 2556935.60, p: 0.01, t: 0.02 
+                    INFO     [ yatuner ] -fsched-spec-load is selected 
+[01/14/24 01:59:46] DEBUG    [ yatuner ] 48/78 -fgraphite-identity u: 2565910.47 -> 2557247.64, p: 0.01, t: 0.00 
+                    INFO     [ yatuner ] -fgraphite-identity is selected 
+[01/14/24 02:00:38] DEBUG    [ yatuner ] 49/78 -fallocation-dce u: 2565910.47 -> 2558881.31, p: 0.03, t: 0.01 
+                    INFO     [ yatuner ] -fallocation-dce is selected 
+[01/14/24 02:01:30] DEBUG    [ yatuner ] 50/78 -floop-nest-optimize u: 2565910.47 -> 2556126.65, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -floop-nest-optimize is selected 
+[01/14/24 02:02:21] DEBUG    [ yatuner ] 51/78 -fgcse-las u: 2565910.47 -> 2552257.03, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fgcse-las is selected 
+[01/14/24 02:03:13] DEBUG    [ yatuner ] 52/78 -fhandle-exceptions u: 2565910.47 -> 2555594.69, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fhandle-exceptions is selected 
+[01/14/24 02:04:05] DEBUG    [ yatuner ] 53/78 -fdelete-dead-exceptions u: 2565910.47 -> 2562545.60, p: 0.30, t: 0.37 
+[01/14/24 02:04:57] DEBUG    [ yatuner ] 54/78 -fopt-info u: 2565910.47 -> 2552472.47, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fopt-info is selected 
+[01/14/24 02:05:49] DEBUG    [ yatuner ] 55/78 -fsched-spec-load-dangerous u: 2565910.47 -> 2557830.23, p: 0.01, t: 0.03 
+                    INFO     [ yatuner ] -fsched-spec-load-dangerous is selected 
+[01/14/24 02:06:42] DEBUG    [ yatuner ] 56/78 -fsched-stalled-insns u: 2565910.47 -> 2565630.87, p: 0.93, t: 0.93 
+[01/14/24 02:07:34] DEBUG    [ yatuner ] 57/78 -fcx-fortran-rules u: 2565910.47 -> 2559515.88, p: 0.05, t: 0.00 
+                    INFO     [ yatuner ] -fcx-fortran-rules is selected 
+[01/14/24 02:08:25] DEBUG    [ yatuner ] 58/78 -fvariable-expansion-in-unroller u: 2565910.47 -> 2554181.72, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fvariable-expansion-in-unroller is selected 
+[01/14/24 02:09:32] DEBUG    [ yatuner ] 59/78 -ffloat-store u: 2565910.47 -> 3297105.45, p: 0.00, t: 0.00 
+[01/14/24 02:10:24] DEBUG    [ yatuner ] 60/78 -fvar-tracking-uninit u: 2565910.47 -> 2557827.66, p: 0.01, t: 0.01 
+                    INFO     [ yatuner ] -fvar-tracking-uninit is selected 
+[01/14/24 02:11:16] DEBUG    [ yatuner ] 61/78 -flive-patching u: 2565910.47 -> 2556157.52, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -flive-patching is selected 
+[01/14/24 02:12:08] DEBUG    [ yatuner ] 62/78 -fconserve-stack u: 2565910.47 -> 2553807.72, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fconserve-stack is selected 
+[01/14/24 02:13:00] DEBUG    [ yatuner ] 63/78 -fkeep-gc-roots-live u: 2565910.47 -> 2559023.12, p: 0.03, t: 0.00 
+                    INFO     [ yatuner ] -fkeep-gc-roots-live is selected 
+[01/14/24 02:13:52] DEBUG    [ yatuner ] 64/78 -floop-parallelize-all u: 2565910.47 -> 2554560.86, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -floop-parallelize-all is selected 
+[01/14/24 02:14:44] DEBUG    [ yatuner ] 65/78 -ftree-vectorize u: 2565910.47 -> 2554226.85, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -ftree-vectorize is selected 
+[01/14/24 02:15:36] DEBUG    [ yatuner ] 66/78 -fsplit-wide-types-early u: 2565910.47 -> 2551458.28, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fsplit-wide-types-early is selected 
+[01/14/24 02:16:28] DEBUG    [ yatuner ] 67/78 -fpack-struct u: 2565910.47 -> 2550683.88, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fpack-struct is selected 
+[01/14/24 02:17:20] DEBUG    [ yatuner ] 68/78 -freciprocal-math u: 2565910.47 -> 2554408.04, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -freciprocal-math is selected 
+[01/14/24 02:18:12] DEBUG    [ yatuner ] 69/78 -fsched2-use-superblocks u: 2565910.47 -> 2557070.86, p: 0.01, t: 0.00 
+                    INFO     [ yatuner ] -fsched2-use-superblocks is selected 
+[01/14/24 02:19:04] DEBUG    [ yatuner ] 70/78 -fgcse-sm u: 2565910.47 -> 2552570.10, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fgcse-sm is selected 
+[01/14/24 02:19:56] DEBUG    [ yatuner ] 71/78 -fvpt u: 2565910.47 -> 2559467.89, p: 0.05, t: 0.00 
+                    INFO     [ yatuner ] -fvpt is selected 
+[01/14/24 02:20:48] DEBUG    [ yatuner ] 72/78 -fstack-protector u: 2565910.47 -> 2559555.47, p: 0.05, t: 0.11 
+                    INFO     [ yatuner ] -fstack-protector is selected 
+[01/14/24 02:21:40] DEBUG    [ yatuner ] 73/78 -ftracer u: 2565910.47 -> 2559436.09, p: 0.05, t: 0.00 
+                    INFO     [ yatuner ] -ftracer is selected 
+[01/14/24 02:22:32] DEBUG    [ yatuner ] 74/78 -fvar-tracking-assignments-toggle u: 2565910.47 -> 2558228.53, p: 0.02, t: 0.00 
+                    INFO     [ yatuner ] -fvar-tracking-assignments-toggle is selected 
+[01/14/24 02:23:24] DEBUG    [ yatuner ] 75/78 -fprofile-partial-training u: 2565910.47 -> 2558714.22, p: 0.03, t: 0.02 
+                    INFO     [ yatuner ] -fprofile-partial-training is selected 
+[01/14/24 02:24:16] DEBUG    [ yatuner ] 76/78 -fnothrow-opt u: 2565910.47 -> 2554297.30, p: 0.00, t: 0.00 
+                    INFO     [ yatuner ] -fnothrow-opt is selected 
+[01/14/24 02:25:08] DEBUG    [ yatuner ] 77/78 -fselective-scheduling u: 2565910.47 -> 2558484.64, p: 0.02, t: 0.00 
+                    INFO     [ yatuner ] -fselective-scheduling is selected 
+                    INFO     [ yatuner ] 67 optimizers selected 
+                    INFO     [ yatuner ] optimizing optimizers 
+epoch 0     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:51
+[01/14/24 02:26:00] DEBUG    [ yatuner ] 0/60 result: 2552072.02 
+epoch 1     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:49
+[01/14/24 02:26:50] DEBUG    [ yatuner ] 1/60 result: 2473917.01 
+epoch 2     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:50
+[01/14/24 02:27:42] DEBUG    [ yatuner ] 2/60 result: 2517263.94 
+epoch 3     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:49
+[01/14/24 02:28:33] DEBUG    [ yatuner ] 3/60 result: 2465175.43 
+epoch 4     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:51
+[01/14/24 02:29:25] DEBUG    [ yatuner ] 4/60 result: 2563769.04 
+epoch 5     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:51
+[01/14/24 02:30:17] DEBUG    [ yatuner ] 5/60 result: 2567743.06 
+epoch 6     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:49
+[01/14/24 02:31:08] DEBUG    [ yatuner ] 6/60 result: 2469433.01 
+epoch 7     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:54
+[01/14/24 02:32:03] DEBUG    [ yatuner ] 7/60 result: 2710531.55 
+epoch 8     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:50
+[01/14/24 02:32:54] DEBUG    [ yatuner ] 8/60 result: 2503376.36 
+epoch 9     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:48
+[01/14/24 02:33:44] DEBUG    [ yatuner ] 9/60 result: 2427945.50 
+epoch 10    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:51
+[01/14/24 02:34:36] DEBUG    [ yatuner ] 10/60 result: 2570519.16 
+epoch 11    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:54
+[01/14/24 02:35:32] DEBUG    [ yatuner ] 11/60 result: 2701094.26 
+epoch 12    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:49
+[01/14/24 02:36:23] DEBUG    [ yatuner ] 12/60 result: 2474044.79 
+epoch 13    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:50
+[01/14/24 02:37:14] DEBUG    [ yatuner ] 13/60 result: 2492198.34 
+epoch 14    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:48
+[01/14/24 02:38:04] DEBUG    [ yatuner ] 14/60 result: 2414624.75 
+epoch 15    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:48
+[01/14/24 02:38:54] DEBUG    [ yatuner ] 15/60 result: 2429219.40 
+epoch 16    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:48
+[01/14/24 02:39:45] DEBUG    [ yatuner ] 16/60 result: 2416572.85 
+epoch 17    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:48
+[01/14/24 02:40:35] DEBUG    [ yatuner ] 17/60 result: 2412141.20 
+                    INFO     [ yatuner ] best result: 2412141.2009500004 
+                    INFO     [ yatuner ] best option: [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 1. 1. 0. 1. 0. 1. 0. 1. 1. 0. 0. 0. 0. 
+                              1. 1. 1. 1. 0. 1. 0. 1. 1. 0. 1. 0. 1. 0. 1. 0. 0. 0. 1. 1. 1. 0. 0. 1. 
+                              1. 0. 1. 1. 0. 1. 0. 0. 1. 1. 1. 0. 1. 1. 1. 1. 1. 0. 0.] 
+def hypotest_parameters: ('p') Este teste é usado para verificar se há uma diferença significativa entre as médias das duas amostras.
+O otimizador é escolhido quando: p < t_threshold=0.05 
+                    INFO     [ yatuner ] loaded 33 optimizers 
+[01/14/24 02:42:13] DEBUG    [ yatuner ] 0/225 align-loop-iterations min: 2399556.31, max: 2403326.32 l: 0.43, p: 0.12 
+[01/14/24 02:43:52] DEBUG    [ yatuner ] 1/225 align-threshold min: 2401348.85, max: 2401096.25 l: 0.93, p: 0.95 
+[01/14/24 02:45:30] DEBUG    [ yatuner ] 2/225 analyzer-bb-explosion-factor min: 2403772.31, max: 2394954.15 l: 0.62, p: 0.00 
+                    INFO     [ yatuner ] analyzer-bb-explosion-factor is selected 
+[01/14/24 02:47:08] DEBUG    [ yatuner ] 3/225 analyzer-max-enodes-per-program-point min: 2399181.00, max: 2393576.57 l: 0.76, p: 0.06 
+[01/14/24 02:48:46] DEBUG    [ yatuner ] 4/225 analyzer-max-recursion-depth min: 2401144.63, max: 2399748.64 l: 0.59, p: 0.72 
+[01/14/24 02:50:24] DEBUG    [ yatuner ] 5/225 analyzer-min-snodes-for-call-summary min: 2394943.44, max: 2399483.92 l: 0.40, p: 0.18 
+[01/14/24 02:52:02] DEBUG    [ yatuner ] 6/225 asan-globals min: 2401492.29, max: 2396290.10 l: 0.77, p: 0.11 
+[01/14/24 02:53:40] DEBUG    [ yatuner ] 7/225 asan-instrument-allocas min: 2401807.38, max: 2395270.45 l: 0.13, p: 0.10 
+[01/14/24 02:55:19] DEBUG    [ yatuner ] 8/225 asan-instrument-reads min: 2397938.30, max: 2397031.87 l: 0.78, p: 0.75 
+[01/14/24 02:56:57] DEBUG    [ yatuner ] 9/225 asan-instrument-writes min: 2400863.62, max: 2397670.68 l: 0.04, p: 0.35 
+[01/14/24 02:58:35] DEBUG    [ yatuner ] 10/225 asan-instrumentation-with-call-threshold min: 2395517.43, max: 2390432.03 l: 0.24, p: 0.06 
+[01/14/24 03:00:13] DEBUG    [ yatuner ] 11/225 asan-memintrin min: 2396374.20, max: 2391095.29 l: 0.26, p: 0.27 
+[01/14/24 03:01:51] DEBUG    [ yatuner ] 12/225 asan-stack min: 2393752.28, max: 2392090.65 l: 0.79, p: 0.52 
+[01/14/24 03:03:28] DEBUG    [ yatuner ] 13/225 asan-use-after-return min: 2392926.74, max: 2387997.50 l: 0.04, p: 0.05 
+                    INFO     [ yatuner ] asan-use-after-return is selected 
+[01/14/24 03:05:06] DEBUG    [ yatuner ] 14/225 avg-loop-niter min: 2390781.28, max: 2393582.12 l: 0.28, p: 0.20 
+[01/14/24 03:06:44] DEBUG    [ yatuner ] 15/225 avoid-fma-max-bits min: 2395398.52, max: 2395371.67 l: 0.95, p: 1.00 
+[01/14/24 03:08:22] DEBUG    [ yatuner ] 16/225 builtin-expect-probability min: 2393792.05, max: 2389425.42 l: 0.14, p: 0.06 
+[01/14/24 03:10:00] DEBUG    [ yatuner ] 17/225 builtin-string-cmp-inline-length min: 2396222.50, max: 2395367.29 l: 0.75, p: 0.76 
+[01/14/24 03:11:38] DEBUG    [ yatuner ] 18/225 case-values-threshold min: 2392772.57, max: 2396144.17 l: 0.14, p: 0.18 
+[01/14/24 03:13:16] DEBUG    [ yatuner ] 19/225 comdat-sharing-probability min: 2392726.51, max: 2395240.78 l: 0.13, p: 0.36 
+[01/14/24 03:14:54] DEBUG    [ yatuner ] 20/225 cxx-max-namespaces-for-diagnostic-help min: 2394286.59, max: 2389699.19 l: 0.35, p: 0.17 
+[01/14/24 03:16:32] DEBUG    [ yatuner ] 21/225 dse-max-alias-queries-per-store min: 2399433.71, max: 2392156.87 l: 0.24, p: 0.31 
+[01/14/24 03:18:10] DEBUG    [ yatuner ] 22/225 dse-max-object-size min: 2397074.81, max: 2393480.64 l: 0.66, p: 0.33 
+[01/14/24 03:19:48] DEBUG    [ yatuner ] 23/225 early-inlining-insns min: 2391867.47, max: 2391749.05 l: 0.74, p: 0.96 
+[01/14/24 03:21:26] DEBUG    [ yatuner ] 24/225 fsm-maximum-phi-arguments min: 2403083.80, max: 2391697.12 l: 0.18, p: 0.05 
+                    INFO     [ yatuner ] fsm-maximum-phi-arguments is selected 
+[01/14/24 03:23:04] DEBUG    [ yatuner ] 25/225 fsm-scale-path-blocks min: 2394295.82, max: 2393174.69 l: 0.99, p: 0.70 
+[01/14/24 03:24:42] DEBUG    [ yatuner ] 26/225 fsm-scale-path-stmts min: 2391271.52, max: 2386957.72 l: 0.19, p: 0.07 
+[01/14/24 03:26:20] DEBUG    [ yatuner ] 27/225 gcse-after-reload-critical-fraction min: 2396235.35, max: 2392894.08 l: 0.10, p: 0.33 
+[01/14/24 03:27:57] DEBUG    [ yatuner ] 28/225 gcse-after-reload-partial-fraction min: 2391751.50, max: 2393602.13 l: 0.89, p: 0.63 
+[01/14/24 03:29:35] DEBUG    [ yatuner ] 29/225 gcse-cost-distance-ratio min: 2392388.11, max: 2390933.73 l: 0.18, p: 0.55 
+[01/14/24 03:31:13] DEBUG    [ yatuner ] 30/225 gcse-unrestricted-cost min: 2392861.68, max: 2392727.43 l: 0.87, p: 0.96 
+[01/14/24 03:32:51] DEBUG    [ yatuner ] 31/225 ggc-min-expand min: 2388924.33, max: 2394545.16 l: 0.06, p: 0.08 
+[01/14/24 03:34:29] DEBUG    [ yatuner ] 32/225 ggc-min-heapsize min: 2396033.27, max: 2392285.36 l: 0.06, p: 0.13 
+[01/14/24 03:36:07] DEBUG    [ yatuner ] 33/225 gimple-fe-computed-hot-bb-threshold min: 2391355.27, max: 2392167.27 l: 0.63, p: 0.65 
+[01/14/24 03:37:45] DEBUG    [ yatuner ] 34/225 graphite-allow-codegen-errors min: 2392194.66, max: 2392816.54 l: 0.66, p: 0.76 
+[01/14/24 03:39:23] DEBUG    [ yatuner ] 35/225 graphite-max-arrays-per-scop min: 2393261.36, max: 2394571.04 l: 0.62, p: 0.65 
+[01/14/24 03:41:00] DEBUG    [ yatuner ] 36/225 graphite-max-nb-scop-params min: 2391091.28, max: 2389220.57 l: 0.02, p: 0.33 
+[01/14/24 03:42:39] DEBUG    [ yatuner ] 37/225 hash-table-verification-limit min: 2390533.38, max: 2408819.22 l: 0.06, p: 0.00 
+                    INFO     [ yatuner ] hash-table-verification-limit is selected 
+[01/14/24 03:44:17] DEBUG    [ yatuner ] 38/225 hot-bb-count-fraction min: 2405267.67, max: 2389317.50 l: 0.17, p: 0.12 
+[01/14/24 03:45:55] DEBUG    [ yatuner ] 39/225 hot-bb-count-ws-permille min: 2390964.26, max: 2393216.52 l: 0.23, p: 0.48 
+[01/14/24 03:47:36] DEBUG    [ yatuner ] 40/225 hot-bb-frequency-fraction min: 2565298.24, max: 2396338.37 l: 0.12, p: 0.00 
+                    INFO     [ yatuner ] hot-bb-frequency-fraction is selected 
+[01/14/24 03:49:14] DEBUG    [ yatuner ] 41/225 hsa-gen-debug-stores min: 2391161.98, max: 2392631.92 l: 0.39, p: 0.40 
+[01/14/24 03:50:52] DEBUG    [ yatuner ] 42/225 inline-heuristics-hint-percent min: 2393231.29, max: 2394910.17 l: 0.63, p: 0.68 
+[01/14/24 03:52:10] DEBUG    [ yatuner ] 43/225 inline-min-speedup min: 1358180.61, max: 2398609.78 l: 0.16, p: 0.00 
+                    INFO     [ yatuner ] inline-min-speedup is selected 
+[01/14/24 03:53:48] DEBUG    [ yatuner ] 44/225 inline-unit-growth min: 2393557.32, max: 2393547.52 l: 0.55, p: 1.00 
+[01/14/24 03:55:26] DEBUG    [ yatuner ] 45/225 integer-share-limit min: 2395539.73, max: 2392599.26 l: 0.77, p: 0.36 
+[01/14/24 03:57:04] DEBUG    [ yatuner ] 46/225 ipa-cp-eval-threshold min: 2395021.83, max: 2391197.14 l: 0.14, p: 0.09 
+[01/14/24 03:58:42] DEBUG    [ yatuner ] 47/225 ipa-cp-loop-hint-bonus min: 2396852.27, max: 2390954.09 l: 0.16, p: 0.05 
+[01/14/24 04:00:20] DEBUG    [ yatuner ] 48/225 ipa-cp-max-recursive-depth min: 2393845.34, max: 2392069.15 l: 0.84, p: 0.69 
+[01/14/24 04:01:57] DEBUG    [ yatuner ] 49/225 ipa-cp-min-recursive-probability min: 2392990.66, max: 2390179.99 l: 0.09, p: 0.19 
+[01/14/24 04:03:35] DEBUG    [ yatuner ] 50/225 ipa-cp-recursion-penalty min: 2389482.94, max: 2393879.88 l: 0.01, p: 0.07 
+[01/14/24 04:05:13] DEBUG    [ yatuner ] 51/225 ipa-cp-single-call-penalty min: 2390669.96, max: 2391305.26 l: 0.53, p: 0.79 
+[01/14/24 04:06:51] DEBUG    [ yatuner ] 52/225 ipa-cp-unit-growth min: 2394949.34, max: 2395590.70 l: 0.24, p: 0.84 
+[01/14/24 04:08:29] DEBUG    [ yatuner ] 53/225 ipa-cp-value-list-size min: 2395282.09, max: 2390976.42 l: 0.83, p: 0.19 
+[01/14/24 04:10:07] DEBUG    [ yatuner ] 54/225 ipa-max-aa-steps min: 2394458.03, max: 2393996.12 l: 0.68, p: 0.87 
+[01/14/24 04:11:45] DEBUG    [ yatuner ] 55/225 ipa-max-agg-items min: 2397284.97, max: 2392777.61 l: 0.13, p: 0.17 
+[01/14/24 04:13:23] DEBUG    [ yatuner ] 56/225 ipa-max-param-expr-ops min: 2391240.82, max: 2393526.27 l: 0.70, p: 0.39 
+[01/14/24 04:15:01] DEBUG    [ yatuner ] 57/225 ipa-max-switch-predicate-bounds min: 2394419.76, max: 2393326.56 l: 0.84, p: 0.69 
+[01/14/24 04:16:39] DEBUG    [ yatuner ] 58/225 ipa-sra-max-replacements min: 2398506.47, max: 2392528.45 l: 0.86, p: 0.02 
+                    INFO     [ yatuner ] ipa-sra-max-replacements is selected 
+[01/14/24 04:18:17] DEBUG    [ yatuner ] 59/225 ipa-sra-ptr-growth-factor min: 2393204.46, max: 2390867.42 l: 0.68, p: 0.30 
+[01/14/24 04:19:54] DEBUG    [ yatuner ] 60/225 ira-loop-reserved-regs min: 2391453.20, max: 2395535.76 l: 0.52, p: 0.54 
+[01/14/24 04:21:32] DEBUG    [ yatuner ] 61/225 ira-max-conflict-table-size min: 2394450.68, max: 2389210.59 l: 1.00, p: 0.06 
+[01/14/24 04:23:10] DEBUG    [ yatuner ] 62/225 ira-max-loops-num min: 2394149.49, max: 2393064.15 l: 0.56, p: 0.74 
+[01/14/24 04:24:48] DEBUG    [ yatuner ] 63/225 iv-always-prune-cand-set-bound min: 2397577.93, max: 2393273.08 l: 0.51, p: 0.36 
+[01/14/24 04:26:26] DEBUG    [ yatuner ] 64/225 iv-consider-all-candidates-bound min: 2392900.74, max: 2391835.91 l: 0.59, p: 0.69 
+[01/14/24 04:28:04] DEBUG    [ yatuner ] 65/225 iv-max-considered-uses min: 2396020.42, max: 2395174.61 l: 0.51, p: 0.84 
+[01/14/24 04:29:42] DEBUG    [ yatuner ] 66/225 jump-table-max-growth-ratio-for-size min: 2393080.75, max: 2388946.62 l: 0.27, p: 0.12 
+[01/14/24 04:31:20] DEBUG    [ yatuner ] 67/225 jump-table-max-growth-ratio-for-speed min: 2389038.22, max: 2393013.61 l: 0.18, p: 0.26 
+[01/14/24 04:32:58] DEBUG    [ yatuner ] 68/225 large-function-growth min: 2392229.88, max: 2393192.11 l: 0.52, p: 0.65 
+[01/14/24 04:34:35] DEBUG    [ yatuner ] 69/225 large-function-insns min: 2391698.65, max: 2392436.13 l: 0.49, p: 0.80 
+[01/14/24 04:36:13] DEBUG    [ yatuner ] 70/225 large-stack-frame-growth min: 2392587.11, max: 2395369.05 l: 0.03, p: 0.21 
+[01/14/24 04:37:51] DEBUG    [ yatuner ] 71/225 large-stack-frame min: 2391703.21, max: 2388174.07 l: 0.04, p: 0.07 
+[01/14/24 04:39:29] DEBUG    [ yatuner ] 72/225 large-unit-insns min: 2390386.93, max: 2392527.80 l: 0.65, p: 0.22 
+[01/14/24 04:41:07] DEBUG    [ yatuner ] 73/225 lim-expensive min: 2393318.85, max: 2393463.31 l: 0.38, p: 0.96 
+[01/14/24 04:42:45] DEBUG    [ yatuner ] 74/225 loop-block-tile-size min: 2392451.55, max: 2394415.73 l: 0.23, p: 0.40 
+[01/14/24 04:44:23] DEBUG    [ yatuner ] 75/225 loop-interchange-max-num-stmts min: 2394987.49, max: 2396178.62 l: 0.51, p: 0.76 
+[01/14/24 04:46:01] DEBUG    [ yatuner ] 76/225 loop-interchange-stride-ratio min: 2396612.41, max: 2393725.44 l: 0.33, p: 0.55 
+[01/14/24 04:47:39] DEBUG    [ yatuner ] 77/225 loop-invariant-max-bbs-in-loop min: 2396640.58, max: 2392619.28 l: 0.23, p: 0.21 
+[01/14/24 04:49:17] DEBUG    [ yatuner ] 78/225 loop-max-datarefs-for-datadeps min: 2417511.79, max: 2390585.82 l: 0.19, p: 0.00 
+                    INFO     [ yatuner ] loop-max-datarefs-for-datadeps is selected 
+[01/14/24 04:50:55] DEBUG    [ yatuner ] 79/225 loop-versioning-max-inner-insns min: 2392832.10, max: 2391569.18 l: 0.82, p: 0.58 
+[01/14/24 04:52:33] DEBUG    [ yatuner ] 80/225 loop-versioning-max-outer-insns min: 2389859.76, max: 2390629.53 l: 0.63, p: 0.74 
+[01/14/24 04:54:11] DEBUG    [ yatuner ] 81/225 lra-inheritance-ebb-probability-cutoff min: 2393632.49, max: 2392389.56 l: 0.05, p: 0.58 
+[01/14/24 04:55:49] DEBUG    [ yatuner ] 82/225 lra-max-considered-reload-pseudos min: 2392146.66, max: 2387049.94 l: 0.01, p: 0.00 
+                    INFO     [ yatuner ] lra-max-considered-reload-pseudos is selected 
+[01/14/24 04:57:26] DEBUG    [ yatuner ] 83/225 lto-max-partition min: 2396963.29, max: 2389407.56 l: 0.23, p: 0.02 
+                    INFO     [ yatuner ] lto-max-partition is selected 
+[01/14/24 04:59:04] DEBUG    [ yatuner ] 84/225 lto-max-streaming-parallelism min: 2396274.81, max: 2392716.08 l: 0.19, p: 0.34 
+[01/14/24 05:00:42] DEBUG    [ yatuner ] 85/225 lto-min-partition min: 2393022.82, max: 2394835.66 l: 0.54, p: 0.53 
+[01/14/24 05:02:20] DEBUG    [ yatuner ] 86/225 lto-partitions min: 2399373.08, max: 2394563.73 l: 0.49, p: 0.26 
+[01/14/24 05:03:58] DEBUG    [ yatuner ] 87/225 max-average-unrolled-insns min: 2392673.31, max: 2393600.34 l: 0.88, p: 0.78 
+[01/14/24 05:05:36] DEBUG    [ yatuner ] 88/225 max-combine-insns min: 2391831.53, max: 2394551.72 l: 0.34, p: 0.44 
+[01/14/24 05:07:14] DEBUG    [ yatuner ] 89/225 max-completely-peel-loop-nest-depth min: 2388242.47, max: 2393720.26 l: 0.22, p: 0.01 
+                    INFO     [ yatuner ] max-completely-peel-loop-nest-depth is selected 
+[01/14/24 05:08:52] DEBUG    [ yatuner ] 90/225 max-completely-peel-times min: 2412769.97, max: 2390248.17 l: 0.33, p: 0.00 
+                    INFO     [ yatuner ] max-completely-peel-times is selected 
+[01/14/24 05:10:31] DEBUG    [ yatuner ] 91/225 max-completely-peeled-insns min: 2411671.55, max: 2389515.61 l: 0.22, p: 0.00 
+                    INFO     [ yatuner ] max-completely-peeled-insns is selected 
+[01/14/24 05:12:08] DEBUG    [ yatuner ] 92/225 max-crossjump-edges min: 2392150.11, max: 2389619.49 l: 0.77, p: 0.27 
+[01/14/24 05:13:46] DEBUG    [ yatuner ] 93/225 max-cse-insns min: 2390636.82, max: 2393840.64 l: 0.43, p: 0.20 
+[01/14/24 05:15:24] DEBUG    [ yatuner ] 94/225 max-cse-path-length min: 2395331.29, max: 2391711.04 l: 0.73, p: 0.17 
+[01/14/24 05:17:02] DEBUG    [ yatuner ] 95/225 max-cselib-memory-locations min: 2390296.35, max: 2396469.02 l: 0.24, p: 0.04 
+                    INFO     [ yatuner ] max-cselib-memory-locations is selected 
+[01/14/24 05:18:40] DEBUG    [ yatuner ] 96/225 max-debug-marker-count min: 2393497.77, max: 2397131.53 l: 0.38, p: 0.41 
+[01/14/24 05:20:18] DEBUG    [ yatuner ] 97/225 max-delay-slot-insn-search min: 2394387.01, max: 2392585.23 l: 0.70, p: 0.63 
+[01/14/24 05:21:56] DEBUG    [ yatuner ] 98/225 max-delay-slot-live-search min: 2390903.25, max: 2388972.83 l: 0.93, p: 0.40 
+[01/14/24 05:23:34] DEBUG    [ yatuner ] 99/225 max-dse-active-local-stores min: 2396675.61, max: 2394437.32 l: 0.40, p: 0.53 
+[01/14/24 05:25:12] DEBUG    [ yatuner ] 100/225 max-early-inliner-iterations min: 2391053.30, max: 2392586.92 l: 0.69, p: 0.49 
+[01/14/24 05:26:49] DEBUG    [ yatuner ] 101/225 max-fields-for-field-sensitive min: 2394253.68, max: 2389616.39 l: 0.00, p: 0.03 
+                    INFO     [ yatuner ] max-fields-for-field-sensitive is selected 
+[01/14/24 05:28:27] DEBUG    [ yatuner ] 102/225 max-find-base-term-values min: 2392222.53, max: 2388542.41 l: 0.05, p: 0.09 
+[01/14/24 05:30:05] DEBUG    [ yatuner ] 103/225 max-fsm-thread-length min: 2390023.53, max: 2389181.06 l: 0.32, p: 0.63 
+[01/14/24 05:31:43] DEBUG    [ yatuner ] 104/225 max-fsm-thread-path-insns min: 2396818.85, max: 2392287.43 l: 0.21, p: 0.42 
+[01/14/24 05:33:21] DEBUG    [ yatuner ] 105/225 max-fsm-thread-paths min: 2393994.98, max: 2392777.86 l: 0.42, p: 0.75 
+[01/14/24 05:34:59] DEBUG    [ yatuner ] 106/225 max-gcse-insertion-ratio min: 2398185.49, max: 2390378.21 l: 0.53, p: 0.00 
+                    INFO     [ yatuner ] max-gcse-insertion-ratio is selected 
+[01/14/24 05:36:37] DEBUG    [ yatuner ] 107/225 max-gcse-memory min: 2394849.82, max: 2388963.55 l: 0.48, p: 0.00 
+                    INFO     [ yatuner ] max-gcse-memory is selected 
+[01/14/24 05:38:15] DEBUG    [ yatuner ] 108/225 max-goto-duplication-insns min: 2390888.35, max: 2390123.77 l: 0.82, p: 0.73 
+[01/14/24 05:39:53] DEBUG    [ yatuner ] 109/225 max-grow-copy-bb-insns min: 2393700.67, max: 2398227.86 l: 0.16, p: 0.27 
+[01/14/24 05:41:30] DEBUG    [ yatuner ] 110/225 max-hoist-depth min: 2391771.13, max: 2392732.23 l: 0.04, p: 0.72 
+[01/14/24 05:42:48] DEBUG    [ yatuner ] 111/225 max-inline-insns-auto min: 2393355.57, max: 1358064.12 l: 0.01, p: 0.00 
+                    INFO     [ yatuner ] max-inline-insns-auto is selected 
+[01/14/24 05:44:26] DEBUG    [ yatuner ] 112/225 max-inline-insns-recursive-auto min: 2397231.87, max: 2392473.49 l: 0.56, p: 0.22 
+[01/14/24 05:46:04] DEBUG    [ yatuner ] 113/225 max-inline-insns-recursive min: 2395932.62, max: 2396073.87 l: 0.79, p: 0.98 
+[01/14/24 05:47:42] DEBUG    [ yatuner ] 114/225 max-inline-insns-single min: 2394490.33, max: 2391076.50 l: 0.27, p: 0.25 
+[01/14/24 05:49:20] DEBUG    [ yatuner ] 115/225 max-inline-insns-size min: 2393608.17, max: 2389449.83 l: 0.10, p: 0.07 
+[01/14/24 05:50:58] DEBUG    [ yatuner ] 116/225 max-inline-insns-small min: 2392785.86, max: 2392522.51 l: 0.48, p: 0.92 
+[01/14/24 05:52:36] DEBUG    [ yatuner ] 117/225 max-inline-recursive-depth-auto min: 2389910.10, max: 2394291.59 l: 0.16, p: 0.29 
+[01/14/24 05:54:14] DEBUG    [ yatuner ] 118/225 max-inline-recursive-depth min: 2392892.57, max: 2391493.94 l: 0.30, p: 0.53 
+[01/14/24 05:55:52] DEBUG    [ yatuner ] 119/225 max-isl-operations min: 2392668.06, max: 2392662.42 l: 0.63, p: 1.00 
+[01/14/24 05:57:29] DEBUG    [ yatuner ] 120/225 max-iterations-computation-cost min: 2392268.31, max: 2392167.20 l: 0.66, p: 0.97 
+[01/14/24 05:59:07] DEBUG    [ yatuner ] 121/225 max-iterations-to-track min: 2394572.30, max: 2394559.53 l: 0.52, p: 1.00 
+[01/14/24 06:00:45] DEBUG    [ yatuner ] 122/225 max-jump-thread-duplication-stmts min: 2396416.56, max: 2395992.51 l: 0.60, p: 0.91 
+[01/14/24 06:02:23] DEBUG    [ yatuner ] 123/225 max-last-value-rtl min: 2394184.63, max: 2390179.64 l: 0.83, p: 0.07 
+[01/14/24 06:04:02] DEBUG    [ yatuner ] 124/225 max-loop-header-insns min: 2418057.94, max: 2398762.09 l: 0.07, p: 0.00 
+                    INFO     [ yatuner ] max-loop-header-insns is selected 
+[01/14/24 06:05:40] DEBUG    [ yatuner ] 125/225 max-modulo-backtrack-attempts min: 2401027.09, max: 2390021.82 l: 0.02, p: 0.02 
+                    INFO     [ yatuner ] max-modulo-backtrack-attempts is selected 
+[01/14/24 06:07:18] DEBUG    [ yatuner ] 126/225 max-partial-antic-length min: 2393209.10, max: 2393128.63 l: 0.51, p: 0.98 
+[01/14/24 06:08:56] DEBUG    [ yatuner ] 127/225 max-peel-branches min: 2395737.14, max: 2390896.76 l: 0.25, p: 0.07 
+[01/14/24 06:10:34] DEBUG    [ yatuner ] 128/225 max-peel-times min: 2395924.15, max: 2393354.85 l: 0.62, p: 0.36 
+[01/14/24 06:12:12] DEBUG    [ yatuner ] 129/225 max-peeled-insns min: 2396512.66, max: 2392847.53 l: 0.62, p: 0.12 
+[01/14/24 06:13:50] DEBUG    [ yatuner ] 130/225 max-pending-list-length min: 2429189.78, max: 2392893.94 l: 0.95, p: 0.00 
+                    INFO     [ yatuner ] max-pending-list-length is selected 
+[01/14/24 06:15:28] DEBUG    [ yatuner ] 131/225 max-pipeline-region-blocks min: 2392667.53, max: 2391965.72 l: 0.72, p: 0.85 
+[01/14/24 06:17:06] DEBUG    [ yatuner ] 132/225 max-pipeline-region-insns min: 2390485.69, max: 2396109.59 l: 0.05, p: 0.04 
+                    INFO     [ yatuner ] max-pipeline-region-insns is selected 
+[01/14/24 06:18:44] DEBUG    [ yatuner ] 133/225 max-pow-sqrt-depth min: 2389867.92, max: 2400145.83 l: 0.24, p: 0.00 
+                    INFO     [ yatuner ] max-pow-sqrt-depth is selected 
+[01/14/24 06:20:22] DEBUG    [ yatuner ] 134/225 max-predicted-iterations min: 2416793.03, max: 2393430.95 l: 0.67, p: 0.00 
+                    INFO     [ yatuner ] max-predicted-iterations is selected 
+[01/14/24 06:22:01] DEBUG    [ yatuner ] 135/225 max-reload-search-insns min: 2394273.63, max: 2397061.15 l: 0.57, p: 0.74 
+[01/14/24 06:23:38] DEBUG    [ yatuner ] 136/225 max-rtl-if-conversion-insns min: 2392644.71, max: 2395672.85 l: 0.79, p: 0.33 
+[01/14/24 06:25:16] DEBUG    [ yatuner ] 137/225 max-rtl-if-conversion-predictable-cost min: 2390542.00, max: 2393857.34 l: 0.46, p: 0.19 
+[01/14/24 06:26:54] DEBUG    [ yatuner ] 138/225 max-rtl-if-conversion-unpredictable-cost min: 2396510.80, max: 2392197.51 l: 0.05, p: 0.08 
+[01/14/24 06:28:32] DEBUG    [ yatuner ] 139/225 max-sched-extend-regions-iters min: 2394175.04, max: 2391627.22 l: 0.55, p: 0.39 
+[01/14/24 06:30:10] DEBUG    [ yatuner ] 140/225 max-sched-insn-conflict-delay min: 2393708.55, max: 2391549.24 l: 0.51, p: 0.38 
+[01/14/24 06:31:49] DEBUG    [ yatuner ] 141/225 max-sched-ready-insns min: 2418333.75, max: 2390291.03 l: 0.37, p: 0.00 
+                    INFO     [ yatuner ] max-sched-ready-insns is selected 
+[01/14/24 06:33:26] DEBUG    [ yatuner ] 142/225 max-sched-region-blocks min: 2389394.11, max: 2389455.30 l: 0.32, p: 0.98 
+[01/14/24 06:35:04] DEBUG    [ yatuner ] 143/225 max-sched-region-insns min: 2391510.90, max: 2390350.63 l: 0.76, p: 0.57 
+[01/14/24 06:36:42] DEBUG    [ yatuner ] 144/225 max-slsr-cand-scan min: 2394204.73, max: 2393400.44 l: 0.56, p: 0.79 
+[01/14/24 06:38:20] DEBUG    [ yatuner ] 145/225 max-speculative-devirt-maydefs min: 2394939.38, max: 2394622.19 l: 0.84, p: 0.92 
+[01/14/24 06:39:58] DEBUG    [ yatuner ] 146/225 max-ssa-name-query-depth min: 2390510.70, max: 2389663.22 l: 0.33, p: 0.72 
+[01/14/24 06:41:36] DEBUG    [ yatuner ] 147/225 max-stores-to-merge min: 2396759.74, max: 2389776.62 l: 0.28, p: 0.01 
+                    INFO     [ yatuner ] max-stores-to-merge is selected 
+[01/14/24 06:43:14] DEBUG    [ yatuner ] 148/225 max-stores-to-sink min: 2393367.01, max: 2392476.14 l: 0.36, p: 0.70 
+[01/14/24 06:44:52] DEBUG    [ yatuner ] 149/225 max-tail-merge-comparisons min: 2390005.94, max: 2393578.39 l: 0.47, p: 0.12 
+[01/14/24 06:46:30] DEBUG    [ yatuner ] 150/225 max-tail-merge-iterations min: 2394405.20, max: 2395070.72 l: 0.26, p: 0.83 
+[01/14/24 06:48:08] DEBUG    [ yatuner ] 151/225 max-tracked-strlens min: 2392166.15, max: 2392822.62 l: 0.67, p: 0.79 
+[01/14/24 06:49:46] DEBUG    [ yatuner ] 152/225 max-tree-if-conversion-phi-args min: 2393473.67, max: 2396430.93 l: 0.28, p: 0.52 
+[01/14/24 06:51:24] DEBUG    [ yatuner ] 153/225 max-unroll-times min: 2399235.53, max: 2393421.52 l: 0.33, p: 0.50 
+[01/14/24 06:53:01] DEBUG    [ yatuner ] 154/225 max-unrolled-insns min: 2392997.77, max: 2391274.14 l: 0.83, p: 0.48 
+[01/14/24 06:54:39] DEBUG    [ yatuner ] 155/225 max-unswitch-insns min: 2391588.49, max: 2395943.49 l: 0.74, p: 0.07 
+[01/14/24 06:56:17] DEBUG    [ yatuner ] 156/225 max-unswitch-level min: 2391124.28, max: 2394289.82 l: 0.57, p: 0.40 
+[01/14/24 06:57:55] DEBUG    [ yatuner ] 157/225 max-variable-expansions-in-unroller min: 2396287.67, max: 2390721.19 l: 0.07, p: 0.03 
+                    INFO     [ yatuner ] max-variable-expansions-in-unroller is selected 
+[01/14/24 06:59:33] DEBUG    [ yatuner ] 158/225 max-vartrack-expr-depth min: 2395475.15, max: 2392309.92 l: 0.07, p: 0.29 
+[01/14/24 07:01:11] DEBUG    [ yatuner ] 159/225 max-vartrack-reverse-op-size min: 2394988.13, max: 2389076.02 l: 0.08, p: 0.05 
+[01/14/24 07:02:49] DEBUG    [ yatuner ] 160/225 max-vartrack-size min: 2391579.51, max: 2385742.28 l: 0.01, p: 0.01 
+                    INFO     [ yatuner ] max-vartrack-size is selected 
+[01/14/24 07:04:27] DEBUG    [ yatuner ] 161/225 max-vrp-switch-assertions min: 2392553.58, max: 2394383.92 l: 0.66, p: 0.56 
+[01/14/24 07:06:05] DEBUG    [ yatuner ] 162/225 min-crossjump-insns min: 2390526.14, max: 2397619.08 l: 0.51, p: 0.10 
+[01/14/24 07:07:43] DEBUG    [ yatuner ] 163/225 min-inline-recursive-probability min: 2393237.28, max: 2394746.30 l: 0.78, p: 0.49 
+[01/14/24 07:09:21] DEBUG    [ yatuner ] 164/225 min-insn-to-prefetch-ratio min: 2389395.50, max: 2398896.83 l: 0.08, p: 0.03 
+                    INFO     [ yatuner ] min-insn-to-prefetch-ratio is selected 
+[01/14/24 07:10:59] DEBUG    [ yatuner ] 165/225 min-loop-cond-split-prob min: 2398664.99, max: 2392438.55 l: 0.17, p: 0.11 
+[01/14/24 07:12:37] DEBUG    [ yatuner ] 166/225 min-nondebug-insn-uid min: 2391886.61, max: 2395183.98 l: 0.35, p: 0.25 
+[01/14/24 07:14:15] DEBUG    [ yatuner ] 167/225 min-size-for-stack-sharing min: 2396525.15, max: 2392902.61 l: 0.05, p: 0.15 
+[01/14/24 07:15:52] DEBUG    [ yatuner ] 168/225 min-spec-prob min: 2393265.93, max: 2394605.54 l: 0.44, p: 0.62 
+[01/14/24 07:17:30] DEBUG    [ yatuner ] 169/225 min-vect-loop-bound min: 2393950.65, max: 2390581.25 l: 0.99, p: 0.21 
+[01/14/24 07:19:08] DEBUG    [ yatuner ] 170/225 parloops-chunk-size min: 2391795.56, max: 2394118.28 l: 0.35, p: 0.26 
+[01/14/24 07:20:46] DEBUG    [ yatuner ] 171/225 parloops-min-per-thread min: 2389620.96, max: 2391198.62 l: 0.82, p: 0.48 
+[01/14/24 07:22:24] DEBUG    [ yatuner ] 172/225 partial-inlining-entry-probability min: 2393539.42, max: 2395160.92 l: 0.45, p: 0.55 
+[01/14/24 07:24:02] DEBUG    [ yatuner ] 173/225 predictable-branch-outcome min: 2397259.69, max: 2395664.20 l: 0.69, p: 0.69 
+[01/14/24 07:25:40] DEBUG    [ yatuner ] 174/225 prefetch-dynamic-strides min: 2392354.35, max: 2394327.44 l: 0.36, p: 0.51 
+[01/14/24 07:27:18] DEBUG    [ yatuner ] 175/225 prefetch-latency min: 2396255.56, max: 2391460.58 l: 0.46, p: 0.12 
+[01/14/24 07:28:56] DEBUG    [ yatuner ] 176/225 prefetch-min-insn-to-mem-ratio min: 2389972.26, max: 2394783.82 l: 0.05, p: 0.08 
+[01/14/24 07:30:34] DEBUG    [ yatuner ] 177/225 profile-func-internal-id min: 2395836.56, max: 2396282.56 l: 0.98, p: 0.89 
+[01/14/24 07:32:12] DEBUG    [ yatuner ] 178/225 rpo-vn-max-loop-depth min: 2394590.71, max: 2395453.57 l: 0.03, p: 0.77 
+[01/14/24 07:33:50] DEBUG    [ yatuner ] 179/225 sccvn-max-alias-queries-per-access min: 2402639.01, max: 2392187.27 l: 0.18, p: 0.06 
+[01/14/24 07:35:28] DEBUG    [ yatuner ] 180/225 scev-max-expr-complexity min: 2387847.59, max: 2395175.13 l: 0.00, p: 0.00 
+                    INFO     [ yatuner ] scev-max-expr-complexity is selected 
+[01/14/24 07:37:06] DEBUG    [ yatuner ] 181/225 scev-max-expr-size min: 2410550.32, max: 2397307.11 l: 0.00, p: 0.00 
+                    INFO     [ yatuner ] scev-max-expr-size is selected 
+[01/14/24 07:38:44] DEBUG    [ yatuner ] 182/225 sched-mem-true-dep-cost min: 2395076.28, max: 2393790.34 l: 0.36, p: 0.69 
+[01/14/24 07:40:22] DEBUG    [ yatuner ] 183/225 sched-pressure-algorithm min: 2406842.51, max: 2394254.60 l: 0.18, p: 0.21 
+[01/14/24 07:42:00] DEBUG    [ yatuner ] 184/225 sched-spec-prob-cutoff min: 2391188.78, max: 2395212.39 l: 0.52, p: 0.18 
+[01/14/24 07:43:38] DEBUG    [ yatuner ] 185/225 sched-state-edge-prob-cutoff min: 2394312.11, max: 2390577.23 l: 0.23, p: 0.15 
+[01/14/24 07:45:16] DEBUG    [ yatuner ] 186/225 selsched-insns-to-rename min: 2395581.49, max: 2394668.03 l: 0.64, p: 0.84 
+[01/14/24 07:46:54] DEBUG    [ yatuner ] 187/225 selsched-max-lookahead min: 2393749.87, max: 2391557.72 l: 0.73, p: 0.50 
+[01/14/24 07:48:32] DEBUG    [ yatuner ] 188/225 selsched-max-sched-times min: 2396270.86, max: 2394724.06 l: 0.30, p: 0.57 
+[01/14/24 07:50:10] DEBUG    [ yatuner ] 189/225 simultaneous-prefetches min: 2392667.42, max: 2394773.89 l: 0.65, p: 0.50 
+[01/14/24 07:51:48] DEBUG    [ yatuner ] 190/225 sink-frequency-threshold min: 2389351.50, max: 2398392.19 l: 0.07, p: 0.00 
+                    INFO     [ yatuner ] sink-frequency-threshold is selected 
+[01/14/24 07:53:26] DEBUG    [ yatuner ] 191/225 slp-max-insns-in-bb min: 2394907.65, max: 2392966.83 l: 0.83, p: 0.57 
+[01/14/24 07:55:04] DEBUG    [ yatuner ] 192/225 sms-dfa-history min: 2394124.38, max: 2396673.38 l: 0.41, p: 0.50 
+[01/14/24 07:56:42] DEBUG    [ yatuner ] 193/225 sms-loop-average-count-threshold min: 2394477.67, max: 2393492.53 l: 0.35, p: 0.69 
+[01/14/24 07:58:20] DEBUG    [ yatuner ] 194/225 sms-max-ii-factor min: 2391666.23, max: 2390865.21 l: 0.74, p: 0.73 
+[01/14/24 07:59:57] DEBUG    [ yatuner ] 195/225 sms-min-sc min: 2395186.97, max: 2392727.48 l: 0.62, p: 0.49 
+[01/14/24 08:01:35] DEBUG    [ yatuner ] 196/225 sra-max-propagations min: 2397048.19, max: 2391656.95 l: 0.11, p: 0.05 
+                    INFO     [ yatuner ] sra-max-propagations is selected 
+[01/14/24 08:03:13] DEBUG    [ yatuner ] 197/225 ssa-name-def-chain-limit min: 2391208.59, max: 2390952.16 l: 0.79, p: 0.91 
+[01/14/24 08:04:51] DEBUG    [ yatuner ] 198/225 ssp-buffer-size min: 2389396.83, max: 2397385.32 l: 0.06, p: 0.08 
+[01/14/24 08:06:29] DEBUG    [ yatuner ] 199/225 stack-clash-protection-guard-size min: 2393418.04, max: 2389941.26 l: 0.24, p: 0.23 
+[01/14/24 08:08:07] DEBUG    [ yatuner ] 200/225 stack-clash-protection-probe-interval min: 2394572.81, max: 2392151.57 l: 0.65, p: 0.26 
+[01/14/24 08:09:45] DEBUG    [ yatuner ] 201/225 store-merging-allow-unaligned min: 2398070.18, max: 2397044.30 l: 0.95, p: 0.91 
+[01/14/24 08:11:23] DEBUG    [ yatuner ] 202/225 store-merging-max-size min: 2394219.72, max: 2388943.38 l: 0.02, p: 0.07 
+[01/14/24 08:13:01] DEBUG    [ yatuner ] 203/225 switch-conversion-max-branch-ratio min: 2403362.50, max: 2393165.46 l: 0.33, p: 0.30 
+[01/14/24 08:14:39] DEBUG    [ yatuner ] 204/225 tm-max-aggregate-size min: 2397386.98, max: 2397294.18 l: 0.72, p: 0.98 
+[01/14/24 08:16:17] DEBUG    [ yatuner ] 205/225 tracer-dynamic-coverage-feedback min: 2395834.45, max: 2390075.21 l: 0.19, p: 0.16 
+[01/14/24 08:17:57] DEBUG    [ yatuner ] 206/225 tracer-dynamic-coverage min: 2478078.57, max: 2391400.11 l: 0.53, p: 0.00 
+                    INFO     [ yatuner ] tracer-dynamic-coverage is selected 
+[01/14/24 08:19:36] DEBUG    [ yatuner ] 207/225 tracer-max-code-growth min: 2473627.08, max: 2393168.26 l: 0.09, p: 0.00 
+                    INFO     [ yatuner ] tracer-max-code-growth is selected 
+[01/14/24 08:21:14] DEBUG    [ yatuner ] 208/225 tracer-min-branch-probability-feedback min: 2393532.08, max: 2392573.55 l: 0.52, p: 0.66 
+[01/14/24 08:22:54] DEBUG    [ yatuner ] 209/225 tracer-min-branch-probability min: 2400231.43, max: 2472328.66 l: 0.11, p: 0.00 
+                    INFO     [ yatuner ] tracer-min-branch-probability is selected 
+[01/14/24 08:24:34] DEBUG    [ yatuner ] 210/225 tracer-min-branch-ratio min: 2397156.01, max: 2479803.92 l: 0.26, p: 0.00 
+                    INFO     [ yatuner ] tracer-min-branch-ratio is selected 
+[01/14/24 08:26:11] DEBUG    [ yatuner ] 211/225 tree-reassoc-width min: 2390287.00, max: 2389171.15 l: 0.24, p: 0.54 
+[01/14/24 08:27:49] DEBUG    [ yatuner ] 212/225 uninit-control-dep-attempts min: 2403120.59, max: 2393246.98 l: 0.35, p: 0.11 
+[01/14/24 08:29:27] DEBUG    [ yatuner ] 213/225 uninlined-function-insns min: 2393585.04, max: 2392566.38 l: 0.62, p: 0.79 
+[01/14/24 08:30:45] DEBUG    [ yatuner ] 214/225 uninlined-function-time min: 2394729.69, max: 1358525.65 l: 0.07, p: 0.00 
+                    INFO     [ yatuner ] uninlined-function-time is selected 
+[01/14/24 08:32:23] DEBUG    [ yatuner ] 215/225 uninlined-thunk-insns min: 2391730.19, max: 2395057.41 l: 0.21, p: 0.21 
+[01/14/24 08:34:01] DEBUG    [ yatuner ] 216/225 uninlined-thunk-time min: 2395914.40, max: 2389388.34 l: 0.01, p: 0.04 
+                    INFO     [ yatuner ] uninlined-thunk-time is selected 
+[01/14/24 08:35:39] DEBUG    [ yatuner ] 217/225 unlikely-bb-count-fraction min: 2395381.48, max: 2393482.56 l: 0.67, p: 0.55 
+[01/14/24 08:37:17] DEBUG    [ yatuner ] 218/225 unroll-jam-max-unroll min: 2391856.80, max: 2392457.26 l: 0.94, p: 0.87 
+[01/14/24 08:38:55] DEBUG    [ yatuner ] 219/225 unroll-jam-min-percent min: 2396739.74, max: 2395833.03 l: 0.94, p: 0.77 
+[01/14/24 08:40:33] DEBUG    [ yatuner ] 220/225 use-after-scope-direct-emission-threshold min: 2395221.54, max: 2389913.01 l: 0.17, p: 0.08 
+[01/14/24 08:42:11] DEBUG    [ yatuner ] 221/225 use-canonical-types min: 2391517.92, max: 2391739.37 l: 0.61, p: 0.93 
+[01/14/24 08:43:49] DEBUG    [ yatuner ] 222/225 vect-epilogues-nomask min: 2394422.80, max: 2392168.69 l: 0.46, p: 0.55 
+[01/14/24 08:45:27] DEBUG    [ yatuner ] 223/225 vect-max-version-for-alias-checks min: 2422958.07, max: 2382923.71 l: 0.39, p: 0.00 
+                    INFO     [ yatuner ] vect-max-version-for-alias-checks is selected 
+[01/14/24 08:47:05] DEBUG    [ yatuner ] 224/225 vect-max-version-for-alignment-checks min: 2394028.70, max: 2394205.60 l: 0.61, p: 0.95 
+def optimize_linUCB: 
+                    INFO     [ yatuner ] loaded 33 optimizers 
+before optimization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:24
+[01/14/24 08:47:30] INFO     [ yatuner ] execution result before optimize: 2402888.6943 
+                    INFO     [ yatuner ] loaded 40 parameters 
+Aplicando LinUCB 
+[01/14/24 08:47:38] DEBUG    [ yatuner ] r=-626.66 t=2465554.95 baseline=2402888.69 
+[01/14/24 08:47:42] DEBUG    [ yatuner ] r=-308.68 t=2433756.84 baseline=2402888.69 
+[01/14/24 08:47:45] DEBUG    [ yatuner ] r=10185.00 t=1384388.35 baseline=2402888.69 
+[01/14/24 08:47:47] DEBUG    [ yatuner ] r=10419.46 t=1360942.83 baseline=2402888.69 
+[01/14/24 08:47:50] DEBUG    [ yatuner ] r=10130.62 t=1389826.20 baseline=2402888.69 
+[01/14/24 08:47:53] DEBUG    [ yatuner ] r=10154.84 t=1387404.52 baseline=2402888.69 
+[01/14/24 08:47:56] DEBUG    [ yatuner ] r=10481.59 t=1354729.32 baseline=2402888.69 
+[01/14/24 08:47:58] DEBUG    [ yatuner ] r=9599.63 t=1442925.79 baseline=2402888.69 
+[01/14/24 08:48:02] DEBUG    [ yatuner ] r=-955.75 t=2498464.09 baseline=2402888.69 
+[01/14/24 08:48:04] DEBUG    [ yatuner ] r=10211.55 t=1381733.31 baseline=2402888.69 
+[01/14/24 08:48:07] DEBUG    [ yatuner ] r=10549.50 t=1347939.12 baseline=2402888.69 
+[01/14/24 08:48:10] DEBUG    [ yatuner ] r=9883.04 t=1414584.98 baseline=2402888.69 
+[01/14/24 08:48:13] DEBUG    [ yatuner ] r=10528.18 t=1350070.52 baseline=2402888.69 
+[01/14/24 08:48:15] DEBUG    [ yatuner ] r=10606.88 t=1342200.47 baseline=2402888.69 
+[01/14/24 08:48:18] DEBUG    [ yatuner ] r=10219.13 t=1380975.28 baseline=2402888.69 
+[01/14/24 08:48:21] DEBUG    [ yatuner ] r=10434.88 t=1359400.74 baseline=2402888.69 
+[01/14/24 08:48:24] DEBUG    [ yatuner ] r=10327.44 t=1370145.10 baseline=2402888.69 
+[01/14/24 08:48:27] DEBUG    [ yatuner ] r=9918.56 t=1411032.57 baseline=2402888.69 
+[01/14/24 08:48:29] DEBUG    [ yatuner ] r=10244.33 t=1378456.14 baseline=2402888.69 
+[01/14/24 08:48:32] DEBUG    [ yatuner ] r=9618.43 t=1441045.57 baseline=2402888.69 
+[01/14/24 08:48:35] DEBUG    [ yatuner ] r=10286.32 t=1374256.20 baseline=2402888.69 
+[01/14/24 08:48:38] DEBUG    [ yatuner ] r=10100.62 t=1392826.97 baseline=2402888.69 
+[01/14/24 08:48:41] DEBUG    [ yatuner ] r=10398.95 t=1362994.08 baseline=2402888.69 
+[01/14/24 08:48:43] DEBUG    [ yatuner ] r=10441.99 t=1358690.18 baseline=2402888.69 
+[01/14/24 08:48:46] DEBUG    [ yatuner ] r=10258.59 t=1377029.64 baseline=2402888.69 
+[01/14/24 08:48:49] DEBUG    [ yatuner ] r=10400.02 t=1362886.20 baseline=2402888.69 
+[01/14/24 08:48:52] DEBUG    [ yatuner ] r=10115.63 t=1391325.71 baseline=2402888.69 
+[01/14/24 08:48:54] DEBUG    [ yatuner ] r=10397.39 t=1363149.92 baseline=2402888.69 
+[01/14/24 08:48:57] DEBUG    [ yatuner ] r=10262.85 t=1376604.09 baseline=2402888.69 
+[01/14/24 08:49:00] DEBUG    [ yatuner ] r=9553.65 t=1447524.11 baseline=2402888.69 
+[01/14/24 08:49:03] DEBUG    [ yatuner ] r=9978.15 t=1405073.31 baseline=2402888.69 
+[01/14/24 08:49:05] DEBUG    [ yatuner ] r=9690.22 t=1433866.81 baseline=2402888.69 
+[01/14/24 08:49:08] DEBUG    [ yatuner ] r=10665.25 t=1336363.48 baseline=2402888.69 
+[01/14/24 08:49:11] DEBUG    [ yatuner ] r=9824.24 t=1420464.53 baseline=2402888.69 
+[01/14/24 08:49:14] DEBUG    [ yatuner ] r=10052.08 t=1397680.78 baseline=2402888.69 
+[01/14/24 08:49:16] DEBUG    [ yatuner ] r=10647.23 t=1338165.56 baseline=2402888.69 
+[01/14/24 08:49:19] DEBUG    [ yatuner ] r=10052.27 t=1397661.38 baseline=2402888.69 
+[01/14/24 08:49:22] DEBUG    [ yatuner ] r=9956.45 t=1407243.43 baseline=2402888.69 
+[01/14/24 08:49:25] DEBUG    [ yatuner ] r=10080.74 t=1394814.40 baseline=2402888.69 
+[01/14/24 08:49:28] DEBUG    [ yatuner ] r=10346.12 t=1368276.37 baseline=2402888.69 
+[01/14/24 08:49:30] DEBUG    [ yatuner ] r=10284.66 t=1374422.46 baseline=2402888.69 
+[01/14/24 08:49:33] DEBUG    [ yatuner ] r=10306.27 t=1372262.05 baseline=2402888.69 
+[01/14/24 08:49:36] DEBUG    [ yatuner ] r=9593.99 t=1443489.83 baseline=2402888.69 
+[01/14/24 08:49:39] DEBUG    [ yatuner ] r=10200.18 t=1382870.35 baseline=2402888.69 
+[01/14/24 08:49:42] DEBUG    [ yatuner ] r=10212.95 t=1381594.14 baseline=2402888.69 
+[01/14/24 08:49:44] DEBUG    [ yatuner ] r=10202.10 t=1382678.29 baseline=2402888.69 
+[01/14/24 08:49:47] DEBUG    [ yatuner ] r=10593.61 t=1343528.07 baseline=2402888.69 
+[01/14/24 08:49:50] DEBUG    [ yatuner ] r=9953.87 t=1407501.83 baseline=2402888.69 
+[01/14/24 08:49:53] DEBUG    [ yatuner ] r=10375.92 t=1365296.41 baseline=2402888.69 
+[01/14/24 08:49:56] DEBUG    [ yatuner ] r=10415.54 t=1361334.46 baseline=2402888.69 
+[01/14/24 08:49:58] DEBUG    [ yatuner ] r=10190.73 t=1383816.01 baseline=2402888.69 
+[01/14/24 08:50:01] DEBUG    [ yatuner ] r=10382.00 t=1364689.13 baseline=2402888.69 
+[01/14/24 08:50:04] DEBUG    [ yatuner ] r=10418.53 t=1361035.50 baseline=2402888.69 
+[01/14/24 08:50:07] DEBUG    [ yatuner ] r=10353.11 t=1367577.67 baseline=2402888.69 
+[01/14/24 08:50:10] DEBUG    [ yatuner ] r=10088.45 t=1394044.04 baseline=2402888.69 
+[01/14/24 08:50:12] DEBUG    [ yatuner ] r=9660.26 t=1436862.70 baseline=2402888.69 
+[01/14/24 08:50:15] DEBUG    [ yatuner ] r=10199.99 t=1382889.41 baseline=2402888.69 
+[01/14/24 08:50:18] DEBUG    [ yatuner ] r=10150.14 t=1387874.74 baseline=2402888.69 
+[01/14/24 08:50:21] DEBUG    [ yatuner ] r=10157.96 t=1387092.45 baseline=2402888.69 
+[01/14/24 08:50:23] DEBUG    [ yatuner ] r=10055.09 t=1397380.13 baseline=2402888.69 
+[01/14/24 08:50:26] DEBUG    [ yatuner ] r=9539.72 t=1448916.79 baseline=2402888.69 
+[01/14/24 08:50:29] DEBUG    [ yatuner ] r=10337.28 t=1369160.94 baseline=2402888.69 
+[01/14/24 08:50:32] DEBUG    [ yatuner ] r=10380.37 t=1364851.44 baseline=2402888.69 
+[01/14/24 08:50:35] DEBUG    [ yatuner ] r=10385.80 t=1364308.73 baseline=2402888.69 
+[01/14/24 08:50:37] DEBUG    [ yatuner ] r=10246.36 t=1378252.96 baseline=2402888.69 
+[01/14/24 08:50:40] DEBUG    [ yatuner ] r=9931.09 t=1409779.70 baseline=2402888.69 
+[01/14/24 08:50:43] DEBUG    [ yatuner ] r=9900.44 t=1412844.56 baseline=2402888.69 
+[01/14/24 08:50:45] DEBUG    [ yatuner ] r=10208.35 t=1382053.86 baseline=2402888.69 
+[01/14/24 08:50:48] DEBUG    [ yatuner ] r=10027.64 t=1400125.14 baseline=2402888.69 
+[01/14/24 08:50:51] DEBUG    [ yatuner ] r=9847.87 t=1418101.96 baseline=2402888.69 
+[01/14/24 08:50:54] DEBUG    [ yatuner ] r=10354.75 t=1367413.30 baseline=2402888.69 
+[01/14/24 08:50:56] DEBUG    [ yatuner ] r=10437.90 t=1359098.78 baseline=2402888.69 
+[01/14/24 08:50:59] DEBUG    [ yatuner ] r=10015.05 t=1401383.91 baseline=2402888.69 
+[01/14/24 08:51:02] DEBUG    [ yatuner ] r=10124.73 t=1390415.50 baseline=2402888.69 
+[01/14/24 08:51:05] DEBUG    [ yatuner ] r=10526.28 t=1350261.08 baseline=2402888.69 
+[01/14/24 08:51:08] DEBUG    [ yatuner ] r=10408.32 t=1362056.61 baseline=2402888.69 
+[01/14/24 08:51:10] DEBUG    [ yatuner ] r=10198.74 t=1383014.98 baseline=2402888.69 
+[01/14/24 08:51:13] DEBUG    [ yatuner ] r=10424.22 t=1360466.71 baseline=2402888.69 
+[01/14/24 08:51:16] DEBUG    [ yatuner ] r=10220.01 t=1380887.49 baseline=2402888.69 
+[01/14/24 08:51:19] DEBUG    [ yatuner ] r=10049.33 t=1397956.10 baseline=2402888.69 
+[01/14/24 08:51:21] DEBUG    [ yatuner ] r=10384.76 t=1364412.98 baseline=2402888.69 
+[01/14/24 08:51:24] DEBUG    [ yatuner ] r=10230.37 t=1379851.75 baseline=2402888.69 
+[01/14/24 08:51:27] DEBUG    [ yatuner ] r=10185.17 t=1384371.64 baseline=2402888.69 
+[01/14/24 08:51:30] DEBUG    [ yatuner ] r=10337.43 t=1369145.58 baseline=2402888.69 
+[01/14/24 08:51:32] DEBUG    [ yatuner ] r=10149.01 t=1387987.59 baseline=2402888.69 
+[01/14/24 08:51:35] DEBUG    [ yatuner ] r=10326.38 t=1370250.36 baseline=2402888.69 
+[01/14/24 08:51:38] DEBUG    [ yatuner ] r=10229.52 t=1379936.28 baseline=2402888.69 
+[01/14/24 08:51:41] DEBUG    [ yatuner ] r=10179.64 t=1384924.87 baseline=2402888.69 
+[01/14/24 08:51:44] DEBUG    [ yatuner ] r=10163.16 t=1386572.99 baseline=2402888.69 
+[01/14/24 08:51:46] DEBUG    [ yatuner ] r=9997.55 t=1403134.07 baseline=2402888.69 
+[01/14/24 08:51:49] DEBUG    [ yatuner ] r=10161.16 t=1386772.70 baseline=2402888.69 
+[01/14/24 08:51:52] DEBUG    [ yatuner ] r=10136.92 t=1389196.94 baseline=2402888.69 
+[01/14/24 08:51:55] DEBUG    [ yatuner ] r=9977.80 t=1405108.58 baseline=2402888.69 
+[01/14/24 08:51:57] DEBUG    [ yatuner ] r=10153.21 t=1387568.07 baseline=2402888.69 
+[01/14/24 08:52:00] DEBUG    [ yatuner ] r=10175.78 t=1385310.50 baseline=2402888.69 
+[01/14/24 08:52:03] DEBUG    [ yatuner ] r=9921.12 t=1410776.71 baseline=2402888.69 
+[01/14/24 08:52:06] DEBUG    [ yatuner ] r=10366.78 t=1366211.07 baseline=2402888.69 
+[01/14/24 08:52:08] DEBUG    [ yatuner ] r=10425.80 t=1360308.34 baseline=2402888.69 
+[01/14/24 08:52:11] DEBUG    [ yatuner ] r=10273.49 t=1375539.35 baseline=2402888.69 
+[01/14/24 08:52:14] DEBUG    [ yatuner ] r=10249.91 t=1377897.83 baseline=2402888.69 
+[01/14/24 08:52:17] DEBUG    [ yatuner ] r=10148.95 t=1387993.64 baseline=2402888.69 
+[01/14/24 08:52:19] DEBUG    [ yatuner ] r=10422.12 t=1360676.62 baseline=2402888.69 
+[01/14/24 08:52:22] DEBUG    [ yatuner ] r=10399.89 t=1362899.41 baseline=2402888.69 
+[01/14/24 08:52:25] DEBUG    [ yatuner ] r=10087.63 t=1394125.55 baseline=2402888.69 
+[01/14/24 08:52:28] DEBUG    [ yatuner ] r=10141.34 t=1388754.57 baseline=2402888.69 
+[01/14/24 08:52:30] DEBUG    [ yatuner ] r=9860.91 t=1416797.49 baseline=2402888.69 
+[01/14/24 08:52:33] DEBUG    [ yatuner ] r=10451.97 t=1357691.43 baseline=2402888.69 
+[01/14/24 08:52:36] DEBUG    [ yatuner ] r=10232.71 t=1379617.96 baseline=2402888.69 
+[01/14/24 08:52:39] DEBUG    [ yatuner ] r=10090.87 t=1393802.18 baseline=2402888.69 
+[01/14/24 08:52:41] DEBUG    [ yatuner ] r=10304.38 t=1372450.54 baseline=2402888.69 
+[01/14/24 08:52:44] DEBUG    [ yatuner ] r=10489.57 t=1353932.18 baseline=2402888.69 
+[01/14/24 08:52:47] DEBUG    [ yatuner ] r=10177.52 t=1385136.90 baseline=2402888.69 
+[01/14/24 08:52:50] DEBUG    [ yatuner ] r=9670.32 t=1435856.48 baseline=2402888.69 
+[01/14/24 08:52:52] DEBUG    [ yatuner ] r=10082.05 t=1394683.24 baseline=2402888.69 
+[01/14/24 08:52:55] DEBUG    [ yatuner ] r=10415.69 t=1361320.19 baseline=2402888.69 
+[01/14/24 08:52:58] DEBUG    [ yatuner ] r=10318.83 t=1371005.23 baseline=2402888.69 
+[01/14/24 08:53:01] DEBUG    [ yatuner ] r=10225.38 t=1380350.71 baseline=2402888.69 
+[01/14/24 08:53:03] DEBUG    [ yatuner ] r=9634.28 t=1439460.85 baseline=2402888.69 
+[01/14/24 08:53:06] DEBUG    [ yatuner ] r=10178.81 t=1385007.72 baseline=2402888.69 
+[01/14/24 08:53:09] DEBUG    [ yatuner ] r=10423.27 t=1360561.26 baseline=2402888.69 
+[01/14/24 08:53:12] DEBUG    [ yatuner ] r=9969.93 t=1405895.45 baseline=2402888.69 
+[01/14/24 08:53:15] DEBUG    [ yatuner ] r=10344.72 t=1368416.89 baseline=2402888.69 
+[01/14/24 08:53:17] DEBUG    [ yatuner ] r=9948.36 t=1408052.24 baseline=2402888.69 
+[01/14/24 08:53:20] DEBUG    [ yatuner ] r=10412.74 t=1361614.26 baseline=2402888.69 
+[01/14/24 08:53:23] DEBUG    [ yatuner ] r=9611.48 t=1441740.26 baseline=2402888.69 
+[01/14/24 08:53:26] DEBUG    [ yatuner ] r=10048.47 t=1398042.12 baseline=2402888.69 
+[01/14/24 08:53:28] DEBUG    [ yatuner ] r=10367.97 t=1366091.35 baseline=2402888.69 
+[01/14/24 08:53:31] DEBUG    [ yatuner ] r=9817.67 t=1421121.72 baseline=2402888.69 
+[01/14/24 08:53:34] DEBUG    [ yatuner ] r=10196.94 t=1383194.27 baseline=2402888.69 
+[01/14/24 08:53:37] DEBUG    [ yatuner ] r=10370.70 t=1365818.79 baseline=2402888.69 
+[01/14/24 08:53:39] DEBUG    [ yatuner ] r=10354.47 t=1367441.93 baseline=2402888.69 
+[01/14/24 08:53:42] DEBUG    [ yatuner ] r=10457.32 t=1357156.31 baseline=2402888.69 
+[01/14/24 08:53:45] DEBUG    [ yatuner ] r=10252.18 t=1377670.99 baseline=2402888.69 
+[01/14/24 08:53:48] DEBUG    [ yatuner ] r=10449.52 t=1357936.46 baseline=2402888.69 
+[01/14/24 08:53:50] DEBUG    [ yatuner ] r=9614.75 t=1441413.57 baseline=2402888.69 
+[01/14/24 08:53:53] DEBUG    [ yatuner ] r=10343.37 t=1368551.62 baseline=2402888.69 
+[01/14/24 08:53:56] DEBUG    [ yatuner ] r=9889.39 t=1413949.38 baseline=2402888.69 
+[01/14/24 08:53:59] DEBUG    [ yatuner ] r=10171.77 t=1385711.50 baseline=2402888.69 
+[01/14/24 08:54:01] DEBUG    [ yatuner ] r=10543.95 t=1348493.78 baseline=2402888.69 
+[01/14/24 08:54:04] DEBUG    [ yatuner ] r=9721.36 t=1430752.40 baseline=2402888.69 
+[01/14/24 08:54:07] DEBUG    [ yatuner ] r=10254.95 t=1377393.44 baseline=2402888.69 
+[01/14/24 08:54:10] DEBUG    [ yatuner ] r=10137.83 t=1389105.56 baseline=2402888.69 
+[01/14/24 08:54:12] DEBUG    [ yatuner ] r=10013.03 t=1401585.99 baseline=2402888.69 
+[01/14/24 08:54:15] DEBUG    [ yatuner ] r=9901.10 t=1412778.34 baseline=2402888.69 
+[01/14/24 08:54:18] DEBUG    [ yatuner ] r=10034.52 t=1399437.01 baseline=2402888.69 
+[01/14/24 08:54:21] DEBUG    [ yatuner ] r=9883.66 t=1414522.47 baseline=2402888.69 
+[01/14/24 08:54:24] DEBUG    [ yatuner ] r=9842.78 t=1418611.14 baseline=2402888.69 
+[01/14/24 08:54:26] DEBUG    [ yatuner ] r=10358.25 t=1367063.84 baseline=2402888.69 
+[01/14/24 08:54:29] DEBUG    [ yatuner ] r=10162.34 t=1386654.33 baseline=2402888.69 
+[01/14/24 08:54:32] DEBUG    [ yatuner ] r=10177.51 t=1385137.99 baseline=2402888.69 
+[01/14/24 08:54:35] DEBUG    [ yatuner ] r=10218.69 t=1381019.25 baseline=2402888.69 
+[01/14/24 08:54:37] DEBUG    [ yatuner ] r=10555.61 t=1347327.94 baseline=2402888.69 
+[01/14/24 08:54:40] DEBUG    [ yatuner ] r=10228.61 t=1380027.66 baseline=2402888.69 
+[01/14/24 08:54:43] DEBUG    [ yatuner ] r=10418.34 t=1361054.80 baseline=2402888.69 
+[01/14/24 08:54:46] DEBUG    [ yatuner ] r=9989.85 t=1403903.28 baseline=2402888.69 
+[01/14/24 08:54:48] DEBUG    [ yatuner ] r=9609.80 t=1441908.70 baseline=2402888.69 
+[01/14/24 08:54:51] DEBUG    [ yatuner ] r=10243.08 t=1378580.23 baseline=2402888.69 
+[01/14/24 08:54:54] DEBUG    [ yatuner ] r=10675.78 t=1335310.76 baseline=2402888.69 
+[01/14/24 08:54:57] DEBUG    [ yatuner ] r=9978.13 t=1405076.18 baseline=2402888.69 
+[01/14/24 08:54:59] DEBUG    [ yatuner ] r=9656.02 t=1437286.41 baseline=2402888.69 
+[01/14/24 08:55:02] DEBUG    [ yatuner ] r=10172.59 t=1385630.06 baseline=2402888.69 
+[01/14/24 08:55:05] DEBUG    [ yatuner ] r=9883.77 t=1414511.89 baseline=2402888.69 
+[01/14/24 08:55:08] DEBUG    [ yatuner ] r=10144.16 t=1388472.94 baseline=2402888.69 
+[01/14/24 08:55:10] DEBUG    [ yatuner ] r=9726.78 t=1430211.02 baseline=2402888.69 
+[01/14/24 08:55:13] DEBUG    [ yatuner ] r=10450.23 t=1357865.25 baseline=2402888.69 
+[01/14/24 08:55:16] DEBUG    [ yatuner ] r=9950.09 t=1407879.47 baseline=2402888.69 
+[01/14/24 08:55:19] DEBUG    [ yatuner ] r=10161.95 t=1386693.53 baseline=2402888.69 
+[01/14/24 08:55:22] DEBUG    [ yatuner ] r=10390.19 t=1363869.36 baseline=2402888.69 
+[01/14/24 08:55:24] DEBUG    [ yatuner ] r=10167.59 t=1386129.77 baseline=2402888.69 
+[01/14/24 08:55:27] DEBUG    [ yatuner ] r=10368.59 t=1366029.21 baseline=2402888.69 
+[01/14/24 08:55:30] DEBUG    [ yatuner ] r=10072.43 t=1395646.03 baseline=2402888.69 
+[01/14/24 08:55:33] DEBUG    [ yatuner ] r=9783.30 t=1424558.20 baseline=2402888.69 
+[01/14/24 08:55:35] DEBUG    [ yatuner ] r=10422.79 t=1360609.25 baseline=2402888.69 
+[01/14/24 08:55:38] DEBUG    [ yatuner ] r=9704.18 t=1432470.54 baseline=2402888.69 
+[01/14/24 08:55:41] DEBUG    [ yatuner ] r=9779.19 t=1424969.94 baseline=2402888.69 
+[01/14/24 08:55:43] DEBUG    [ yatuner ] r=10209.62 t=1381926.92 baseline=2402888.69 
+[01/14/24 08:55:46] DEBUG    [ yatuner ] r=10041.98 t=1398690.47 baseline=2402888.69 
+[01/14/24 08:55:49] DEBUG    [ yatuner ] r=9987.17 t=1404171.72 baseline=2402888.69 
+[01/14/24 08:55:52] DEBUG    [ yatuner ] r=10372.24 t=1365664.80 baseline=2402888.69 
+[01/14/24 08:55:55] DEBUG    [ yatuner ] r=9522.57 t=1450631.61 baseline=2402888.69 
+[01/14/24 08:55:57] DEBUG    [ yatuner ] r=10396.51 t=1363237.41 baseline=2402888.69 
+[01/14/24 08:56:00] DEBUG    [ yatuner ] r=10203.53 t=1382535.94 baseline=2402888.69 
+[01/14/24 08:56:03] DEBUG    [ yatuner ] r=10398.29 t=1363059.41 baseline=2402888.69 
+[01/14/24 08:56:06] DEBUG    [ yatuner ] r=9779.38 t=1424950.32 baseline=2402888.69 
+[01/14/24 08:56:08] DEBUG    [ yatuner ] r=10223.51 t=1380537.37 baseline=2402888.69 
+[01/14/24 08:56:11] DEBUG    [ yatuner ] r=10144.90 t=1388398.99 baseline=2402888.69 
+[01/14/24 08:56:14] DEBUG    [ yatuner ] r=10009.11 t=1401977.79 baseline=2402888.69 
+[01/14/24 08:56:17] DEBUG    [ yatuner ] r=10413.08 t=1361580.26 baseline=2402888.69 
+[01/14/24 08:56:19] DEBUG    [ yatuner ] r=10021.37 t=1400751.84 baseline=2402888.69 
+[01/14/24 08:56:22] DEBUG    [ yatuner ] r=10160.51 t=1386837.38 baseline=2402888.69 
+[01/14/24 08:56:25] DEBUG    [ yatuner ] r=10084.28 t=1394460.91 baseline=2402888.69 
+[01/14/24 08:56:28] DEBUG    [ yatuner ] r=10166.64 t=1386224.91 baseline=2402888.69 
+[01/14/24 08:56:31] DEBUG    [ yatuner ] r=10228.23 t=1380065.39 baseline=2402888.69 
+[01/14/24 08:56:33] DEBUG    [ yatuner ] r=9850.33 t=1417855.39 baseline=2402888.69 
+[01/14/24 08:56:36] DEBUG    [ yatuner ] r=9700.88 t=1432800.31 baseline=2402888.69 
+[01/14/24 08:56:39] DEBUG    [ yatuner ] r=10043.36 t=1398553.02 baseline=2402888.69 
+[01/14/24 08:56:42] DEBUG    [ yatuner ] r=9950.97 t=1407791.56 baseline=2402888.69 
+[01/14/24 08:56:44] DEBUG    [ yatuner ] r=9835.93 t=1419295.78 baseline=2402888.69 
+[01/14/24 08:56:47] DEBUG    [ yatuner ] r=10411.85 t=1361703.85 baseline=2402888.69 
+[01/14/24 08:56:50] DEBUG    [ yatuner ] r=9807.65 t=1422123.70 baseline=2402888.69 
+[01/14/24 08:56:52] DEBUG    [ yatuner ] r=10008.64 t=1402024.30 baseline=2402888.69 
+[01/14/24 08:56:55] DEBUG    [ yatuner ] r=10191.23 t=1383765.74 baseline=2402888.69 
+[01/14/24 08:56:58] DEBUG    [ yatuner ] r=10228.81 t=1380007.34 baseline=2402888.69 
+[01/14/24 08:57:01] DEBUG    [ yatuner ] r=10433.46 t=1359542.24 baseline=2402888.69 
+[01/14/24 08:57:04] DEBUG    [ yatuner ] r=10093.97 t=1393491.52 baseline=2402888.69 
+[01/14/24 08:57:06] DEBUG    [ yatuner ] r=10164.05 t=1386483.47 baseline=2402888.69 
+[01/14/24 08:57:09] DEBUG    [ yatuner ] r=9785.18 t=1424370.42 baseline=2402888.69 
+[01/14/24 08:57:12] DEBUG    [ yatuner ] r=10147.04 t=1388184.42 baseline=2402888.69 
+[01/14/24 08:57:15] DEBUG    [ yatuner ] r=10031.99 t=1399690.05 baseline=2402888.69 
+[01/14/24 08:57:17] DEBUG    [ yatuner ] r=10028.29 t=1400059.59 baseline=2402888.69 
+[01/14/24 08:57:20] DEBUG    [ yatuner ] r=10118.02 t=1391087.02 baseline=2402888.69 
+[01/14/24 08:57:23] DEBUG    [ yatuner ] r=10520.71 t=1350817.21 baseline=2402888.69 
+[01/14/24 08:57:26] DEBUG    [ yatuner ] r=9708.26 t=1432063.12 baseline=2402888.69 
+[01/14/24 08:57:29] DEBUG    [ yatuner ] r=10309.29 t=1371959.99 baseline=2402888.69 
+[01/14/24 08:57:31] DEBUG    [ yatuner ] r=10142.07 t=1388681.95 baseline=2402888.69 
+[01/14/24 08:57:34] DEBUG    [ yatuner ] r=10686.80 t=1334208.67 baseline=2402888.69 
+[01/14/24 08:57:37] DEBUG    [ yatuner ] r=10223.13 t=1380576.04 baseline=2402888.69 
+[01/14/24 08:57:40] DEBUG    [ yatuner ] r=10598.03 t=1343086.03 baseline=2402888.69 
+[01/14/24 08:57:43] DEBUG    [ yatuner ] r=10391.62 t=1363726.79 baseline=2402888.69 
+[01/14/24 08:57:45] DEBUG    [ yatuner ] r=9994.56 t=1403433.15 baseline=2402888.69 
+[01/14/24 08:57:48] DEBUG    [ yatuner ] r=10126.80 t=1390208.26 baseline=2402888.69 
+[01/14/24 08:57:51] DEBUG    [ yatuner ] r=10508.93 t=1351996.10 baseline=2402888.69 
+[01/14/24 08:57:54] DEBUG    [ yatuner ] r=10048.26 t=1398062.66 baseline=2402888.69 
+[01/14/24 08:57:57] DEBUG    [ yatuner ] r=10561.84 t=1346704.22 baseline=2402888.69 
+[01/14/24 08:57:59] DEBUG    [ yatuner ] r=10140.58 t=1388830.88 baseline=2402888.69 
+[01/14/24 08:58:02] DEBUG    [ yatuner ] r=10326.68 t=1370220.76 baseline=2402888.69 
+[01/14/24 08:58:05] DEBUG    [ yatuner ] r=9838.87 t=1419002.03 baseline=2402888.69 
+[01/14/24 08:58:07] DEBUG    [ yatuner ] r=9780.14 t=1424874.84 baseline=2402888.69 
+[01/14/24 08:58:10] DEBUG    [ yatuner ] r=10593.86 t=1343502.29 baseline=2402888.69 
+[01/14/24 08:58:13] DEBUG    [ yatuner ] r=10244.68 t=1378421.19 baseline=2402888.69 
+[01/14/24 08:58:16] DEBUG    [ yatuner ] r=10403.08 t=1362580.46 baseline=2402888.69 
+[01/14/24 08:58:19] DEBUG    [ yatuner ] r=10367.89 t=1366099.69 baseline=2402888.69 
+[01/14/24 08:58:21] DEBUG    [ yatuner ] r=9983.32 t=1404556.59 baseline=2402888.69 
+[01/14/24 08:58:24] DEBUG    [ yatuner ] r=10361.57 t=1366731.84 baseline=2402888.69 
+[01/14/24 08:58:27] DEBUG    [ yatuner ] r=10359.20 t=1366968.23 baseline=2402888.69 
+[01/14/24 08:58:30] DEBUG    [ yatuner ] r=9459.30 t=1456958.55 baseline=2402888.69 
+[01/14/24 08:58:33] DEBUG    [ yatuner ] r=10606.53 t=1342235.81 baseline=2402888.69 
+[01/14/24 08:58:35] DEBUG    [ yatuner ] r=10006.34 t=1402254.86 baseline=2402888.69 
+[01/14/24 08:58:38] DEBUG    [ yatuner ] r=10410.19 t=1361869.96 baseline=2402888.69 
+[01/14/24 08:58:41] DEBUG    [ yatuner ] r=10177.20 t=1385169.05 baseline=2402888.69 
+[01/14/24 08:58:44] DEBUG    [ yatuner ] r=10589.12 t=1343976.20 baseline=2402888.69 
+[01/14/24 08:58:47] DEBUG    [ yatuner ] r=10100.16 t=1392872.27 baseline=2402888.69 
+[01/14/24 08:58:49] DEBUG    [ yatuner ] r=10308.92 t=1371996.73 baseline=2402888.69 
+[01/14/24 08:58:52] DEBUG    [ yatuner ] r=10019.16 t=1400972.75 baseline=2402888.69 
+[01/14/24 08:58:55] DEBUG    [ yatuner ] r=10173.05 t=1385584.17 baseline=2402888.69 
+[01/14/24 08:58:58] DEBUG    [ yatuner ] r=9891.97 t=1413691.40 baseline=2402888.69 
+[01/14/24 08:59:00] DEBUG    [ yatuner ] r=9925.60 t=1410328.61 baseline=2402888.69 
+[01/14/24 08:59:03] DEBUG    [ yatuner ] r=10194.97 t=1383392.19 baseline=2402888.69 
+[01/14/24 08:59:06] DEBUG    [ yatuner ] r=9882.21 t=1414667.50 baseline=2402888.69 
+[01/14/24 08:59:08] DEBUG    [ yatuner ] r=10456.68 t=1357220.76 baseline=2402888.69 
+[01/14/24 08:59:11] DEBUG    [ yatuner ] r=10391.18 t=1363771.04 baseline=2402888.69 
+[01/14/24 08:59:14] DEBUG    [ yatuner ] r=10377.68 t=1365120.41 baseline=2402888.69 
+[01/14/24 08:59:17] DEBUG    [ yatuner ] r=10278.60 t=1375028.43 baseline=2402888.69 
+[01/14/24 08:59:20] DEBUG    [ yatuner ] r=10210.94 t=1381794.65 baseline=2402888.69 
+[01/14/24 08:59:22] DEBUG    [ yatuner ] r=9566.45 t=1446244.06 baseline=2402888.69 
+[01/14/24 08:59:25] DEBUG    [ yatuner ] r=10349.46 t=1367942.97 baseline=2402888.69 
+[01/14/24 08:59:28] DEBUG    [ yatuner ] r=10563.64 t=1346524.47 baseline=2402888.69 
+[01/14/24 08:59:31] DEBUG    [ yatuner ] r=10290.68 t=1373820.69 baseline=2402888.69 
+[01/14/24 08:59:33] DEBUG    [ yatuner ] r=9685.37 t=1434351.95 baseline=2402888.69 
+[01/14/24 08:59:36] DEBUG    [ yatuner ] r=10334.47 t=1369441.93 baseline=2402888.69 
+[01/14/24 08:59:39] DEBUG    [ yatuner ] r=9919.60 t=1410928.46 baseline=2402888.69 
+[01/14/24 08:59:42] DEBUG    [ yatuner ] r=9991.72 t=1403716.90 baseline=2402888.69 
+[01/14/24 08:59:44] DEBUG    [ yatuner ] r=10151.06 t=1387782.41 baseline=2402888.69 
+[01/14/24 08:59:47] DEBUG    [ yatuner ] r=9831.75 t=1419713.64 baseline=2402888.69 
+[01/14/24 08:59:50] DEBUG    [ yatuner ] r=10142.65 t=1388623.65 baseline=2402888.69 
+[01/14/24 08:59:53] DEBUG    [ yatuner ] r=10263.12 t=1376576.28 baseline=2402888.69 
+[01/14/24 08:59:55] DEBUG    [ yatuner ] r=10398.88 t=1363000.29 baseline=2402888.69 
+[01/14/24 08:59:58] DEBUG    [ yatuner ] r=10424.33 t=1360455.80 baseline=2402888.69 
+[01/14/24 09:00:01] DEBUG    [ yatuner ] r=9440.82 t=1458806.57 baseline=2402888.69 
+[01/14/24 09:00:04] DEBUG    [ yatuner ] r=9843.53 t=1418536.17 baseline=2402888.69 
+[01/14/24 09:00:06] DEBUG    [ yatuner ] r=9923.59 t=1410530.00 baseline=2402888.69 
+[01/14/24 09:00:09] DEBUG    [ yatuner ] r=10449.89 t=1357899.31 baseline=2402888.69 
+[01/14/24 09:00:12] DEBUG    [ yatuner ] r=10072.56 t=1395633.10 baseline=2402888.69 
+[01/14/24 09:00:14] DEBUG    [ yatuner ] r=10222.56 t=1380633.10 baseline=2402888.69 
+[01/14/24 09:00:17] DEBUG    [ yatuner ] r=10160.09 t=1386880.01 baseline=2402888.69 
+[01/14/24 09:00:20] DEBUG    [ yatuner ] r=9957.73 t=1407115.29 baseline=2402888.69 
+[01/14/24 09:00:23] DEBUG    [ yatuner ] r=9922.77 t=1410611.62 baseline=2402888.69 
+[01/14/24 09:00:25] DEBUG    [ yatuner ] r=10330.34 t=1369854.51 baseline=2402888.69 
+[01/14/24 09:00:28] DEBUG    [ yatuner ] r=10160.69 t=1386819.46 baseline=2402888.69 
+[01/14/24 09:00:31] DEBUG    [ yatuner ] r=10021.35 t=1400753.26 baseline=2402888.69 
+[01/14/24 09:00:34] DEBUG    [ yatuner ] r=10089.78 t=1393910.82 baseline=2402888.69 
+[01/14/24 09:00:37] DEBUG    [ yatuner ] r=10022.15 t=1400674.05 baseline=2402888.69 
+[01/14/24 09:00:39] DEBUG    [ yatuner ] r=9643.00 t=1438588.59 baseline=2402888.69 
+[01/14/24 09:00:42] DEBUG    [ yatuner ] r=10388.85 t=1364003.84 baseline=2402888.69 
+[01/14/24 09:00:45] DEBUG    [ yatuner ] r=10387.57 t=1364131.84 baseline=2402888.69 
+[01/14/24 09:00:48] DEBUG    [ yatuner ] r=10011.67 t=1401722.03 baseline=2402888.69 
+[01/14/24 09:00:50] DEBUG    [ yatuner ] r=10545.96 t=1348292.26 baseline=2402888.69 
+[01/14/24 09:00:53] DEBUG    [ yatuner ] r=10181.73 t=1384715.38 baseline=2402888.69 
+[01/14/24 09:00:56] DEBUG    [ yatuner ] r=10357.78 t=1367111.07 baseline=2402888.69 
+[01/14/24 09:00:59] DEBUG    [ yatuner ] r=9939.79 t=1408909.70 baseline=2402888.69 
+[01/14/24 09:01:01] DEBUG    [ yatuner ] r=9986.94 t=1404194.57 baseline=2402888.69 
+[01/14/24 09:01:04] DEBUG    [ yatuner ] r=10138.30 t=1389058.43 baseline=2402888.69 
+[01/14/24 09:01:07] DEBUG    [ yatuner ] r=10035.43 t=1399345.74 baseline=2402888.69 
+[01/14/24 09:01:10] DEBUG    [ yatuner ] r=10223.70 t=1380518.30 baseline=2402888.69 
+[01/14/24 09:01:12] DEBUG    [ yatuner ] r=10336.47 t=1369241.88 baseline=2402888.69 
+[01/14/24 09:01:15] DEBUG    [ yatuner ] r=10039.52 t=1398936.87 baseline=2402888.69 
+[01/14/24 09:01:18] DEBUG    [ yatuner ] r=9796.37 t=1423251.52 baseline=2402888.69 
+[01/14/24 09:01:20] DEBUG    [ yatuner ] r=10402.83 t=1362605.38 baseline=2402888.69 
+[01/14/24 09:01:23] DEBUG    [ yatuner ] r=10043.07 t=1398582.08 baseline=2402888.69 
+[01/14/24 09:01:26] DEBUG    [ yatuner ] r=9675.23 t=1435365.77 baseline=2402888.69 
+[01/14/24 09:01:29] DEBUG    [ yatuner ] r=10136.83 t=1389205.26 baseline=2402888.69 
+[01/14/24 09:01:31] DEBUG    [ yatuner ] r=9915.88 t=1411301.01 baseline=2402888.69 
+[01/14/24 09:01:34] DEBUG    [ yatuner ] r=9985.03 t=1404386.14 baseline=2402888.69 
+[01/14/24 09:01:37] DEBUG    [ yatuner ] r=10170.77 t=1385811.83 baseline=2402888.69 
+[01/14/24 09:01:39] DEBUG    [ yatuner ] r=10365.84 t=1366305.02 baseline=2402888.69 
+[01/14/24 09:01:42] DEBUG    [ yatuner ] r=10255.56 t=1377333.01 baseline=2402888.69 
+[01/14/24 09:01:45] DEBUG    [ yatuner ] r=10599.60 t=1342928.99 baseline=2402888.69 
+[01/14/24 09:01:48] DEBUG    [ yatuner ] r=10053.37 t=1397552.05 baseline=2402888.69 
+[01/14/24 09:01:51] DEBUG    [ yatuner ] r=9753.21 t=1427567.92 baseline=2402888.69 
+[01/14/24 09:01:53] DEBUG    [ yatuner ] r=9845.67 t=1418321.81 baseline=2402888.69 
+[01/14/24 09:01:56] DEBUG    [ yatuner ] r=9955.03 t=1407386.15 baseline=2402888.69 
+[01/14/24 09:01:59] DEBUG    [ yatuner ] r=10362.77 t=1366612.14 baseline=2402888.69 
+[01/14/24 09:02:01] DEBUG    [ yatuner ] r=10162.91 t=1386597.60 baseline=2402888.69 
+[01/14/24 09:02:04] DEBUG    [ yatuner ] r=9777.60 t=1425129.15 baseline=2402888.69 
+[01/14/24 09:02:07] DEBUG    [ yatuner ] r=10326.69 t=1370219.52 baseline=2402888.69 
+[01/14/24 09:02:10] DEBUG    [ yatuner ] r=10385.07 t=1364381.24 baseline=2402888.69 
+[01/14/24 09:02:13] DEBUG    [ yatuner ] r=10428.32 t=1360056.89 baseline=2402888.69 
+[01/14/24 09:02:15] DEBUG    [ yatuner ] r=10482.86 t=1354603.05 baseline=2402888.69 
+[01/14/24 09:02:18] DEBUG    [ yatuner ] r=10042.24 t=1398664.36 baseline=2402888.69 
+[01/14/24 09:02:21] DEBUG    [ yatuner ] r=9819.06 t=1420982.70 baseline=2402888.69 
+[01/14/24 09:02:24] DEBUG    [ yatuner ] r=10099.47 t=1392942.09 baseline=2402888.69 
+[01/14/24 09:02:26] DEBUG    [ yatuner ] r=10206.25 t=1382263.92 baseline=2402888.69 
+[01/14/24 09:02:29] DEBUG    [ yatuner ] r=10256.14 t=1377274.65 baseline=2402888.69 
+[01/14/24 09:02:32] DEBUG    [ yatuner ] r=9952.02 t=1407687.14 baseline=2402888.69 
+[01/14/24 09:02:34] DEBUG    [ yatuner ] r=9703.43 t=1432545.45 baseline=2402888.69 
+[01/14/24 09:02:37] DEBUG    [ yatuner ] r=10206.50 t=1382238.63 baseline=2402888.69 
+[01/14/24 09:02:40] DEBUG    [ yatuner ] r=10296.44 t=1373244.28 baseline=2402888.69 
+[01/14/24 09:02:43] DEBUG    [ yatuner ] r=10131.73 t=1389715.59 baseline=2402888.69 
+[01/14/24 09:02:46] DEBUG    [ yatuner ] r=10167.59 t=1386129.26 baseline=2402888.69 
+[01/14/24 09:02:48] DEBUG    [ yatuner ] r=10225.81 t=1380307.53 baseline=2402888.69 
+[01/14/24 09:02:51] DEBUG    [ yatuner ] r=10351.49 t=1367740.09 baseline=2402888.69 
+[01/14/24 09:02:54] DEBUG    [ yatuner ] r=10290.17 t=1373871.29 baseline=2402888.69 
+[01/14/24 09:02:57] DEBUG    [ yatuner ] r=10123.04 t=1390584.62 baseline=2402888.69 
+[01/14/24 09:02:59] DEBUG    [ yatuner ] r=9872.14 t=1415674.74 baseline=2402888.69 
+[01/14/24 09:03:02] DEBUG    [ yatuner ] r=10427.87 t=1360101.20 baseline=2402888.69 
+[01/14/24 09:03:05] DEBUG    [ yatuner ] r=9876.00 t=1415288.88 baseline=2402888.69 
+[01/14/24 09:03:08] DEBUG    [ yatuner ] r=10170.10 t=1385878.79 baseline=2402888.69 
+[01/14/24 09:03:10] DEBUG    [ yatuner ] r=10061.51 t=1396738.01 baseline=2402888.69 
+[01/14/24 09:03:13] DEBUG    [ yatuner ] r=10553.10 t=1347578.49 baseline=2402888.69 
+[01/14/24 09:03:16] DEBUG    [ yatuner ] r=9675.83 t=1435305.26 baseline=2402888.69 
+[01/14/24 09:03:19] DEBUG    [ yatuner ] r=9892.55 t=1413633.92 baseline=2402888.69 
+[01/14/24 09:03:21] DEBUG    [ yatuner ] r=10413.20 t=1361569.02 baseline=2402888.69 
+[01/14/24 09:03:24] DEBUG    [ yatuner ] r=10410.72 t=1361816.95 baseline=2402888.69 
+[01/14/24 09:03:27] DEBUG    [ yatuner ] r=10596.24 t=1343264.36 baseline=2402888.69 
+[01/14/24 09:03:30] DEBUG    [ yatuner ] r=9664.15 t=1436473.94 baseline=2402888.69 
+[01/14/24 09:03:33] DEBUG    [ yatuner ] r=10074.81 t=1395407.43 baseline=2402888.69 
+[01/14/24 09:03:35] DEBUG    [ yatuner ] r=9919.34 t=1410954.48 baseline=2402888.69 
+[01/14/24 09:03:38] DEBUG    [ yatuner ] r=10210.94 t=1381794.90 baseline=2402888.69 
+[01/14/24 09:03:41] DEBUG    [ yatuner ] r=9907.90 t=1412098.44 baseline=2402888.69 
+[01/14/24 09:03:43] DEBUG    [ yatuner ] r=10589.46 t=1343942.30 baseline=2402888.69 
+[01/14/24 09:03:46] DEBUG    [ yatuner ] r=9990.65 t=1403823.60 baseline=2402888.69 
+[01/14/24 09:03:49] DEBUG    [ yatuner ] r=10433.72 t=1359516.44 baseline=2402888.69 
+[01/14/24 09:03:52] DEBUG    [ yatuner ] r=10586.28 t=1344260.77 baseline=2402888.69 
+[01/14/24 09:03:55] DEBUG    [ yatuner ] r=10463.13 t=1356575.32 baseline=2402888.69 
+[01/14/24 09:03:57] DEBUG    [ yatuner ] r=10417.32 t=1361156.48 baseline=2402888.69 
+[01/14/24 09:04:00] DEBUG    [ yatuner ] r=10005.61 t=1402328.17 baseline=2402888.69 
+[01/14/24 09:04:03] DEBUG    [ yatuner ] r=10423.19 t=1360569.66 baseline=2402888.69 
+[01/14/24 09:04:06] DEBUG    [ yatuner ] r=9792.57 t=1423632.07 baseline=2402888.69 
+[01/14/24 09:04:09] DEBUG    [ yatuner ] r=10369.63 t=1365925.95 baseline=2402888.69 
+[01/14/24 09:04:11] DEBUG    [ yatuner ] r=9715.23 t=1431365.34 baseline=2402888.69 
+[01/14/24 09:04:14] DEBUG    [ yatuner ] r=10151.64 t=1387724.40 baseline=2402888.69 
+[01/14/24 09:04:17] DEBUG    [ yatuner ] r=10369.10 t=1365978.66 baseline=2402888.69 
+[01/14/24 09:04:20] DEBUG    [ yatuner ] r=10632.93 t=1339596.01 baseline=2402888.69 
+[01/14/24 09:04:22] DEBUG    [ yatuner ] r=10366.18 t=1366271.13 baseline=2402888.69 
+[01/14/24 09:04:25] DEBUG    [ yatuner ] r=10604.17 t=1342471.30 baseline=2402888.69 
+[01/14/24 09:04:28] DEBUG    [ yatuner ] r=10669.49 t=1335940.08 baseline=2402888.69 
+[01/14/24 09:04:31] DEBUG    [ yatuner ] r=9698.92 t=1432996.25 baseline=2402888.69 
+[01/14/24 09:04:34] DEBUG    [ yatuner ] r=10430.68 t=1359820.46 baseline=2402888.69 
+[01/14/24 09:04:36] DEBUG    [ yatuner ] r=10021.78 t=1400710.85 baseline=2402888.69 
+[01/14/24 09:04:39] DEBUG    [ yatuner ] r=10153.48 t=1387540.63 baseline=2402888.69 
+[01/14/24 09:04:42] DEBUG    [ yatuner ] r=10424.96 t=1360393.14 baseline=2402888.69 
+[01/14/24 09:04:45] DEBUG    [ yatuner ] r=9716.67 t=1431222.00 baseline=2402888.69 
+[01/14/24 09:04:47] DEBUG    [ yatuner ] r=10664.53 t=1336435.56 baseline=2402888.69 
+[01/14/24 09:04:50] DEBUG    [ yatuner ] r=10140.62 t=1388826.27 baseline=2402888.69 
+[01/14/24 09:04:53] DEBUG    [ yatuner ] r=10375.94 t=1365295.16 baseline=2402888.69 
+[01/14/24 09:04:56] DEBUG    [ yatuner ] r=10080.66 t=1394822.25 baseline=2402888.69 
+[01/14/24 09:04:59] DEBUG    [ yatuner ] r=10386.44 t=1364244.31 baseline=2402888.69 
+[01/14/24 09:05:01] DEBUG    [ yatuner ] r=10387.69 t=1364119.39 baseline=2402888.69 
+[01/14/24 09:05:04] DEBUG    [ yatuner ] r=10406.85 t=1362204.18 baseline=2402888.69 
+[01/14/24 09:05:07] DEBUG    [ yatuner ] r=10304.72 t=1372416.37 baseline=2402888.69 
+[01/14/24 09:05:10] DEBUG    [ yatuner ] r=10215.11 t=1381377.23 baseline=2402888.69 
+[01/14/24 09:05:13] DEBUG    [ yatuner ] r=10170.79 t=1385809.65 baseline=2402888.69 
+[01/14/24 09:05:15] DEBUG    [ yatuner ] r=9512.87 t=1451601.72 baseline=2402888.69 
+[01/14/24 09:05:18] DEBUG    [ yatuner ] r=10350.23 t=1367865.29 baseline=2402888.69 
+[01/14/24 09:05:21] DEBUG    [ yatuner ] r=10233.93 t=1379496.17 baseline=2402888.69 
+[01/14/24 09:05:24] DEBUG    [ yatuner ] r=9727.18 t=1430170.82 baseline=2402888.69 
+[01/14/24 09:05:26] DEBUG    [ yatuner ] r=10016.58 t=1401230.88 baseline=2402888.69 
+[01/14/24 09:05:29] DEBUG    [ yatuner ] r=10358.84 t=1367005.13 baseline=2402888.69 
+[01/14/24 09:05:32] DEBUG    [ yatuner ] r=9854.24 t=1417464.44 baseline=2402888.69 
+[01/14/24 09:05:35] DEBUG    [ yatuner ] r=10372.18 t=1365670.38 baseline=2402888.69 
+[01/14/24 09:05:37] DEBUG    [ yatuner ] r=10066.35 t=1396254.19 baseline=2402888.69 
+[01/14/24 09:05:40] DEBUG    [ yatuner ] r=10168.18 t=1386070.55 baseline=2402888.69 
+[01/14/24 09:05:43] DEBUG    [ yatuner ] r=10043.83 t=1398506.03 baseline=2402888.69 
+[01/14/24 09:05:45] DEBUG    [ yatuner ] r=9999.92 t=1402896.30 baseline=2402888.69 
+[01/14/24 09:05:48] DEBUG    [ yatuner ] r=10004.98 t=1402390.52 baseline=2402888.69 
+[01/14/24 09:05:51] DEBUG    [ yatuner ] r=9893.26 t=1413562.38 baseline=2402888.69 
+[01/14/24 09:05:54] DEBUG    [ yatuner ] r=10087.47 t=1394141.38 baseline=2402888.69 
+[01/14/24 09:05:56] DEBUG    [ yatuner ] r=10044.82 t=1398406.79 baseline=2402888.69 
+[01/14/24 09:05:59] DEBUG    [ yatuner ] r=10034.91 t=1399397.50 baseline=2402888.69 
+[01/14/24 09:06:02] DEBUG    [ yatuner ] r=10368.31 t=1366057.54 baseline=2402888.69 
+[01/14/24 09:06:05] DEBUG    [ yatuner ] r=9700.28 t=1432860.34 baseline=2402888.69 
+[01/14/24 09:06:07] DEBUG    [ yatuner ] r=10195.80 t=1383308.37 baseline=2402888.69 
+[01/14/24 09:06:10] DEBUG    [ yatuner ] r=10390.02 t=1363887.08 baseline=2402888.69 
+[01/14/24 09:06:13] DEBUG    [ yatuner ] r=10309.97 t=1371891.57 baseline=2402888.69 
+[01/14/24 09:06:16] DEBUG    [ yatuner ] r=10555.26 t=1347362.28 baseline=2402888.69 
+[01/14/24 09:06:18] DEBUG    [ yatuner ] r=10402.66 t=1362622.58 baseline=2402888.69 
+[01/14/24 09:06:21] DEBUG    [ yatuner ] r=10204.72 t=1382416.71 baseline=2402888.69 
+[01/14/24 09:06:24] DEBUG    [ yatuner ] r=10104.39 t=1392449.65 baseline=2402888.69 
+[01/14/24 09:06:27] DEBUG    [ yatuner ] r=10691.93 t=1333696.19 baseline=2402888.69 
+[01/14/24 09:06:30] DEBUG    [ yatuner ] r=10207.96 t=1382092.77 baseline=2402888.69 
+[01/14/24 09:06:32] DEBUG    [ yatuner ] r=10382.70 t=1364618.44 baseline=2402888.69 
+[01/14/24 09:06:35] DEBUG    [ yatuner ] r=10122.83 t=1390605.27 baseline=2402888.69 
+[01/14/24 09:06:38] DEBUG    [ yatuner ] r=10143.73 t=1388515.92 baseline=2402888.69 
+[01/14/24 09:06:41] DEBUG    [ yatuner ] r=10175.78 t=1385310.73 baseline=2402888.69 
+[01/14/24 09:06:44] DEBUG    [ yatuner ] r=9630.13 t=1439875.80 baseline=2402888.69 
+[01/14/24 09:06:46] DEBUG    [ yatuner ] r=10071.08 t=1395781.01 baseline=2402888.69 
+[01/14/24 09:06:49] DEBUG    [ yatuner ] r=10301.74 t=1372715.09 baseline=2402888.69 
+[01/14/24 09:06:52] DEBUG    [ yatuner ] r=10085.54 t=1394334.79 baseline=2402888.69 
+[01/14/24 09:06:55] DEBUG    [ yatuner ] r=9696.35 t=1433254.07 baseline=2402888.69 
+[01/14/24 09:06:57] DEBUG    [ yatuner ] r=9639.51 t=1438937.25 baseline=2402888.69 
+[01/14/24 09:07:00] DEBUG    [ yatuner ] r=10238.84 t=1379004.65 baseline=2402888.69 
+[01/14/24 09:07:03] DEBUG    [ yatuner ] r=10135.56 t=1389332.75 baseline=2402888.69 
+[01/14/24 09:07:06] DEBUG    [ yatuner ] r=10339.94 t=1368894.83 baseline=2402888.69 
+[01/14/24 09:07:08] DEBUG    [ yatuner ] r=9803.40 t=1422548.92 baseline=2402888.69 
+[01/14/24 09:07:11] DEBUG    [ yatuner ] r=10383.28 t=1364561.03 baseline=2402888.69 
+[01/14/24 09:07:14] DEBUG    [ yatuner ] r=10407.00 t=1362188.20 baseline=2402888.69 
+[01/14/24 09:07:17] DEBUG    [ yatuner ] r=10435.98 t=1359290.30 baseline=2402888.69 
+[01/14/24 09:07:19] DEBUG    [ yatuner ] r=9768.79 t=1426009.34 baseline=2402888.69 
+[01/14/24 09:07:22] DEBUG    [ yatuner ] r=9952.12 t=1407676.55 baseline=2402888.69 
+[01/14/24 09:07:25] DEBUG    [ yatuner ] r=10134.60 t=1389428.66 baseline=2402888.69 
+[01/14/24 09:07:28] DEBUG    [ yatuner ] r=10661.69 t=1336719.66 baseline=2402888.69 
+[01/14/24 09:07:31] DEBUG    [ yatuner ] r=10164.39 t=1386449.65 baseline=2402888.69 
+[01/14/24 09:07:33] DEBUG    [ yatuner ] r=9872.98 t=1415590.76 baseline=2402888.69 
+[01/14/24 09:07:36] DEBUG    [ yatuner ] r=9714.14 t=1431475.14 baseline=2402888.69 
+[01/14/24 09:07:39] DEBUG    [ yatuner ] r=10364.44 t=1366444.60 baseline=2402888.69 
+[01/14/24 09:07:41] DEBUG    [ yatuner ] r=9855.64 t=1417325.17 baseline=2402888.69 
+[01/14/24 09:07:44] DEBUG    [ yatuner ] r=9958.50 t=1407038.20 baseline=2402888.69 
+[01/14/24 09:07:47] DEBUG    [ yatuner ] r=10302.81 t=1372607.96 baseline=2402888.69 
+[01/14/24 09:07:50] DEBUG    [ yatuner ] r=10206.62 t=1382226.25 baseline=2402888.69 
+[01/14/24 09:07:52] DEBUG    [ yatuner ] r=10156.71 t=1387217.36 baseline=2402888.69 
+[01/14/24 09:07:55] DEBUG    [ yatuner ] r=9940.11 t=1408877.93 baseline=2402888.69 
+[01/14/24 09:07:58] DEBUG    [ yatuner ] r=10532.55 t=1349633.40 baseline=2402888.69 
+[01/14/24 09:08:01] DEBUG    [ yatuner ] r=10377.07 t=1365182.12 baseline=2402888.69 
+[01/14/24 09:08:04] DEBUG    [ yatuner ] r=10159.28 t=1386960.26 baseline=2402888.69 
+[01/14/24 09:08:06] DEBUG    [ yatuner ] r=10397.68 t=1363120.22 baseline=2402888.69 
+[01/14/24 09:08:09] DEBUG    [ yatuner ] r=10192.18 t=1383670.62 baseline=2402888.69 
+[01/14/24 09:08:12] DEBUG    [ yatuner ] r=9969.80 t=1405908.72 baseline=2402888.69 
+[01/14/24 09:08:15] DEBUG    [ yatuner ] r=10516.05 t=1351283.37 baseline=2402888.69 
+[01/14/24 09:08:18] DEBUG    [ yatuner ] r=10405.17 t=1362371.41 baseline=2402888.69 
+[01/14/24 09:08:20] DEBUG    [ yatuner ] r=10002.28 t=1402660.65 baseline=2402888.69 
+[01/14/24 09:08:23] DEBUG    [ yatuner ] r=10394.78 t=1363411.07 baseline=2402888.69 
+[01/14/24 09:08:26] DEBUG    [ yatuner ] r=10360.73 t=1366815.73 baseline=2402888.69 
+[01/14/24 09:08:29] DEBUG    [ yatuner ] r=10144.66 t=1388423.02 baseline=2402888.69 
+[01/14/24 09:08:31] DEBUG    [ yatuner ] r=10155.84 t=1387304.32 baseline=2402888.69 
+[01/14/24 09:08:34] DEBUG    [ yatuner ] r=10344.32 t=1368456.34 baseline=2402888.69 
+[01/14/24 09:08:37] DEBUG    [ yatuner ] r=10029.93 t=1399895.75 baseline=2402888.69 
+[01/14/24 09:08:40] DEBUG    [ yatuner ] r=10696.46 t=1333242.29 baseline=2402888.69 
+[01/14/24 09:08:43] DEBUG    [ yatuner ] r=10557.34 t=1347154.74 baseline=2402888.69 
+[01/14/24 09:08:45] DEBUG    [ yatuner ] r=10164.67 t=1386421.42 baseline=2402888.69 
+[01/14/24 09:08:48] DEBUG    [ yatuner ] r=9448.38 t=1458050.55 baseline=2402888.69 
+[01/14/24 09:08:51] DEBUG    [ yatuner ] r=10115.47 t=1391341.55 baseline=2402888.69 
+[01/14/24 09:08:54] DEBUG    [ yatuner ] r=10563.07 t=1346581.78 baseline=2402888.69 
+[01/14/24 09:08:56] DEBUG    [ yatuner ] r=10109.02 t=1391986.23 baseline=2402888.69 
+[01/14/24 09:08:59] DEBUG    [ yatuner ] r=10004.79 t=1402409.50 baseline=2402888.69 
+[01/14/24 09:09:02] DEBUG    [ yatuner ] r=10384.29 t=1364459.63 baseline=2402888.69 
+[01/14/24 09:09:05] DEBUG    [ yatuner ] r=10380.42 t=1364846.43 baseline=2402888.69 
+[01/14/24 09:09:07] DEBUG    [ yatuner ] r=10159.40 t=1386948.41 baseline=2402888.69 
+[01/14/24 09:09:10] DEBUG    [ yatuner ] r=10044.59 t=1398429.33 baseline=2402888.69 
+[01/14/24 09:09:13] DEBUG    [ yatuner ] r=9944.40 t=1408449.00 baseline=2402888.69 
+[01/14/24 09:09:16] DEBUG    [ yatuner ] r=10331.34 t=1369754.68 baseline=2402888.69 
+[01/14/24 09:09:18] DEBUG    [ yatuner ] r=9986.90 t=1404198.92 baseline=2402888.69 
+[01/14/24 09:09:21] DEBUG    [ yatuner ] r=10117.64 t=1391125.01 baseline=2402888.69 
+[01/14/24 09:09:24] DEBUG    [ yatuner ] r=10613.19 t=1341569.23 baseline=2402888.69 
+[01/14/24 09:09:27] DEBUG    [ yatuner ] r=9823.05 t=1420583.77 baseline=2402888.69 
+[01/14/24 09:09:29] DEBUG    [ yatuner ] r=9990.17 t=1403871.54 baseline=2402888.69 
+[01/14/24 09:09:32] DEBUG    [ yatuner ] r=9533.13 t=1449576.00 baseline=2402888.69 
+[01/14/24 09:09:35] DEBUG    [ yatuner ] r=10600.30 t=1342858.69 baseline=2402888.69 
+[01/14/24 09:09:37] DEBUG    [ yatuner ] r=9941.81 t=1408708.19 baseline=2402888.69 
+[01/14/24 09:09:40] DEBUG    [ yatuner ] r=10381.94 t=1364694.64 baseline=2402888.69 
+[01/14/24 09:09:43] DEBUG    [ yatuner ] r=9971.58 t=1405730.33 baseline=2402888.69 
+[01/14/24 09:09:46] DEBUG    [ yatuner ] r=10490.69 t=1353819.34 baseline=2402888.69 
+[01/14/24 09:09:49] DEBUG    [ yatuner ] r=10383.97 t=1364491.29 baseline=2402888.69 
+[01/14/24 09:09:51] DEBUG    [ yatuner ] r=10434.23 t=1359465.50 baseline=2402888.69 
+[01/14/24 09:09:54] DEBUG    [ yatuner ] r=10257.56 t=1377132.61 baseline=2402888.69 
+[01/14/24 09:09:57] DEBUG    [ yatuner ] r=9739.79 t=1428909.52 baseline=2402888.69 
+[01/14/24 09:10:00] DEBUG    [ yatuner ] r=10253.57 t=1377531.79 baseline=2402888.69 
+[01/14/24 09:10:02] DEBUG    [ yatuner ] r=10426.22 t=1360267.12 baseline=2402888.69 
+[01/14/24 09:10:05] DEBUG    [ yatuner ] r=9733.69 t=1429519.67 baseline=2402888.69 
+[01/14/24 09:10:08] DEBUG    [ yatuner ] r=10416.95 t=1361193.29 baseline=2402888.69 
+[01/14/24 09:10:11] DEBUG    [ yatuner ] r=10322.38 t=1370650.75 baseline=2402888.69 
+[01/14/24 09:10:14] DEBUG    [ yatuner ] r=10384.84 t=1364404.54 baseline=2402888.69 
+[01/14/24 09:10:16] DEBUG    [ yatuner ] r=10374.28 t=1365460.65 baseline=2402888.69 
+[01/14/24 09:10:19] DEBUG    [ yatuner ] r=10029.16 t=1399972.27 baseline=2402888.69 
+[01/14/24 09:10:22] DEBUG    [ yatuner ] r=9815.62 t=1421326.64 baseline=2402888.69 
+[01/14/24 09:10:25] DEBUG    [ yatuner ] r=9982.95 t=1404593.27 baseline=2402888.69 
+[01/14/24 09:10:27] DEBUG    [ yatuner ] r=10353.18 t=1367570.24 baseline=2402888.69 
+[01/14/24 09:10:30] DEBUG    [ yatuner ] r=10131.95 t=1389694.04 baseline=2402888.69 
+[01/14/24 09:10:33] DEBUG    [ yatuner ] r=10330.51 t=1369838.10 baseline=2402888.69 
+[01/14/24 09:10:36] DEBUG    [ yatuner ] r=10006.79 t=1402209.27 baseline=2402888.69 
+[01/14/24 09:10:39] DEBUG    [ yatuner ] r=10443.62 t=1358526.65 baseline=2402888.69 
+[01/14/24 09:10:41] DEBUG    [ yatuner ] r=10551.90 t=1347698.39 baseline=2402888.69 
+[01/14/24 09:10:44] DEBUG    [ yatuner ] r=9789.55 t=1423933.95 baseline=2402888.69 
+[01/14/24 09:10:47] DEBUG    [ yatuner ] r=9846.70 t=1418219.04 baseline=2402888.69 
+[01/14/24 09:10:50] DEBUG    [ yatuner ] r=10161.35 t=1386753.76 baseline=2402888.69 
+[01/14/24 09:10:52] DEBUG    [ yatuner ] r=10394.85 t=1363403.61 baseline=2402888.69 
+[01/14/24 09:10:55] DEBUG    [ yatuner ] r=10127.57 t=1390132.18 baseline=2402888.69 
+[01/14/24 09:10:58] DEBUG    [ yatuner ] r=10061.36 t=1396752.24 baseline=2402888.69 
+[01/14/24 09:11:01] DEBUG    [ yatuner ] r=10041.23 t=1398765.41 baseline=2402888.69 
+[01/14/24 09:11:03] DEBUG    [ yatuner ] r=9675.82 t=1435306.81 baseline=2402888.69 
+[01/14/24 09:11:06] DEBUG    [ yatuner ] r=10193.94 t=1383494.81 baseline=2402888.69 
+[01/14/24 09:11:09] DEBUG    [ yatuner ] r=10359.43 t=1366946.12 baseline=2402888.69 
+[01/14/24 09:11:12] DEBUG    [ yatuner ] r=10284.17 t=1374471.31 baseline=2402888.69 
+[01/14/24 09:11:15] DEBUG    [ yatuner ] r=10327.49 t=1370140.08 baseline=2402888.69 
+[01/14/24 09:11:17] DEBUG    [ yatuner ] r=10040.45 t=1398843.20 baseline=2402888.69 
+[01/14/24 09:11:20] DEBUG    [ yatuner ] r=10024.68 t=1400420.94 baseline=2402888.69 
+[01/14/24 09:11:23] DEBUG    [ yatuner ] r=10274.65 t=1375423.64 baseline=2402888.69 
+[01/14/24 09:11:26] DEBUG    [ yatuner ] r=10495.01 t=1353387.97 baseline=2402888.69 
+[01/14/24 09:11:29] DEBUG    [ yatuner ] r=9861.52 t=1416736.97 baseline=2402888.69 
+[01/14/24 09:11:31] DEBUG    [ yatuner ] r=10171.50 t=1385738.96 baseline=2402888.69 
+[01/14/24 09:11:34] DEBUG    [ yatuner ] r=10412.24 t=1361664.23 baseline=2402888.69 
+[01/14/24 09:11:37] DEBUG    [ yatuner ] r=10144.24 t=1388464.38 baseline=2402888.69 
+[01/14/24 09:11:40] DEBUG    [ yatuner ] r=10157.46 t=1387142.79 baseline=2402888.69 
+[01/14/24 09:11:42] DEBUG    [ yatuner ] r=10346.67 t=1368221.97 baseline=2402888.69 
+[01/14/24 09:11:45] DEBUG    [ yatuner ] r=10132.65 t=1389623.38 baseline=2402888.69 
+[01/14/24 09:11:48] DEBUG    [ yatuner ] r=10342.96 t=1368592.36 baseline=2402888.69 
+[01/14/24 09:11:51] DEBUG    [ yatuner ] r=9682.26 t=1434662.22 baseline=2402888.69 
+[01/14/24 09:11:53] DEBUG    [ yatuner ] r=9989.09 t=1403979.81 baseline=2402888.69 
+[01/14/24 09:11:56] DEBUG    [ yatuner ] r=9924.06 t=1410482.36 baseline=2402888.69 
+[01/14/24 09:11:59] DEBUG    [ yatuner ] r=10398.72 t=1363016.53 baseline=2402888.69 
+[01/14/24 09:12:02] DEBUG    [ yatuner ] r=10245.49 t=1378339.70 baseline=2402888.69 
+[01/14/24 09:12:05] DEBUG    [ yatuner ] r=9911.96 t=1411692.79 baseline=2402888.69 
+[01/14/24 09:12:07] DEBUG    [ yatuner ] r=10241.97 t=1378692.11 baseline=2402888.69 
+[01/14/24 09:12:10] DEBUG    [ yatuner ] r=10202.39 t=1382650.03 baseline=2402888.69 
+[01/14/24 09:12:13] DEBUG    [ yatuner ] r=9756.88 t=1427201.12 baseline=2402888.69 
+[01/14/24 09:12:16] DEBUG    [ yatuner ] r=10396.52 t=1363236.58 baseline=2402888.69 
+[01/14/24 09:12:18] DEBUG    [ yatuner ] r=9758.80 t=1427008.38 baseline=2402888.69 
+[01/14/24 09:12:21] DEBUG    [ yatuner ] r=9880.78 t=1414811.10 baseline=2402888.69 
+[01/14/24 09:12:24] DEBUG    [ yatuner ] r=10175.09 t=1385379.67 baseline=2402888.69 
+[01/14/24 09:12:26] DEBUG    [ yatuner ] r=9914.57 t=1411431.41 baseline=2402888.69 
+[01/14/24 09:12:29] DEBUG    [ yatuner ] r=10275.63 t=1375325.60 baseline=2402888.69 
+[01/14/24 09:12:32] DEBUG    [ yatuner ] r=10024.72 t=1400416.50 baseline=2402888.69 
+[01/14/24 09:12:35] DEBUG    [ yatuner ] r=9861.15 t=1416774.12 baseline=2402888.69 
+[01/14/24 09:12:37] DEBUG    [ yatuner ] r=10320.43 t=1370846.09 baseline=2402888.69 
+[01/14/24 09:12:40] DEBUG    [ yatuner ] r=10150.36 t=1387852.20 baseline=2402888.69 
+[01/14/24 09:12:43] DEBUG    [ yatuner ] r=10117.52 t=1391137.00 baseline=2402888.69 
+[01/14/24 09:12:46] DEBUG    [ yatuner ] r=10330.41 t=1369847.59 baseline=2402888.69 
+[01/14/24 09:12:48] DEBUG    [ yatuner ] r=10116.49 t=1391239.83 baseline=2402888.69 
+[01/14/24 09:12:51] DEBUG    [ yatuner ] r=10640.82 t=1338806.33 baseline=2402888.69 
+[01/14/24 09:12:54] DEBUG    [ yatuner ] r=9726.87 t=1430201.35 baseline=2402888.69 
+[01/14/24 09:12:57] DEBUG    [ yatuner ] r=10210.38 t=1381850.66 baseline=2402888.69 
+[01/14/24 09:13:00] DEBUG    [ yatuner ] r=10407.67 t=1362121.23 baseline=2402888.69 
+[01/14/24 09:13:02] DEBUG    [ yatuner ] r=9632.45 t=1439643.61 baseline=2402888.69 
+[01/14/24 09:13:05] DEBUG    [ yatuner ] r=10412.46 t=1361643.07 baseline=2402888.69 
+[01/14/24 09:13:08] DEBUG    [ yatuner ] r=10545.65 t=1348324.09 baseline=2402888.69 
+[01/14/24 09:13:11] DEBUG    [ yatuner ] r=10500.63 t=1352826.08 baseline=2402888.69 
+[01/14/24 09:13:13] DEBUG    [ yatuner ] r=9810.18 t=1421870.26 baseline=2402888.69 
+[01/14/24 09:13:16] DEBUG    [ yatuner ] r=10349.86 t=1367903.02 baseline=2402888.69 
+[01/14/24 09:13:19] DEBUG    [ yatuner ] r=9923.24 t=1410564.36 baseline=2402888.69 
+[01/14/24 09:13:22] DEBUG    [ yatuner ] r=10602.35 t=1342653.52 baseline=2402888.69 
+[01/14/24 09:13:25] DEBUG    [ yatuner ] r=10577.30 t=1345158.75 baseline=2402888.69 
+[01/14/24 09:13:27] DEBUG    [ yatuner ] r=9914.24 t=1411464.20 baseline=2402888.69 
+[01/14/24 09:13:30] DEBUG    [ yatuner ] r=10204.45 t=1382444.14 baseline=2402888.69 
+[01/14/24 09:13:33] DEBUG    [ yatuner ] r=10215.16 t=1381372.45 baseline=2402888.69 
+[01/14/24 09:13:36] DEBUG    [ yatuner ] r=10226.90 t=1380198.25 baseline=2402888.69 
+[01/14/24 09:13:39] DEBUG    [ yatuner ] r=10017.07 t=1401181.95 baseline=2402888.69 
+[01/14/24 09:13:41] DEBUG    [ yatuner ] r=10176.98 t=1385190.68 baseline=2402888.69 
+[01/14/24 09:13:44] DEBUG    [ yatuner ] r=10270.40 t=1375849.05 baseline=2402888.69 
+[01/14/24 09:13:47] DEBUG    [ yatuner ] r=10192.22 t=1383666.92 baseline=2402888.69 
+[01/14/24 09:13:50] DEBUG    [ yatuner ] r=9829.71 t=1419917.35 baseline=2402888.69 
+[01/14/24 09:13:52] DEBUG    [ yatuner ] r=10125.41 t=1390348.10 baseline=2402888.69 
+[01/14/24 09:13:55] DEBUG    [ yatuner ] r=10052.01 t=1397688.09 baseline=2402888.69 
+[01/14/24 09:13:58] DEBUG    [ yatuner ] r=10013.76 t=1401512.97 baseline=2402888.69 
+[01/14/24 09:14:01] DEBUG    [ yatuner ] r=10035.18 t=1399371.08 baseline=2402888.69 
+[01/14/24 09:14:03] DEBUG    [ yatuner ] r=10146.07 t=1388281.90 baseline=2402888.69 
+[01/14/24 09:14:06] DEBUG    [ yatuner ] r=9912.13 t=1411675.30 baseline=2402888.69 
+[01/14/24 09:14:09] DEBUG    [ yatuner ] r=10406.22 t=1362266.58 baseline=2402888.69 
+[01/14/24 09:14:12] DEBUG    [ yatuner ] r=10442.52 t=1358636.93 baseline=2402888.69 
+[01/14/24 09:14:14] DEBUG    [ yatuner ] r=10396.57 t=1363231.66 baseline=2402888.69 
+[01/14/24 09:14:17] DEBUG    [ yatuner ] r=10159.77 t=1386911.37 baseline=2402888.69 
+[01/14/24 09:14:20] DEBUG    [ yatuner ] r=9847.97 t=1418091.71 baseline=2402888.69 
+[01/14/24 09:14:23] DEBUG    [ yatuner ] r=10481.66 t=1354722.73 baseline=2402888.69 
+[01/14/24 09:14:25] DEBUG    [ yatuner ] r=10356.50 t=1367238.35 baseline=2402888.69 
+[01/14/24 09:14:28] DEBUG    [ yatuner ] r=10348.84 t=1368004.95 baseline=2402888.69 
+[01/14/24 09:14:31] DEBUG    [ yatuner ] r=9669.62 t=1435926.35 baseline=2402888.69 
+[01/14/24 09:14:34] DEBUG    [ yatuner ] r=10218.01 t=1381087.28 baseline=2402888.69 
+[01/14/24 09:14:36] DEBUG    [ yatuner ] r=9675.60 t=1435329.01 baseline=2402888.69 
+[01/14/24 09:14:39] DEBUG    [ yatuner ] r=10306.16 t=1372273.07 baseline=2402888.69 
+[01/14/24 09:14:42] DEBUG    [ yatuner ] r=10297.44 t=1373145.15 baseline=2402888.69 
+[01/14/24 09:14:45] DEBUG    [ yatuner ] r=10600.92 t=1342796.25 baseline=2402888.69 
+[01/14/24 09:14:48] DEBUG    [ yatuner ] r=10179.97 t=1384891.55 baseline=2402888.69 
+[01/14/24 09:14:50] DEBUG    [ yatuner ] r=10633.09 t=1339579.46 baseline=2402888.69 
+[01/14/24 09:14:53] DEBUG    [ yatuner ] r=10158.98 t=1386990.91 baseline=2402888.69 
+[01/14/24 09:14:56] DEBUG    [ yatuner ] r=10420.40 t=1360848.49 baseline=2402888.69 
+[01/14/24 09:14:59] DEBUG    [ yatuner ] r=10120.34 t=1390855.06 baseline=2402888.69 
+[01/14/24 09:15:01] DEBUG    [ yatuner ] r=10399.75 t=1362913.70 baseline=2402888.69 
+[01/14/24 09:15:04] DEBUG    [ yatuner ] r=10379.43 t=1364946.09 baseline=2402888.69 
+[01/14/24 09:15:07] DEBUG    [ yatuner ] r=10014.57 t=1401432.12 baseline=2402888.69 
+[01/14/24 09:15:10] DEBUG    [ yatuner ] r=9845.20 t=1418368.67 baseline=2402888.69 
+[01/14/24 09:15:12] DEBUG    [ yatuner ] r=9900.15 t=1412873.37 baseline=2402888.69 
+[01/14/24 09:15:15] DEBUG    [ yatuner ] r=10275.04 t=1375384.49 baseline=2402888.69 
+[01/14/24 09:15:18] DEBUG    [ yatuner ] r=10410.21 t=1361867.90 baseline=2402888.69 
+[01/14/24 09:15:21] DEBUG    [ yatuner ] r=9549.91 t=1447897.26 baseline=2402888.69 
+[01/14/24 09:15:23] DEBUG    [ yatuner ] r=9735.23 t=1429366.17 baseline=2402888.69 
+[01/14/24 09:15:26] DEBUG    [ yatuner ] r=10184.25 t=1384464.06 baseline=2402888.69 
+[01/14/24 09:15:29] DEBUG    [ yatuner ] r=10154.30 t=1387458.85 baseline=2402888.69 
+[01/14/24 09:15:32] DEBUG    [ yatuner ] r=10037.28 t=1399160.36 baseline=2402888.69 
+[01/14/24 09:15:34] DEBUG    [ yatuner ] r=9805.79 t=1422309.71 baseline=2402888.69 
+[01/14/24 09:15:37] DEBUG    [ yatuner ] r=10377.03 t=1365185.75 baseline=2402888.69 
+[01/14/24 09:15:40] DEBUG    [ yatuner ] r=10229.25 t=1379963.29 baseline=2402888.69 
+[01/14/24 09:15:43] DEBUG    [ yatuner ] r=10432.03 t=1359685.94 baseline=2402888.69 
+[01/14/24 09:15:46] DEBUG    [ yatuner ] r=10282.05 t=1374683.60 baseline=2402888.69 
+[01/14/24 09:15:48] DEBUG    [ yatuner ] r=10367.14 t=1366174.90 baseline=2402888.69 
+[01/14/24 09:15:51] DEBUG    [ yatuner ] r=9877.28 t=1415160.27 baseline=2402888.69 
+[01/14/24 09:15:54] DEBUG    [ yatuner ] r=10022.78 t=1400610.87 baseline=2402888.69 
+[01/14/24 09:15:56] DEBUG    [ yatuner ] r=10131.95 t=1389694.15 baseline=2402888.69 
+[01/14/24 09:15:59] DEBUG    [ yatuner ] r=10455.28 t=1357360.77 baseline=2402888.69 
+[01/14/24 09:16:02] DEBUG    [ yatuner ] r=10342.43 t=1368646.02 baseline=2402888.69 
+[01/14/24 09:16:05] DEBUG    [ yatuner ] r=10239.49 t=1378939.43 baseline=2402888.69 
+[01/14/24 09:16:08] DEBUG    [ yatuner ] r=9986.71 t=1404217.41 baseline=2402888.69 
+[01/14/24 09:16:10] DEBUG    [ yatuner ] r=9920.02 t=1410886.68 baseline=2402888.69 
+[01/14/24 09:16:13] DEBUG    [ yatuner ] r=10397.92 t=1363096.80 baseline=2402888.69 
+[01/14/24 09:16:16] DEBUG    [ yatuner ] r=9960.46 t=1406842.48 baseline=2402888.69 
+[01/14/24 09:16:19] DEBUG    [ yatuner ] r=10407.12 t=1362176.65 baseline=2402888.69 
+[01/14/24 09:16:21] DEBUG    [ yatuner ] r=10398.29 t=1363060.07 baseline=2402888.69 
+[01/14/24 09:16:24] DEBUG    [ yatuner ] r=10399.10 t=1362979.14 baseline=2402888.69 
+[01/14/24 09:16:27] DEBUG    [ yatuner ] r=10236.34 t=1379254.57 baseline=2402888.69 
+[01/14/24 09:16:30] DEBUG    [ yatuner ] r=10178.89 t=1384999.68 baseline=2402888.69 
+[01/14/24 09:16:32] DEBUG    [ yatuner ] r=10360.91 t=1366797.71 baseline=2402888.69 
+[01/14/24 09:16:35] DEBUG    [ yatuner ] r=10396.44 t=1363244.72 baseline=2402888.69 
+[01/14/24 09:16:38] DEBUG    [ yatuner ] r=10133.51 t=1389537.33 baseline=2402888.69 
+[01/14/24 09:16:41] DEBUG    [ yatuner ] r=10325.32 t=1370356.33 baseline=2402888.69 
+[01/14/24 09:16:44] DEBUG    [ yatuner ] r=9892.84 t=1413604.75 baseline=2402888.69 
+[01/14/24 09:16:46] DEBUG    [ yatuner ] r=10000.66 t=1402823.04 baseline=2402888.69 
+[01/14/24 09:16:49] DEBUG    [ yatuner ] r=10431.04 t=1359784.51 baseline=2402888.69 
+[01/14/24 09:16:52] DEBUG    [ yatuner ] r=10440.76 t=1358813.05 baseline=2402888.69 
+[01/14/24 09:16:55] DEBUG    [ yatuner ] r=10414.79 t=1361409.21 baseline=2402888.69 
+[01/14/24 09:16:58] DEBUG    [ yatuner ] r=10190.56 t=1383832.89 baseline=2402888.69 
+[01/14/24 09:17:00] DEBUG    [ yatuner ] r=10402.70 t=1362619.01 baseline=2402888.69 
+[01/14/24 09:17:03] DEBUG    [ yatuner ] r=10014.72 t=1401416.36 baseline=2402888.69 
+[01/14/24 09:17:06] DEBUG    [ yatuner ] r=10415.77 t=1361311.93 baseline=2402888.69 
+[01/14/24 09:17:09] DEBUG    [ yatuner ] r=10234.63 t=1379425.63 baseline=2402888.69 
+[01/14/24 09:17:12] DEBUG    [ yatuner ] r=10400.37 t=1362851.41 baseline=2402888.69 
+[01/14/24 09:17:14] DEBUG    [ yatuner ] r=10036.63 t=1399226.11 baseline=2402888.69 
+[01/14/24 09:17:17] DEBUG    [ yatuner ] r=10025.09 t=1400379.50 baseline=2402888.69 
+[01/14/24 09:17:20] DEBUG    [ yatuner ] r=10036.06 t=1399282.66 baseline=2402888.69 
+[01/14/24 09:17:22] DEBUG    [ yatuner ] r=10451.94 t=1357694.23 baseline=2402888.69 
+[01/14/24 09:17:25] DEBUG    [ yatuner ] r=9635.42 t=1439346.41 baseline=2402888.69 
+[01/14/24 09:17:28] DEBUG    [ yatuner ] r=10373.60 t=1365529.03 baseline=2402888.69 
+[01/14/24 09:17:31] DEBUG    [ yatuner ] r=9913.34 t=1411554.63 baseline=2402888.69 
+[01/14/24 09:17:33] DEBUG    [ yatuner ] r=10395.04 t=1363384.80 baseline=2402888.69 
+[01/14/24 09:17:36] DEBUG    [ yatuner ] r=10132.24 t=1389664.69 baseline=2402888.69 
+[01/14/24 09:17:39] DEBUG    [ yatuner ] r=10287.77 t=1374111.43 baseline=2402888.69 
+[01/14/24 09:17:42] DEBUG    [ yatuner ] r=10142.63 t=1388625.91 baseline=2402888.69 
+[01/14/24 09:17:44] DEBUG    [ yatuner ] r=10176.94 t=1385195.06 baseline=2402888.69 
+[01/14/24 09:17:47] DEBUG    [ yatuner ] r=10229.64 t=1379924.94 baseline=2402888.69 
+[01/14/24 09:17:50] DEBUG    [ yatuner ] r=10440.91 t=1358797.65 baseline=2402888.69 
+[01/14/24 09:17:53] DEBUG    [ yatuner ] r=10298.18 t=1373070.97 baseline=2402888.69 
+[01/14/24 09:17:56] DEBUG    [ yatuner ] r=10324.88 t=1370400.35 baseline=2402888.69 
+[01/14/24 09:17:58] DEBUG    [ yatuner ] r=10032.69 t=1399619.84 baseline=2402888.69 
+[01/14/24 09:18:01] DEBUG    [ yatuner ] r=10113.38 t=1391550.39 baseline=2402888.69 
+[01/14/24 09:18:04] DEBUG    [ yatuner ] r=10189.34 t=1383954.53 baseline=2402888.69 
+[01/14/24 09:18:07] DEBUG    [ yatuner ] r=9836.07 t=1419281.96 baseline=2402888.69 
+[01/14/24 09:18:09] DEBUG    [ yatuner ] r=10302.27 t=1372661.54 baseline=2402888.69 
+[01/14/24 09:18:12] DEBUG    [ yatuner ] r=10417.15 t=1361173.99 baseline=2402888.69 
+[01/14/24 09:18:15] DEBUG    [ yatuner ] r=10147.26 t=1388162.89 baseline=2402888.69 
+[01/14/24 09:18:18] DEBUG    [ yatuner ] r=10213.06 t=1381582.52 baseline=2402888.69 
+[01/14/24 09:18:20] DEBUG    [ yatuner ] r=10014.80 t=1401408.23 baseline=2402888.69 
+[01/14/24 09:18:23] DEBUG    [ yatuner ] r=10405.20 t=1362369.18 baseline=2402888.69 
+[01/14/24 09:18:26] DEBUG    [ yatuner ] r=9800.95 t=1422793.32 baseline=2402888.69 
+[01/14/24 09:18:29] DEBUG    [ yatuner ] r=10382.47 t=1364641.38 baseline=2402888.69 
+[01/14/24 09:18:31] DEBUG    [ yatuner ] r=10607.06 t=1342182.55 baseline=2402888.69 
+[01/14/24 09:18:34] DEBUG    [ yatuner ] r=10600.16 t=1342872.51 baseline=2402888.69 
+[01/14/24 09:18:37] DEBUG    [ yatuner ] r=9994.28 t=1403460.48 baseline=2402888.69 
+[01/14/24 09:18:40] DEBUG    [ yatuner ] r=9679.71 t=1434917.50 baseline=2402888.69 
+[01/14/24 09:18:42] DEBUG    [ yatuner ] r=10393.93 t=1363495.81 baseline=2402888.69 
+[01/14/24 09:18:45] DEBUG    [ yatuner ] r=10102.51 t=1392638.16 baseline=2402888.69 
+[01/14/24 09:18:48] DEBUG    [ yatuner ] r=10564.19 t=1346469.47 baseline=2402888.69 
+[01/14/24 09:18:51] DEBUG    [ yatuner ] r=10300.46 t=1372843.05 baseline=2402888.69 
+[01/14/24 09:18:54] DEBUG    [ yatuner ] r=10393.19 t=1363569.94 baseline=2402888.69 
+[01/14/24 09:18:56] DEBUG    [ yatuner ] r=9868.81 t=1416007.27 baseline=2402888.69 
+[01/14/24 09:18:59] DEBUG    [ yatuner ] r=10181.62 t=1384726.36 baseline=2402888.69 
+[01/14/24 09:19:02] DEBUG    [ yatuner ] r=10263.73 t=1376516.19 baseline=2402888.69 
+[01/14/24 09:19:05] DEBUG    [ yatuner ] r=10166.75 t=1386213.91 baseline=2402888.69 
+[01/14/24 09:19:07] DEBUG    [ yatuner ] r=9902.12 t=1412677.13 baseline=2402888.69 
+[01/14/24 09:19:10] DEBUG    [ yatuner ] r=10274.69 t=1375419.79 baseline=2402888.69 
+[01/14/24 09:19:13] DEBUG    [ yatuner ] r=9679.48 t=1434940.98 baseline=2402888.69 
+[01/14/24 09:19:15] DEBUG    [ yatuner ] r=10372.89 t=1365599.50 baseline=2402888.69 
+[01/14/24 09:19:18] DEBUG    [ yatuner ] r=10036.26 t=1399262.63 baseline=2402888.69 
+[01/14/24 09:19:21] DEBUG    [ yatuner ] r=9634.57 t=1439431.21 baseline=2402888.69 
+[01/14/24 09:19:24] DEBUG    [ yatuner ] r=10163.53 t=1386535.83 baseline=2402888.69 
+[01/14/24 09:19:26] DEBUG    [ yatuner ] r=10209.19 t=1381970.00 baseline=2402888.69 
+[01/14/24 09:19:29] DEBUG    [ yatuner ] r=10412.29 t=1361659.26 baseline=2402888.69 
+[01/14/24 09:19:32] DEBUG    [ yatuner ] r=9992.89 t=1403599.80 baseline=2402888.69 
+[01/14/24 09:19:35] DEBUG    [ yatuner ] r=10149.02 t=1387986.46 baseline=2402888.69 
+[01/14/24 09:19:37] DEBUG    [ yatuner ] r=10033.91 t=1399497.63 baseline=2402888.69 
+[01/14/24 09:19:40] DEBUG    [ yatuner ] r=10043.09 t=1398579.47 baseline=2402888.69 
+[01/14/24 09:19:43] DEBUG    [ yatuner ] r=10182.38 t=1384650.70 baseline=2402888.69 
+[01/14/24 09:19:46] DEBUG    [ yatuner ] r=10097.24 t=1393164.50 baseline=2402888.69 
+[01/14/24 09:19:48] DEBUG    [ yatuner ] r=10354.92 t=1367396.68 baseline=2402888.69 
+[01/14/24 09:19:51] DEBUG    [ yatuner ] r=10361.40 t=1366748.76 baseline=2402888.69 
+[01/14/24 09:19:54] DEBUG    [ yatuner ] r=10070.47 t=1395841.27 baseline=2402888.69 
+[01/14/24 09:19:57] DEBUG    [ yatuner ] r=10187.67 t=1384121.77 baseline=2402888.69 
+[01/14/24 09:19:59] DEBUG    [ yatuner ] r=10410.63 t=1361826.10 baseline=2402888.69 
+[01/14/24 09:20:02] DEBUG    [ yatuner ] r=10101.61 t=1392727.64 baseline=2402888.69 
+[01/14/24 09:20:05] DEBUG    [ yatuner ] r=9868.13 t=1416075.78 baseline=2402888.69 
+[01/14/24 09:20:07] DEBUG    [ yatuner ] r=9774.75 t=1425413.77 baseline=2402888.69 
+[01/14/24 09:20:10] DEBUG    [ yatuner ] r=10241.83 t=1378705.20 baseline=2402888.69 
+[01/14/24 09:20:13] DEBUG    [ yatuner ] r=10059.67 t=1396922.04 baseline=2402888.69 
+[01/14/24 09:20:16] DEBUG    [ yatuner ] r=10387.44 t=1364145.03 baseline=2402888.69 
+[01/14/24 09:20:19] DEBUG    [ yatuner ] r=10073.21 t=1395567.70 baseline=2402888.69 
+[01/14/24 09:20:21] DEBUG    [ yatuner ] r=10417.32 t=1361157.13 baseline=2402888.69 
+[01/14/24 09:20:24] DEBUG    [ yatuner ] r=10326.41 t=1370247.21 baseline=2402888.69 
+[01/14/24 09:20:27] DEBUG    [ yatuner ] r=10202.64 t=1382624.70 baseline=2402888.69 
+[01/14/24 09:20:30] DEBUG    [ yatuner ] r=9817.24 t=1421165.01 baseline=2402888.69 
+[01/14/24 09:20:32] DEBUG    [ yatuner ] r=10334.07 t=1369481.64 baseline=2402888.69 
+[01/14/24 09:20:35] DEBUG    [ yatuner ] r=10303.74 t=1372515.02 baseline=2402888.69 
+[01/14/24 09:20:38] DEBUG    [ yatuner ] r=10583.26 t=1344562.54 baseline=2402888.69 
+[01/14/24 09:20:41] DEBUG    [ yatuner ] r=10169.28 t=1385960.46 baseline=2402888.69 
+[01/14/24 09:20:44] DEBUG    [ yatuner ] r=10415.41 t=1361347.92 baseline=2402888.69 
+[01/14/24 09:20:46] DEBUG    [ yatuner ] r=10415.44 t=1361344.62 baseline=2402888.69 
+[01/14/24 09:20:49] DEBUG    [ yatuner ] r=9756.51 t=1427237.69 baseline=2402888.69 
+[01/14/24 09:20:52] DEBUG    [ yatuner ] r=9989.52 t=1403937.04 baseline=2402888.69 
+[01/14/24 09:20:55] DEBUG    [ yatuner ] r=10196.41 t=1383247.31 baseline=2402888.69 
+[01/14/24 09:20:57] DEBUG    [ yatuner ] r=9738.31 t=1429057.89 baseline=2402888.69 
+[01/14/24 09:21:00] DEBUG    [ yatuner ] r=10171.80 t=1385708.99 baseline=2402888.69 
+[01/14/24 09:21:03] DEBUG    [ yatuner ] r=10360.66 t=1366823.08 baseline=2402888.69 
+[01/14/24 09:21:05] DEBUG    [ yatuner ] r=9689.61 t=1433927.62 baseline=2402888.69 
+[01/14/24 09:21:08] DEBUG    [ yatuner ] r=10067.09 t=1396179.42 baseline=2402888.69 
+[01/14/24 09:21:11] DEBUG    [ yatuner ] r=9914.91 t=1411397.71 baseline=2402888.69 
+[01/14/24 09:21:14] DEBUG    [ yatuner ] r=9829.84 t=1419905.09 baseline=2402888.69 
+[01/14/24 09:21:16] DEBUG    [ yatuner ] r=10186.85 t=1384203.47 baseline=2402888.69 
+[01/14/24 09:21:19] DEBUG    [ yatuner ] r=10319.11 t=1370978.10 baseline=2402888.69 
+[01/14/24 09:21:22] DEBUG    [ yatuner ] r=10135.57 t=1389331.86 baseline=2402888.69 
+[01/14/24 09:21:25] DEBUG    [ yatuner ] r=9989.35 t=1403953.64 baseline=2402888.69 
+[01/14/24 09:21:27] DEBUG    [ yatuner ] r=10391.56 t=1363733.09 baseline=2402888.69 
+[01/14/24 09:21:30] DEBUG    [ yatuner ] r=10419.46 t=1360942.85 baseline=2402888.69 
+[01/14/24 09:21:33] DEBUG    [ yatuner ] r=9613.75 t=1441514.02 baseline=2402888.69 
+[01/14/24 09:21:36] DEBUG    [ yatuner ] r=10359.54 t=1366934.22 baseline=2402888.69 
+[01/14/24 09:21:38] DEBUG    [ yatuner ] r=10359.82 t=1366906.58 baseline=2402888.69 
+[01/14/24 09:21:41] DEBUG    [ yatuner ] r=10025.60 t=1400328.78 baseline=2402888.69 
+[01/14/24 09:21:44] DEBUG    [ yatuner ] r=9856.51 t=1417237.94 baseline=2402888.69 
+[01/14/24 09:21:47] DEBUG    [ yatuner ] r=10163.11 t=1386577.50 baseline=2402888.69 
+[01/14/24 09:21:49] DEBUG    [ yatuner ] r=9851.57 t=1417732.14 baseline=2402888.69 
+[01/14/24 09:21:52] DEBUG    [ yatuner ] r=10264.26 t=1376462.66 baseline=2402888.69 
+[01/14/24 09:21:55] DEBUG    [ yatuner ] r=9713.34 t=1431554.33 baseline=2402888.69 
+[01/14/24 09:21:57] DEBUG    [ yatuner ] r=10287.18 t=1374170.50 baseline=2402888.69 
+[01/14/24 09:22:00] DEBUG    [ yatuner ] r=9623.81 t=1440507.47 baseline=2402888.69 
+[01/14/24 09:22:03] DEBUG    [ yatuner ] r=10059.43 t=1396945.70 baseline=2402888.69 
+[01/14/24 09:22:06] DEBUG    [ yatuner ] r=10405.32 t=1362356.85 baseline=2402888.69 
+[01/14/24 09:22:08] DEBUG    [ yatuner ] r=10061.95 t=1396693.68 baseline=2402888.69 
+[01/14/24 09:22:11] DEBUG    [ yatuner ] r=10394.19 t=1363469.50 baseline=2402888.69 
+[01/14/24 09:22:14] DEBUG    [ yatuner ] r=10385.21 t=1364367.49 baseline=2402888.69 
+[01/14/24 09:22:17] DEBUG    [ yatuner ] r=10602.58 t=1342630.36 baseline=2402888.69 
+[01/14/24 09:22:19] DEBUG    [ yatuner ] r=9975.95 t=1405294.10 baseline=2402888.69 
+[01/14/24 09:22:22] DEBUG    [ yatuner ] r=10427.45 t=1360143.69 baseline=2402888.69 
+[01/14/24 09:22:25] DEBUG    [ yatuner ] r=10080.76 t=1394812.83 baseline=2402888.69 
+[01/14/24 09:22:28] DEBUG    [ yatuner ] r=10092.75 t=1393613.76 baseline=2402888.69 
+[01/14/24 09:22:30] DEBUG    [ yatuner ] r=9653.79 t=1437509.52 baseline=2402888.69 
+[01/14/24 09:22:33] DEBUG    [ yatuner ] r=10371.48 t=1365740.52 baseline=2402888.69 
+[01/14/24 09:22:36] DEBUG    [ yatuner ] r=10002.77 t=1402611.82 baseline=2402888.69 
+[01/14/24 09:22:39] DEBUG    [ yatuner ] r=10093.28 t=1393560.90 baseline=2402888.69 
+[01/14/24 09:22:42] DEBUG    [ yatuner ] r=9857.85 t=1417103.34 baseline=2402888.69 
+[01/14/24 09:22:44] DEBUG    [ yatuner ] r=10021.25 t=1400763.32 baseline=2402888.69 
+[01/14/24 09:22:47] DEBUG    [ yatuner ] r=10210.62 t=1381826.46 baseline=2402888.69 
+[01/14/24 09:22:50] DEBUG    [ yatuner ] r=10471.50 t=1355738.52 baseline=2402888.69 
+[01/14/24 09:22:53] DEBUG    [ yatuner ] r=9859.93 t=1416895.36 baseline=2402888.69 
+[01/14/24 09:22:56] DEBUG    [ yatuner ] r=10265.85 t=1376303.99 baseline=2402888.69 
+[01/14/24 09:22:58] DEBUG    [ yatuner ] r=10101.33 t=1392755.45 baseline=2402888.69 
+[01/14/24 09:23:01] DEBUG    [ yatuner ] r=10099.91 t=1392897.67 baseline=2402888.69 
+[01/14/24 09:23:04] DEBUG    [ yatuner ] r=10298.36 t=1373052.35 baseline=2402888.69 
+[01/14/24 09:23:07] DEBUG    [ yatuner ] r=10624.98 t=1340390.93 baseline=2402888.69 
+[01/14/24 09:23:09] DEBUG    [ yatuner ] r=10214.04 t=1381485.00 baseline=2402888.69 
+[01/14/24 09:23:12] DEBUG    [ yatuner ] r=9955.26 t=1407363.04 baseline=2402888.69 
+[01/14/24 09:23:15] DEBUG    [ yatuner ] r=10645.86 t=1338302.70 baseline=2402888.69 
+[01/14/24 09:23:18] DEBUG    [ yatuner ] r=10422.75 t=1360613.89 baseline=2402888.69 
+[01/14/24 09:23:21] DEBUG    [ yatuner ] r=10532.22 t=1349666.99 baseline=2402888.69 
+[01/14/24 09:23:23] DEBUG    [ yatuner ] r=9966.91 t=1406198.10 baseline=2402888.69 
+[01/14/24 09:23:26] DEBUG    [ yatuner ] r=10399.13 t=1362975.23 baseline=2402888.69 
+[01/14/24 09:23:29] DEBUG    [ yatuner ] r=9770.93 t=1425795.93 baseline=2402888.69 
+[01/14/24 09:23:32] DEBUG    [ yatuner ] r=9849.11 t=1417977.80 baseline=2402888.69 
+[01/14/24 09:23:34] DEBUG    [ yatuner ] r=10287.11 t=1374177.93 baseline=2402888.69 
+[01/14/24 09:23:37] DEBUG    [ yatuner ] r=10119.39 t=1390950.16 baseline=2402888.69 
+[01/14/24 09:23:40] DEBUG    [ yatuner ] r=10582.01 t=1344687.89 baseline=2402888.69 
+[01/14/24 09:23:43] DEBUG    [ yatuner ] r=10365.51 t=1366337.25 baseline=2402888.69 
+[01/14/24 09:23:46] DEBUG    [ yatuner ] r=9421.59 t=1460729.51 baseline=2402888.69 
+[01/14/24 09:23:48] DEBUG    [ yatuner ] r=10363.27 t=1366561.55 baseline=2402888.69 
+[01/14/24 09:23:51] DEBUG    [ yatuner ] r=10687.30 t=1334158.40 baseline=2402888.69 
+[01/14/24 09:23:54] DEBUG    [ yatuner ] r=10614.42 t=1341447.00 baseline=2402888.69 
+[01/14/24 09:23:57] DEBUG    [ yatuner ] r=9658.76 t=1437012.33 baseline=2402888.69 
+[01/14/24 09:23:59] DEBUG    [ yatuner ] r=10100.56 t=1392832.56 baseline=2402888.69 
+[01/14/24 09:24:02] DEBUG    [ yatuner ] r=10190.21 t=1383867.40 baseline=2402888.69 
+[01/14/24 09:24:05] DEBUG    [ yatuner ] r=10216.03 t=1381285.99 baseline=2402888.69 
+[01/14/24 09:24:08] DEBUG    [ yatuner ] r=10478.12 t=1355076.90 baseline=2402888.69 
+[01/14/24 09:24:11] DEBUG    [ yatuner ] r=9986.97 t=1404191.25 baseline=2402888.69 
+[01/14/24 09:24:13] DEBUG    [ yatuner ] r=10359.22 t=1366966.82 baseline=2402888.69 
+[01/14/24 09:24:16] DEBUG    [ yatuner ] r=10425.67 t=1360321.27 baseline=2402888.69 
+[01/14/24 09:24:19] DEBUG    [ yatuner ] r=10205.24 t=1382365.18 baseline=2402888.69 
+[01/14/24 09:24:22] DEBUG    [ yatuner ] r=10578.44 t=1345044.63 baseline=2402888.69 
+[01/14/24 09:24:25] DEBUG    [ yatuner ] r=10437.68 t=1359120.85 baseline=2402888.69 
+[01/14/24 09:24:28] DEBUG    [ yatuner ] r=10008.81 t=1402007.59 baseline=2402888.69 
+optimizing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:36:52
+[        1         0    517241        10     10000        48         0
+       344       172  10000000        11        82      1931       689
+         0       103 694229627        77        96        13        22
+        68        32      2259     63276     63276         5  51724137
+        40         3       517         6        33         6        34
+        96       100     34482    482758         6]
+-Ofast ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:08:16
+   -Os ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:08:43
+   -O0 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:12:34
+   -O1 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:08:58
+   -O2 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:08:42
+   -O3 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:08:38
+[01/14/24 10:20:23] INFO     [ yatuner ] loaded 33 optimizers 
+optimizers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:08:07
+[01/14/24 10:28:32] INFO     [ yatuner ] loaded 40 parameters 
+parameters ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:04:32
+                   Result 
+┏━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┓
+┃ Method     ┃ Result     ┃ Score  ┃ Delta  ┃
+┡━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━┩
+│ O0         │ 3751198.04 │ 35.81  │        │
+│ O1         │ 2674228.99 │ 50.24  │        │
+│ O2         │ 2592947.50 │ 51.81  │        │
+│ O3         │ 2571315.07 │ 52.25  │        │
+│ Ofast      │ 2465409.13 │ 54.49  │        │
+│ Os         │ 2596073.76 │ 51.75  │        │
+│ Optimizers │ 2419829.85 │ 55.52  │ 7.15%  │
+│ Parameters │ 1343438.30 │ 100.00 │ 93.01% │
+└────────────┴────────────┴────────┴────────┘
+(yatunerenv) thiago@ubuntu:~/TCC$ 
