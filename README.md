@@ -6,7 +6,7 @@ Estudo sobre a performance de um problema de sistemas dinâmicos, usando yatuner
 * GCC 9 ou mais recente
 * Instalar o framework yatuner (https://github.com/JuniMay/yatuner)
 * libgsl-dev
-* pip3 install requirements.txt 
+* pip3 install -r requirements.txt 
 * Dica: crie um ambiente virtual com python (https://docs.python.org/3/tutorial/venv.html)
 
 ## Instruções para execução do programa de simulação
