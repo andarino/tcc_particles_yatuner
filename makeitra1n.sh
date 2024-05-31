@@ -31,8 +31,8 @@ neofetch > neofetch
 
 #instalando os trem para rodar os arquivetos
 
-sudo apt-get -y install linux-tools-generic linux-cloud-tools-generic
-sudo apt-get -y install libgsl-dev
+apt-get -y install linux-tools-generic linux-cloud-tools-generic
+apt-get -y install libgsl-dev
 
 #requisitos do programa em python (env, yatuner, requirements)
 
@@ -45,7 +45,7 @@ cd yatuner/
 	#yatuner/yatuner/utils
 mv ../CONFIG_FILES/utils.py yatuner/utils
 
-# rodando os arquivos com yatuner
+# rodando os arquivos para database_one
 install_conf_one
 for i in {1..10}; do 
 	echo "RODANDO SCRIPT 1..."
@@ -59,7 +59,7 @@ for i in {1..10}; do
        	python ./stat_time_two.py >> term_output_two
 done
 
-# rodando arquivos para database_two
+# rodando arquivos para database_three
 install_conf_three
 for i in {1..10}; do 
 	echo "RODANDO SCRIPT 3..."
