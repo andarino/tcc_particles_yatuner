@@ -1,2 +1,0 @@
--ffast-math
--funsafe-math-optimizations
