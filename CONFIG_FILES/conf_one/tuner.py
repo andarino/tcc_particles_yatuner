@@ -41,7 +41,7 @@ class Tuner:
                  optimizers: Sequence[str],
                  parameters: Mapping[str, Tuple],
                  call_perf: Callable[[], Dict[str, Any]] = None,
-                 workspace='yatuner.db_no_param',
+                 workspace='yatuner.db_one',
                  log_level=logging.DEBUG,
                  norm_range=None,
                  deterministic=False,
