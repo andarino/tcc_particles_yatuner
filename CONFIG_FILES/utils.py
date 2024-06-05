@@ -45,21 +45,32 @@ def execute(command) -> Dict[str, Any]:
 
 
 def fetch_perf_stat(command) -> Dict[str, Any]:
-    """Use `perf stat <command>` to analyze given program and get dict of counters.
-
-    Args:
-        command: Command to be used in `perf stat`.
-
-    """
     perf_command = (
-    	'cd build/timePerf/ && '
-        'perf stat -x , '
-        ' -e \'duration_time\' ./'
+        'perf stat -x,'
+        ' -e branch-instructions '
+        ' -e branch-misses '
+        ' -e bus-cycles '
+        ' -e cache-misses '
+        ' -e cache-references '
+        ' -e duration_time'
+        ' -e cpu-cycles '
+        ' -e instructions '
+        ' -e ref-cycles '
+        ' -e alignment-faults '
+        ' -e bpf-output '
+        ' -e context-switches '
+        ' -e cpu-clock '
+        ' -e cpu-migrations '
+        ' -e dummy '
+        ' -e emulation-faults '
+        ' -e major-faults '
+        ' -e minor-faults '
+        ' -e page-faults '
+        ' -e task-clock '
+        ' -e duration_time '
         + command)
+
     res = execute(perf_command)
-    
-    print(perf_command)
-    print("->>>> ", res)
     
     if res['returncode'] != 0:
     	raise RuntimeError(res['stderr'])
