@@ -23,4 +23,3 @@ seaborn==0.13.0
 six==1.16.0
 typing-extensions==4.8.0
 tzdata==2023.3
-yatuner==0.0.1

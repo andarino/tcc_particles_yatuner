@@ -34,7 +34,7 @@ apt-get -y install libgsl-dev
 apt install python3.8-venv -y
 apt-get install python3-pip -y
 apt-get install python3-setuptools -y
-apt install python3.12-dev -y
+apt install python3.8-dev -y
 
 python3 -m venv yatuner_vagrant && \\
 source yatuner_vagrant/bin/activate && \\
