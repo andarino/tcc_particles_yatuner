@@ -5,9 +5,9 @@ import yatuner
 import logging
 
 cc = 'gcc-10'
-src = '/home/thiago/TCC/tcc_particles/downloading_wall_restitution.c '
+src = '~/tcc_particles_yatuner/TCC/tcc_particles/downloading_wall_restitution.c '
 parametros_exec = ' 0.0001 8 10 0.09'
-out = 'build/timePerf/downloading_wall_restitution'
+out = '~/tcc_particles_yatuner/TCC/build/timePerf/downloading_wall_restitution'
 base = '-O3'
 metric = 'duration_time'
 
@@ -19,7 +19,7 @@ if not os.path.isdir('./build/timePerf/'):
 
 optimizers = set(yatuner.utils.fetch_gcc_optimizers(cc=cc)).difference(
     yatuner.utils.fetch_gcc_enabled_optimizers(options=base))
-optimizers.remove('-fipa-pta')
+#optimizers.remove('-fipa-pta')
 
 parameters = yatuner.utils.fetch_gcc_parameters(cc=cc)
 
