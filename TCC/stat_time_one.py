@@ -72,5 +72,5 @@ tuner.optimize_linUCB(alpha=0.25,
                       num_epochs=200,
                       nth_choice=4,
                       metric=metric) #using linUCB
-tuner.run(num_samples=100) #50 -Ofast, -Os, -O0, (10 - 30)
+tuner.run(num_samples=100)
 tuner.plot_data() 
